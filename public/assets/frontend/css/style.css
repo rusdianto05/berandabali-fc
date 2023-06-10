@@ -1,0 +1,131 @@
+@import url("https://fonts.googleapis.com/css2?family=Lilita+One&family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&display=swap");
+
+:root {
+    /* Colors */
+    --black: #1e1b1c;
+    --bg-dark: #0a1524;
+    --dark-grey: #3d3d3d;
+    --grey1: #55565b;
+    --grey2: #9fa0ab;
+    --primary1: #e71345;
+    --blue: #6276f6;
+    --soft-blue: #8e9fff;
+    --yellow: #fec02d;
+    --soft-yellow: #ffd571;
+
+    --linear: linear-gradient(180deg, #0e0036 24.66%, #020050 61.72%, #000000 100%);
+
+    /* Fonts */
+    --text-plusjakarta: "Plus Jakarta Sans", sans-serif;
+    --lilita: "Lilita One", cursive;
+}
+
+* {
+    font-family: var(--text-plusjakarta);
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none !important;
+}
+
+.btn_primary {
+    background-color: #e71345 !important;
+    border: none;
+    color: white;
+    padding: 0.5rem 1.5rem;
+    font-weight: 700;
+    box-shadow: 0px 4px 4px rgba(255, 255, 255, 0.14);
+    border-radius: 12px;
+    font-size: 1.125rem;
+}
+
+.btn_primary:hover {
+    color: white;
+}
+
+.w-65 {
+    width: 65%;
+}
+.text_primary {
+    color: var(--primary1) !important;
+}
+
+/* Navbar */
+nav {
+    filter: drop-shadow(0px 4px 4px rgba(170, 165, 165, 0.25));
+    background-color: white;
+}
+.nav-link,
+a.btn_blue {
+    color: var(--black) !important;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    padding: 0 0.75rem !important;
+    font-size: 0.875rem;
+}
+.nav-link.active {
+    color: var(--blue) !important;
+    font-weight: 800;
+}
+.navbar-brand {
+    padding: 0 !important;
+}
+a.btn_blue.active {
+    background: #6276f6 !important;
+    border: 2px solid #6276f6 !important;
+    box-shadow: 0px 4px 4px rgba(217, 86, 243, 0.34) !important;
+    border-radius: 6px !important;
+    padding: 0.5rem 1rem !important;
+    color: white !important;
+}
+.navbar-toggler:focus {
+    box-shadow: none !important;
+}
+.navbar-toggler {
+    border: none !important;
+    padding: 0 !important;
+}
+#navbarNavDropdown .nav-item {
+    margin-bottom: 0.75rem;
+}
+
+@media only screen and (min-width: 992px) {
+    #navbarNavDropdown .nav-item {
+        margin-bottom: 0 !important;
+    }
+}
+/* End Navbar */
+
+footer {
+    background: #080737;
+    padding: 1.5rem 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.875rem;
+}
+
+footer a {
+    color: white !important;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+}
+
+.hr_footer {
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    width: 100%;
+}
+
+footer img {
+    filter: brightness(0) invert(1);
+}
+
+footer small {
+    color: white;
+    font-weight: 300;
+    letter-spacing: 0.05em;
+}
