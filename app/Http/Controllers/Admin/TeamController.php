@@ -15,15 +15,15 @@ class TeamController extends Controller
      */
     public function index()
     {
-        $data = Team::latest()->get();
+        $data = Team::where('type', 'Pemain')->latest()->get();
         if (request()->ajax()) {
-                return DataTables::of($data)
+            return DataTables::of($data)
                 ->addColumn('action', function ($data) {
                     $actionEdit = route('team.edit', $data->id);
                     $actionDelete = route('team.destroy', $data->id);
                     return
                         view('components.action.edit', ['action' => $actionEdit]) .
-                        view('components.action.delete', ['action' => $actionDelete, 'id' => $data->id]) ;
+                        view('components.action.delete', ['action' => $actionDelete, 'id' => $data->id]);
                 })
                 ->addColumn('image', function ($data) {
                     return '<img src="' . asset($data->image) . '" width="100px">';

@@ -1,5 +1,11 @@
 @extends('layouts.frontend.master', ['title' => 'Profil Klub'])
 @push('css')
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous" />
+    <!-- Add the slick-theme.css if you want default styling -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+    <!-- Add the slick-theme.css if you want default styling -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
     <style>
         body {
             background: linear-gradient(180deg, #0e0036 24.66%, #020050 61.72%, #000000 100%);
@@ -20,7 +26,7 @@
 
         .title {
             font-family: var(--lilita) !important;
-            font-size: 3rem;
+            font-size: 4rem;
             line-height: 125%;
         }
 
@@ -48,12 +54,12 @@
         .carousel-indicators {
             top: 6rem !important;
             right: auto !important;
-            margin-left: 3rem !important;
+            margin-left: 5rem !important;
         }
 
         .carousel-indicators button {
-            width: 0.75rem !important;
-            height: 0.75rem !important;
+            width: 0.5rem !important;
+            height: 0.5rem !important;
             border-radius: 100% !important;
             margin-right: 0.75rem !important;
         }
@@ -93,8 +99,8 @@
         }
 
         .mask_img {
-            -webkit-mask-image: url("../assets/images/bg.png");
-            mask-image: url("../assets/images/bg.png");
+            -webkit-mask-image: url("/assets/frontend/images/bg.png");
+            mask-image: url("/assets/frontend/images/bg.png");
             -webkit-mask-repeat: no-repeat;
             mask-repeat: no-repeat;
             height: 25rem;
@@ -111,8 +117,8 @@
         }
 
         .mask_img2 {
-            -webkit-mask-image: url("../assets/images/bg2.png");
-            mask-image: url("../assets/images/bg2.png");
+            -webkit-mask-image: url("/assets/frontend/images/bg2.png");
+            mask-image: url("/assets/frontend/images/bg2.png");
             -webkit-mask-repeat: no-repeat;
             mask-repeat: no-repeat;
             height: 25rem;
@@ -236,6 +242,11 @@
             font-size: 0.875rem;
         }
 
+        .carousel-control-next,
+        .carousel-control-prev {
+            width: 5% !important;
+        }
+
         /* End Championship */
     </style>
 @endpush
@@ -324,32 +335,72 @@
                 <h1 class="mb-3">ABOUT <span>BERANDA BALI</span> FOOTBALL CLUB</h1>
                 <div class="d-flex flex-column align-items-center">
                     <p class="w-75 subs">
-                        {{-- Lorem ipsum dolor sit amet consectetur. Viverra adipiscing sapien tincidunt id nullam enim
+                        Lorem ipsum dolor sit amet consectetur. Viverra adipiscing sapien tincidunt id nullam enim
                         ut massa. Massa proin vitae malesuada eget tortor neque adipiscing. Faucibus sed viverra
-                        duis tincidunt. pharetra pellentesque. Ac dui id nec tortor urna amet ut elit. --}}
-                        {{-- buatkan kata kata deskripsi galeri berandabali fc --}}
-                        Berikut adalah beberapa foto yang diambil dari berbagai kegiatan yang dilakukan oleh BerandaBali FC
-                        melalui beberapa event yang diikuti.
+                        duis tincidunt. pharetra pellentesque. Ac dui id nec tortor urna amet ut elit.
                     </p>
                 </div>
-                <div class="row justify-content-center w-100">
-                    <div class="col-md-4">
-                        <div class="mask_img1">
-                            <img src="/assets/frontend/images/article.png" alt="" />
+                <div class="galery-images slider">
+                    <div class="slider">
+                        <div class="row justify-content-center w-100">
+                            <div class="col-md-4">
+                                <div class="mask_img1">
+                                    <img src="/assets/frontend/images/galery1.png" alt="" />
+                                </div>
+                            </div>
+                            <div class="col-md-4 margin_top">
+                                <div class="mask_img">
+                                    <img src="/assets/frontend/images/galery2.png" alt="" />
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="mask_img2">
+                                    <img src="/assets/frontend/images/galery3.png" alt="" />
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-4 margin_top">
-                        <div class="mask_img">
-                            <img src="/assets/frontend/images/article.png" alt="" />
+                    <div class="slider">
+                        <div class="row justify-content-center w-100">
+                            <div class="col-md-4">
+                                <div class="mask_img1">
+                                    <img src="/assets/frontend/images/galery2.png" alt="" />
+                                </div>
+                            </div>
+                            <div class="col-md-4 margin_top">
+                                <div class="mask_img">
+                                    <img src="/assets/frontend/images/galery1.png" alt="" />
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="mask_img2">
+                                    <img src="/assets/frontend/images/galery3.png" alt="" />
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-4">
-                        <div class="mask_img2">
-                            <img src="/assets/frontend/images/article.png" alt="" />
+                    <div class="slider">
+                        <div class="row justify-content-center w-100">
+                            <div class="col-md-4">
+                                <div class="mask_img1">
+                                    <img src="/assets/frontend/images/galery3.png" alt="" />
+                                </div>
+                            </div>
+                            <div class="col-md-4 margin_top">
+                                <div class="mask_img">
+                                    <img src="/assets/frontend/images/galery2.png" alt="" />
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="mask_img2">
+                                    <img src="/assets/frontend/images/galery1.png" alt="" />
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <a href="../galery/index.html" class="d-flex gap-3 links justify-content-center align-items-center">
+                <a href="/galery/frontend/index.html"
+                    class="d-flex gap-3 links justify-content-center align-items-center">
                     <p class="text-white mb-0">Lihat semua galeri</p>
                     <img src="/assets/frontend/images/icons/arrow-red.svg" class="arrow" alt="" />
                 </a>
@@ -390,69 +441,35 @@
             <div class="carousel-inner">
                 <div class="carousel-item active" data-bs-interval="3000">
                     <div class="row championship_container justify-content-between">
-                        <div class="col-md-4 px-0">
-                            <a href="../article/detail/index.html">
-                                <div class="box_championsip">
-                                    <img src="/assets/frontend/images/champion1.png" class="img_championship"
-                                        alt="" />
-                                    <div class="content_championship">
-                                        <p class="date">27 Dec, 2022</p>
-                                        <h6>Juara 1 Hamengkubuwono CUP</h6>
-                                        <p class="content">
-                                            Lorem ipsum dolor sit amet consectetur. Lobortis aliquam. Lorem ipsum
-                                            dolor sit amet consectetur. Lobortis aliquam Lobortis aliquam....
-                                        </p>
-                                        <a href="../article/detail/index.html" class="link_more">See More</a>
+                        @foreach ($championships as $championship)
+                            <div class="col-md-4 px-0">
+                                <a href="{{ url('article', $item->slug) }}">
+                                    <div class="box_championsip">
+                                        <img src="{{ asset($item->image) }}" class="img_championship"
+                                            alt="{{ $item->slug }}" />
+                                        <div class="content_championship">
+                                            <p class="date">{{ $item->created_at->format('d M, Y') }}</p>
+                                            <h6>{{ $item->title }}</h6>
+                                            <p class="content">
+                                                {!! Str::limit($item->content, 100, '...') !!}
+                                            </p>
+                                            <a href="{{ url('article', $item->slug) }}" class="link_more">See More</a>
+                                        </div>
                                     </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-md-4 px-0">
-                            <a href="../article/detail/index.html">
-                                <div class="box_championsip">
-                                    <img src="/assets/frontend/images/champion2.png" class="img_championship"
-                                        alt="" />
-                                    <div class="content_championship">
-                                        <p class="date">27 Dec, 2022</p>
-                                        <h6>Juara 1 Hamengkubuwono CUP</h6>
-                                        <p class="content">
-                                            Lorem ipsum dolor sit amet consectetur. Lobortis aliquam. Lorem ipsum
-                                            dolor sit amet consectetur. Lobortis aliquam Lobortis aliquam....
-                                        </p>
-                                        <a href="../article/detail/index.html" class="link_more">See More</a>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-md-4 px-0">
-                            <a href="../article/detail/index.html">
-                                <div class="box_championsip">
-                                    <img src="/assets/frontend/images/champion3.png" class="img_championship"
-                                        alt="" />
-                                    <div class="content_championship">
-                                        <p class="date">27 Dec, 2022</p>
-                                        <h6>Juara 1 Hamengkubuwono CUP</h6>
-                                        <p class="content">
-                                            Lorem ipsum dolor sit amet consectetur. Lobortis aliquam. Lorem ipsum
-                                            dolor sit amet consectetur. Lobortis aliquam Lobortis aliquam....
-                                        </p>
-                                        <a href="../article/detail/index.html" class="link_more">See More</a>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
+                                </a>
+                            </div>
+                        @endforeach
                     </div>
                 </div>
-                <div class="carousel-item" data-bs-interval="3000">
+                {{-- <div class="carousel-item" data-bs-interval="3000">
                     <div class="row championship_container justify-content-between">
                         <div class="col-md-4 px-0">
                             <a href="../article/detail/index.html">
                                 <div class="box_championsip">
-                                    <img src="/assets/frontend/images/champion1.png" class="img_championship"
-                                        alt="" />
+                                    <img src="../assets/images/champion1.png" class="img_championship" alt="" />
                                     <div class="content_championship">
                                         <p class="date">27 Dec, 2022</p>
-                                        <h6>Juara 1 Hamengkubuwono CUP</h6>
+                                        <h6>Juara 1 </h6>
                                         <p class="content">
                                             Lorem ipsum dolor sit amet consectetur. Lobortis aliquam. Lorem ipsum
                                             dolor sit amet consectetur. Lobortis aliquam Lobortis aliquam....
@@ -465,11 +482,10 @@
                         <div class="col-md-4 px-0">
                             <a href="../article/detail/index.html">
                                 <div class="box_championsip">
-                                    <img src="/assets/frontend/images/champion2.png" class="img_championship"
-                                        alt="" />
+                                    <img src="../assets/images/champion2.png" class="img_championship" alt="" />
                                     <div class="content_championship">
                                         <p class="date">27 Dec, 2022</p>
-                                        <h6>Juara 1 Hamengkubuwono CUP</h6>
+                                        <h6>Juara 2</h6>
                                         <p class="content">
                                             Lorem ipsum dolor sit amet consectetur. Lobortis aliquam. Lorem ipsum
                                             dolor sit amet consectetur. Lobortis aliquam Lobortis aliquam....
@@ -482,11 +498,10 @@
                         <div class="col-md-4 px-0">
                             <a href="../article/detail/index.html">
                                 <div class="box_championsip">
-                                    <img src="/assets/frontend/images/champion3.png" class="img_championship"
-                                        alt="" />
+                                    <img src="../assets/images/champion3.png" class="img_championship" alt="" />
                                     <div class="content_championship">
                                         <p class="date">27 Dec, 2022</p>
-                                        <h6>Juara 1 Hamengkubuwono CUP</h6>
+                                        <h6>Juara 3</h6>
                                         <p class="content">
                                             Lorem ipsum dolor sit amet consectetur. Lobortis aliquam. Lorem ipsum
                                             dolor sit amet consectetur. Lobortis aliquam Lobortis aliquam....
@@ -497,17 +512,16 @@
                             </a>
                         </div>
                     </div>
-                </div>
-                <div class="carousel-item">
+                </div> --}}
+                {{-- <div class="carousel-item">
                     <div class="row championship_container justify-content-between">
                         <div class="col-md-4 px-0">
                             <a href="../article/detail/index.html">
                                 <div class="box_championsip">
-                                    <img src="/assets/frontend/images/champion1.png" class="img_championship"
-                                        alt="" />
+                                    <img src="../assets/images/champion1.png" class="img_championship" alt="" />
                                     <div class="content_championship">
                                         <p class="date">27 Dec, 2022</p>
-                                        <h6>Juara 1 Hamengkubuwono CUP</h6>
+                                        <h6>Juara 4</h6>
                                         <p class="content">
                                             Lorem ipsum dolor sit amet consectetur. Lobortis aliquam. Lorem ipsum
                                             dolor sit amet consectetur. Lobortis aliquam Lobortis aliquam....
@@ -520,11 +534,10 @@
                         <div class="col-md-4 px-0">
                             <a href="../article/detail/index.html">
                                 <div class="box_championsip">
-                                    <img src="/assets/frontend/images/champion2.png" class="img_championship"
-                                        alt="" />
+                                    <img src="../assets/images/champion2.png" class="img_championship" alt="" />
                                     <div class="content_championship">
                                         <p class="date">27 Dec, 2022</p>
-                                        <h6>Juara 1 Hamengkubuwono CUP</h6>
+                                        <h6>Juara 5</h6>
                                         <p class="content">
                                             Lorem ipsum dolor sit amet consectetur. Lobortis aliquam. Lorem ipsum
                                             dolor sit amet consectetur. Lobortis aliquam Lobortis aliquam....
@@ -537,11 +550,10 @@
                         <div class="col-md-4 px-0">
                             <a href="../article/detail/index.html">
                                 <div class="box_championsip">
-                                    <img src="/assets/frontend/images/champion3.png" class="img_championship"
-                                        alt="" />
+                                    <img src="../assets/images/champion3.png" class="img_championship" alt="" />
                                     <div class="content_championship">
                                         <p class="date">27 Dec, 2022</p>
-                                        <h6>Juara 1 Hamengkubuwono CUP</h6>
+                                        <h6>Juara 6</h6>
                                         <p class="content">
                                             Lorem ipsum dolor sit amet consectetur. Lobortis aliquam. Lorem ipsum
                                             dolor sit amet consectetur. Lobortis aliquam Lobortis aliquam....
@@ -552,7 +564,7 @@
                             </a>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselChampionship"
                 data-bs-slide="prev">
@@ -568,3 +580,32 @@
     </section>
     <!-- End Championship -->
 @endsection
+@push('js')
+    <script type="text/javascript" src="http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $(".galery-images").slick({
+                dots: false,
+                infinite: true,
+                speed: 500,
+                autoplay: true,
+                autoplaySpeed: 3000,
+                fade: true,
+                cssEase: "linear",
+                responsive: [{
+                        breakpoint: 768,
+                        settings: {
+                            slidesToShow: 4,
+                        },
+                    },
+                    {
+                        breakpoint: 425,
+                        settings: {
+                            slidesToShow: 3,
+                        },
+                    },
+                ],
+            });
+        });
+    </script>
+@endpush

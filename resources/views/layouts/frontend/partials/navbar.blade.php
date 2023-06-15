@@ -1,6 +1,6 @@
 <div class="fixed-top w-100">
     <nav class="navbar navbar-expand-lg position-absolute w-100">
-        <div class="container-fluid px-4 px-xl-5">
+        <div class="container">
             <a class="navbar-brand" href="#">
                 <img src="{{ asset('/assets/frontend/images/logo.svg') }}" width="50" alt="" />
             </a>
@@ -41,8 +41,32 @@
                     </li>
                 </ul>
                 <div class="d-flex gap-3 align-items-center justify-content-center justify-content-lg-end">
-                    <a href="{{ url('register') }}" class="btn_blue">Register</a>
-                    <a href="{{ url('login') }}" class="btn_blue active">Login</a>
+                    {{-- if --}}
+                    {{-- @guest on guard users --}}
+                    @guest('users')
+                        <a href="{{ route('register.user') }}" class="btn_blue">Register</a>
+                        <a href="{{ route('login.user') }}" class="btn_blue active">Login</a>
+                    @else
+                        {{-- show avatar and dropdown  --}}
+                        <div class="dropdown">
+                            <a class="d-flex align-items-center text-decoration-none dropdown-toggle" href="#"
+                                id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                <img src="{{ asset(Auth::guard('users')->user()->avatar ?? '/assets/frontend/images/logo.svg') }}"
+                                    width="40" alt="" />
+                                <span class="ms-2 text-black">{{ Auth::guard('users')->user()->name }}</span>
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <li><a class="dropdown-item" href="#">Profil</a></li>
+                                <li><a class="dropdown-item" href="#">Pengaturan</a></li>
+                                <li>
+                                    <form action="{{ route('logout.user') }}" method="POST">
+                                        @csrf
+                                        <button type="submit" class="dropdown-item">Logout</button>
+                                    </form>
+                                </li>
+                            </ul>
+                        </div>
+                    @endguest
                 </div>
             </div>
         </div>

@@ -1,10 +1,6 @@
 @extends('layouts.frontend.master', ['title' => 'Home'])
 @push('css')
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous" />
-    <!-- Add the slick-theme.css if you want default styling -->
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
-    <!-- Add the slick-theme.css if you want default styling -->
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
     <link rel="stylesheet" href="{{ asset('/assets/frontend/css/style.css') }}" />
     <style>
@@ -23,7 +19,7 @@
                     rgba(90, 25, 25, 0.15) 10%,
                     rgba(31, 30, 82, 0.82) 52.84%,
                     #05033a 100%),
-                url(./assets/images/jumbotron.png);
+                url(./assets/frontend/images/jumbotron.png);
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
@@ -396,9 +392,6 @@
     </section>
     <!-- End Profile Club -->
 
-
-
-
     <!-- Artikel -->
     <section id="article">
         <div class="container">
@@ -417,15 +410,15 @@
                                     <img src="{{ $item->image }}" width="100%" alt="{{ $item->slug }}" />
                                 </div>
                                 <div class="article_content">
-                                    {{-- <h1>{{ Str::limit($item->title, 38, '...') }}</h1> --}}
-                                    <h1>Pecah Rekor Baru Beranda Bali Football Menang Telak</h1>
-                                    {{-- <p>
-                                        {!! Str::limit($item->content, 84, '...') !!}
-                                    </p> --}}
+                                    <h1>{{ Str::limit($item->title, 30, '...') }}</h1>
+                                    {{-- <h1>Pecah Rekor Baru Beranda Bali Football Menang Telak</h1> --}}
                                     <p>
+                                        {!! Str::limit($item->content, 84, '...') !!}
+                                    </p>
+                                    {{-- <p>
                                         Lorem ipsum dolor sit amet consectetur. Lobortis aliquam. Lorem ipsum dolor sit
                                         amet consectetur...
-                                    </p>
+                                    </p> --}}
                                     <a href="{{ url('article', $item->slug) }}">Baca artikel
                                         <img src="./assets/frontend/images/icons/arrow.svg" width="20"
                                             class="ms-1 d-inline" alt="" /></a>
@@ -441,9 +434,6 @@
 @endsection
 @push('js')
     <script type="text/javascript" src="http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous">
-    </script>
     <script>
         var countDownDate1 = new Date("{{ $match[0]->match_date }}").getTime();
         var x = setInterval(function() {
@@ -481,12 +471,6 @@
                 document.getElementById("countdown2").innerHTML = "EXPIRED";
             }
         }, 1000);
-    </script>
-    <script src="https://code.jquery.com/jquery-3.7.0.min.js"
-        integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous">
     </script>
     <script>
         $(document).ready(function() {

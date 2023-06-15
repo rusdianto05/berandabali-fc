@@ -212,7 +212,7 @@
                                     </div>
                                     <div class="fv-row mb-7">
                                         <x-form.image-upload label="Foto" name="image" id="image"
-                                            value="{{ @$article->image ?? old('image') }}" />
+                                            :value="@$team->image ?? null" />
                                     </div>
 
                                     <!--end::Input group-->

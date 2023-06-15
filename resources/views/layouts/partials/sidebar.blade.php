@@ -148,7 +148,7 @@
                 </div>
 
                 <div data-kt-menu-trigger="click"
-                    class="menu-item menu-accordion {{ request()->routeIs('team.*', 'team-match.*') ? ' show' : '' }}">
+                    class="menu-item menu-accordion {{ request()->routeIs('team.*', 'coach.*', 'staff.*') ? ' show' : '' }}">
                     <span class="menu-link">
                         <span class="menu-icon">
                             <i class="fa-solid fa-users" style="color: #ffffff;"></i>
@@ -166,6 +166,37 @@
                             </a>
                         </div>
                     </div>
+                    <div class="menu-sub menu-sub-accordion menu-active-bg">
+                        <div class="menu-item">
+                            <a class="menu-link" href="{{ route('coach.index') }}">
+                                <span class="menu-bullet">
+                                    <span class="bullet bullet-dot"></span>
+                                </span>
+                                <span class="menu-title">Data Pelatih</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="menu-sub menu-sub-accordion menu-active-bg">
+                        <div class="menu-item">
+                            <a class="menu-link" href="{{ route('staff.index') }}">
+                                <span class="menu-bullet">
+                                    <span class="bullet bullet-dot"></span>
+                                </span>
+                                <span class="menu-title">Data Staff</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div data-kt-menu-trigger="click"
+                    class="menu-item menu-accordion {{ request()->routeIs('team-match.*') ? ' show' : '' }}">
+                    <span class="menu-link">
+                        <span class="menu-icon">
+                            <i class="fa-solid fa-futbol" style="color: #ffffff;"></i>
+                        </span>
+                        <span class="menu-title">Menu Pertandingan</span>
+                        <span class="menu-arrow"></span>
+                    </span>
                     <div class="menu-sub menu-sub-accordion menu-active-bg">
                         <div class="menu-item">
                             <a class="menu-link" href="{{ route('team-match.index') }}">

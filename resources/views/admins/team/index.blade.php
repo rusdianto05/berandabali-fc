@@ -1,4 +1,4 @@
-@extends('layouts.master', ['title' => 'Data Tim'])
+@extends('layouts.master', ['title' => 'Pemain'])
 @section('content')
     <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
         <!--begin::Toolbar-->
@@ -10,7 +10,7 @@
                     data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}"
                     class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
                     <!--begin::Title-->
-                    <h1 class="d-flex text-dark fw-bolder fs-3 align-items-center my-1"> Data Tim</h1>
+                    <h1 class="d-flex text-dark fw-bolder fs-3 align-items-center my-1"> Data Pemain</h1>
                     <!--end::Title-->
                     <!--begin::Separator-->
                     <span class="h-20px border-gray-300 border-start mx-4"></span>
@@ -19,7 +19,7 @@
                     <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">
                         <!--begin::Item-->
                         <li class="breadcrumb-item text-muted">
-                            <a href="#" class="text-muted text-hover-primary">Tim</a>
+                            <a href="#" class="text-muted text-hover-primary">Pemain</a>
                         </li>
                         <!--end::Item-->
                         <!--begin::Item-->
@@ -28,7 +28,7 @@
                         </li>
                         <!--end::Item-->
                         <!--begin::Item-->
-                        <li class="breadcrumb-item text-muted">List Tim</li>
+                        <li class="breadcrumb-item text-muted">List Pemain</li>
                         <!--end::Item-->
                     </ul>
                     <!--end::Breadcrumb-->
@@ -50,7 +50,7 @@
                         </div> --}}
                         <div class="">
                             <a type="a" class="btn btn-sm btn-primary" id="btn_add_permission"
-                                href="{{ route('team.create') }}">+ Tim</a>
+                                href="{{ route('team.create') }}">+ Pemain</a>
                             <!--end::Primary button-->
                         </div>
                         <!--end::Card title-->
@@ -64,7 +64,6 @@
                                 <tr class="fw-bolder fs-6 text-gray-800 px-7">
                                     <th width="3%">No</th>
                                     <th>Foto</th>
-                                    <th>Peran</th>
                                     <th>Nama</th>
                                     <th>Posisi</th>
                                     <th>No Punggung</th>
@@ -121,10 +120,6 @@
                         name: 'image',
                     },
                     {
-                        data: 'type',
-                        name: 'type',
-                    },
-                    {
                         data: 'name',
                         name: 'name'
                     },
@@ -159,7 +154,8 @@
                         data: 'action',
                         name: 'action',
                         orderable: false,
-                        searchable: false
+                        searchable: false,
+                        responsivePriority: -1
                     },
                 ]
             });

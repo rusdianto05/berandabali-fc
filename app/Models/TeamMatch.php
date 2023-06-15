@@ -19,4 +19,9 @@ class TeamMatch extends Model
         'opponent_score',
         'status',
     ];
+
+    public function tickets()
+    {
+        return $this->hasMany(Ticket::class);
+    }
 }

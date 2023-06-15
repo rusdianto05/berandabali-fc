@@ -122,31 +122,37 @@
                             Lengkapi data diri di bawah ini sebelum masuk ke website Bali Football Club dengan
                             benar.
                         </p>
-                        <form action="#">
+                        <x-alert.alert-validation />
+                        <form action="{{ route('user_register') }}" method="POST" class="mb-4">
+                            @csrf
                             <div class="mb-3">
                                 <label for="name" class="mb-1">Nama</label>
-                                <input type="text" id="name" class="form-control" />
+                                <input type="text" name="name" id="name" class="form-control"
+                                    value="{{ old('name') }} " />
                             </div>
                             <div class="mb-3">
                                 <label for="email" class="mb-1">Email</label>
-                                <input type="email" id="email" class="form-control" />
+                                <input type="email" name="email" id="email" class="form-control"
+                                    value="{{ old('email') }}" />
                             </div>
                             <div class="mb-3">
                                 <label for="phone" class="mb-1">Nomor Telepon</label>
-                                <input type="phone" id="phone" class="form-control" />
+                                <input type="phone" name="phone" id="phone" class="form-control"
+                                    value="{{ old('phone') }}" />
                             </div>
                             <div class="mb-3">
                                 <label for="password" class="mb-1">Password</label>
-                                <input type="password" id="password" class="form-control" />
+                                <input type="password" name="password" id="password" class="form-control" />
                             </div>
                             <div class="mb-5">
-                                <label for="confirm_password" class="mb-1">Konfirmasi Password</label>
-                                <input type="password" id="confirm_password" class="form-control" />
+                                <label for="password_confirmation" class="mb-1">Konfirmasi Password</label>
+                                <input type="password" name="password_confirmation" id="password_confirmation"
+                                    class="form-control" />
                             </div>
                             <button type="submit" class="btn_submit">Register</button>
                         </form>
                         <p class="text-center mt-3 mb-0">
-                            Sudah punya akun? <a class="text_blue" href="../login/index.html">Login</a>
+                            Sudah punya akun? <a class="text_blue" href="{{ route('login.user') }}">Login</a>
                         </p>
                     </div>
                 </div>

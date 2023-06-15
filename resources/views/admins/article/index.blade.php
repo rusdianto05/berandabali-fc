@@ -134,7 +134,8 @@
                         data: 'action',
                         name: 'action',
                         orderable: false,
-                        searchable: false
+                        searchable: false,
+                        responsivePriority: -1
                     },
                 ]
             });

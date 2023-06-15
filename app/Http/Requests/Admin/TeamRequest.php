@@ -25,7 +25,6 @@ class TeamRequest extends FormRequest
             'name' => 'required|string|max:255',
             'position' => 'required|string|max:255',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'type' => 'required|string|max:255',
             'born_place' => 'required|string|max:255',
             'born_date' => 'required|date',
             'height' => 'required|integer',

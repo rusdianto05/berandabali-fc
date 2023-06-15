@@ -8,6 +8,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Team extends Model
 {
+    const TYPE_PLAYER = 'Pemain';
+    const TYPE_COACH = 'Pelatih';
+    const TYPE_STAFF = 'Staff';
     use HasFactory, SoftDeletes;
 
     protected $fillable = [

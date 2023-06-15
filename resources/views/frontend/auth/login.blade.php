@@ -2,7 +2,7 @@
 @push('css')
     <style>
         body {
-            background: url("../assets/frontend/images/bg_login.png");
+            background: url("/assets/frontend/images/bg_login.png");
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -123,10 +123,11 @@
                     <p>Selamat datang kembali, silahkan lengkapi data berikut untuk mengakses akun Anda!</p>
                 </div>
                 <button class="d-flex gap-3 my-4 justify-content-center align-items-center btn_google">
-                    <img src="../assets/frontend/images/icons/google.svg" alt="" />
+                    <img src="/assets/frontend/images/icons/google.svg" alt="" />
                     <p class="mb-0">Login dengan google</p>
                 </button>
-                <form action="#" class="mb-3">
+                <form action="{{ route('user.authenticate') }}" method="POST" class="mb-3" autocomplete="off">
+                    @csrf
                     <div class="my-4">
                         <p class="text-center or_hr">or</p>
                     </div>
@@ -140,7 +141,7 @@
                     </div>
                     <button type="submit" class="btn_submit">Login</button>
                 </form>
-                <p>Belum punya akun? <a href="../register/index.html" class="text_blue">Register</a></p>
+                <p>Belum punya akun? <a href="{{ route('register.user') }}" class="text_blue">Register</a></p>
             </div>
         </div>
     </section>

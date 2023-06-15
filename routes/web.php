@@ -6,23 +6,27 @@ use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\TeamController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\CoachController;
+use App\Http\Controllers\Admin\StaffController;
 use App\Http\Controllers\Admin\GaleryController;
+use App\Http\Controllers\Admin\TicketController;
 use App\Http\Controllers\Admin\ArticleController;
+use App\Http\Controllers\Frontend\HomeController;
+use App\Http\Controllers\Frontend\MatchController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\TeamMatchController;
 use App\Http\Controllers\Admin\PermissionController;
+use App\Http\Controllers\Frontend\ProfileController;
 use App\Http\Controllers\Admin\ImageUploadController;
 use App\Http\Controllers\Admin\MerchandiseController;
 use App\Http\Controllers\Admin\CategoryArticleController;
-use App\Http\Controllers\Admin\CategoryMerchandiseController;
-use App\Http\Controllers\Frontend\HomeController;
-use App\Http\Controllers\Frontend\MatchController;
-use App\Http\Controllers\Frontend\ProfileController;
-use App\Http\Controllers\Frontend\ArticleController as FrontendArticleController;
-use App\Http\Controllers\Frontend\GaleryController as FrontendGaleryController;
-use App\Http\Controllers\Frontend\MerchandiseController as FrontendMerchandiseController;
-use App\Http\Controllers\Frontend\AuthController as FrontendAuthController;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
+use App\Http\Controllers\Admin\CategoryMerchandiseController;
+use App\Http\Controllers\Frontend\AuthController as FrontendAuthController;
+use App\Http\Controllers\Frontend\Teamcontroller as FrontendTeamcontroller;
+use App\Http\Controllers\Frontend\GaleryController as FrontendGaleryController;
+use App\Http\Controllers\Frontend\ArticleController as FrontendArticleController;
+use App\Http\Controllers\Frontend\MerchandiseController as FrontendMerchandiseController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,16 +42,21 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 // Route::get('/', function () {
 //     return view('admins.auth.login');
 // });
-Route::get('login', [FrontendAuthController::class, 'index'])->name('login');
-Route::get('register', [FrontendAuthController::class, 'showRegister'])->name('register');
+Route::get('login', [FrontendAuthController::class, 'index'])->name('login.user');
+Route::get('register', [FrontendAuthController::class, 'showRegister'])->name('register.user');
+Route::post('register', [FrontendAuthController::class, 'register'])->name('user_register');
+Route::post('login', [FrontendAuthController::class, 'login'])->name('user.authenticate');
+Route::post('logout', [FrontendAuthController::class, 'logout'])->name('logout.user');
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('profile-klub', [ProfileController::class, 'index'])->name('profile');
-Route::get('match', [MatchController::class, 'index'])->name('match');
+Route::resource('match', MatchController::class, ['only' => ['index', 'show', 'store']]);
+Route::post('match/reduce', [MatchController::class, 'reduce'])->name('match.reduce');
 Route::get('article', [FrontendArticleController::class, 'index'])->name('article');
 Route::get('article/{slug}', [FrontendArticleController::class, 'show'])->name('article.show');
 Route::get('merchandise', [FrontendMerchandiseController::class, 'index'])->name('merchandise');
 Route::get('merchandise/{slug}', [FrontendMerchandiseController::class, 'show'])->name('merchandise.show');
 Route::get('galery', [FrontendGaleryController::class, 'index'])->name('galery');
+Route::resource('team', FrontendTeamcontroller::class, ['only' => ['index', 'show']]);
 //auth
 // add prefix admin
 Route::prefix('admin')->group(function () {
@@ -70,5 +79,8 @@ Route::prefix('admin')->group(function () {
         Route::resource('merchandise', MerchandiseController::class);
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
         Route::resource('user', UserController::class);
+        Route::resource('coach', CoachController::class);
+        Route::resource('staff', StaffController::class);
+        Route::resource('ticket', TicketController::class);
     });
 });
