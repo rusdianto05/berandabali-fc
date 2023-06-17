@@ -12,7 +12,7 @@ class HomeController extends Controller
     public function index()
     {
         $match = TeamMatch::where('status', 'UPCOMING')->take(2)->orderBy('match_date', 'ASC')->get();
-        $article = Article::orderBy('created_at', 'DESC')->take(3)->get();
+        $article = Article::orderBy('created_at', 'DESC')->get();
         return view('frontend.home.index', compact('match', 'article'));
     }
 }
