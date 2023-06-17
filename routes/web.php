@@ -23,7 +23,7 @@ use App\Http\Controllers\Admin\CategoryArticleController;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 use App\Http\Controllers\Admin\CategoryMerchandiseController;
 use App\Http\Controllers\Frontend\AuthController as FrontendAuthController;
-use App\Http\Controllers\Frontend\Teamcontroller as FrontendTeamcontroller;
+use App\Http\Controllers\Frontend\TeamController as FrontendTeamController;
 use App\Http\Controllers\Frontend\GaleryController as FrontendGaleryController;
 use App\Http\Controllers\Frontend\ArticleController as FrontendArticleController;
 use App\Http\Controllers\Frontend\CheckoutController;
@@ -57,7 +57,7 @@ Route::get('article/{slug}', [FrontendArticleController::class, 'show'])->name('
 Route::get('merchandise', [FrontendMerchandiseController::class, 'index'])->name('merchandise');
 Route::get('merchandise/{slug}', [FrontendMerchandiseController::class, 'show'])->name('merchandise.show');
 Route::get('galery', [FrontendGaleryController::class, 'index'])->name('galery');
-Route::resource('team', FrontendTeamcontroller::class, ['only' => ['index', 'show']])->names('user.team');
+Route::resource('team', FrontendTeamController::class, ['only' => ['index', 'show']])->names('user.team');
 // add auth middleware user for frontend
 Route::group(['middleware' => ['user']], function () {
     Route::get('match/{id}', [MatchController::class, 'show'])->name('match.show');
