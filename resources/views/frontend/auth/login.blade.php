@@ -122,14 +122,15 @@
                     <h2 class="mb-4">Login</h2>
                     <p>Selamat datang kembali, silahkan lengkapi data berikut untuk mengakses akun Anda!</p>
                 </div>
-                <button class="d-flex gap-3 my-4 justify-content-center align-items-center btn_google">
+                {{-- <button class="d-flex gap-3 my-4 justify-content-center align-items-center btn_google">
                     <img src="/assets/frontend/images/icons/google.svg" alt="" />
                     <p class="mb-0">Login dengan google</p>
-                </button>
+                </button> --}}
                 <form action="{{ route('user.authenticate') }}" method="POST" class="mb-3" autocomplete="off">
                     @csrf
                     <div class="my-4">
-                        <p class="text-center or_hr">or</p>
+                        {{-- <p class="text-center or_hr"></p> --}}
+                        <x-alert.alert-validation />
                     </div>
                     <div class="mb-3">
                         <label for="email" class="mb-1">Email</label>

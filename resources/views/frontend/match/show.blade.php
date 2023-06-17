@@ -1,5 +1,8 @@
 @extends('layouts.frontend.master', ['title' => 'Detail Pertandingan'])
 @push('css')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         body {
             color: white;
@@ -102,6 +105,31 @@
             padding: 0.5rem 2rem;
             font-weight: 800;
             font-size: 1.125rem;
+        }
+
+        .btn_add {
+            width: 100%;
+            color: white;
+            border: none !important;
+            background: #ffd232;
+            box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.17);
+            border-radius: 12px;
+            padding: 0.5rem 2rem;
+            font-weight: 800;
+            font-size: 1rem
+        }
+
+        .btn_reduce {
+            width: 100%;
+            color: white;
+            border: none !important;
+            background: #ff0909;
+            box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.17);
+            border-radius: 12px;
+            padding: 0.5rem 2rem;
+            font-weight: 800;
+            font-size: 1rem;
+
         }
 
         .fw-medium {
@@ -235,26 +263,26 @@
                     </div>
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <h5 class="mb-0">Rp {{ number_format($item->price) }}</h5>
-                        <p class="text_primary mb-0 fw-medium">Sisa {{ $item->quantity }}</p>
+                        <p class="text_primary mb-0 fw-medium">Sisa
+                            {{ $item->quantity }}</p>
                     </div>
-
                     @if ($item->carts->count() > 0)
-                        <div class="input d-flex">
+                        <div class="d-flex">
                             <form action="{{ route('match.store') }}" method="POST">
                                 @csrf
-                                <button class="btn_ticket" value="reduce">-</button>
-                                <input type="number" id="quantity" name="quantity" min="1" max="100"
-                                    step="1" value="{{ $item->carts->count() ?? 1 }}"
-                                    style="width: 50px; text-align: center; border: none; outline: none; font-size: 16px; font-weight: 600; color: #000; background-color: transparent; cursor: pointer;" />
                                 <input type="hidden" name="ticket_id" value="{{ $item->id }}">
-                                {{-- how to send button with add value for btn add --}}
-                                <button class="btn_ticket" value="add">+</button>
+                                <input type="hidden" name="quantity" value="1">
+                                <button type="submit" class="btn_add"><i class="fas fa-plus"></i></button>
+                            </form>
+                            <div class="d-flex justify-content-between align-items-center mx-auto">
+                                <h5 class="mb-0">{{ $item->carts->count() }}</h5>
+                            </div>
+                            <form action="{{ route('match.destroy', $item->id) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn_reduce"><i class="fas fa-minus"></i></button>
                             </form>
                         </div>
-                        {{-- add bootstrap input spiner multiple --}}
-                        {{-- <input type="number" id="quantity" name="quantity" min="1" max="100"
-                                step="1" value="{{ $item->carts->count() ?? 0 }}" /> --}}
-                        {{-- </form> --}}
                     @else
                         <form action="{{ route('match.store') }}" method="POST">
                             @csrf
@@ -269,49 +297,21 @@
         <div class="d-flex align-items-center justify-content-between">
             <div class="amount">
                 <div class="d-flex gap-4 align-items-center mb-3">
-                    <h4>Jumlah</h4>
-                    <div class="input d-flex">
-                        <button class="btn_amount">-</button>
+                    <h4>Jumlah :&nbsp;</h4>
+
+                    {{-- <button class="btn_amount">-</button>
                         <input type="number" id="quantity" name="quantity" min="1" max="100" step="1"
                             value="0" />
-                        <button class="btn_amount">+</button>
-                    </div>
+                        <button class="btn_amount">+</button> --}}
+                    <h4 class="mb-0">{{ $total_quantity }}</h4>
+
                 </div>
-                <h4 class="mb-0">Total Rp. 300.000</h4>
+                <h4 class="mb-0">Total :&nbsp; Rp. {{ number_format($total_price) }}</h4>
             </div>
-            <button class="btn_checkout">Checkout</button>
+            {{-- <button class="btn_checkout">Checkout</button> --}}
+            {{-- <a href="{{ route('checkout.index') }}" class="btn_checkout">Checkout</a> --}}
+            <a href="{{ route('checkout.index', ['team_match_id' => $match->id]) }}" class="btn_checkout">Checkout</a>
         </div>
     </section>
     <!-- End Select tikcet -->
 @endsection
-@push('js')
-    {{-- add cdn bootstrap input spinner --}}
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap-input-spinner@3.3.3/src/bootstrap-input-spinner.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('.btn_amount').on('click', function() {
-                var $button = $(this);
-                var oldValue = $button.parent().find('input').val();
-                if ($button.text() == "+") {
-                    var newVal = parseFloat(oldValue) + 1;
-                } else {
-                    // Don't allow decrementing below zero
-                    if (oldValue > 1) {
-                        var newVal = parseFloat(oldValue) - 1;
-                    } else {
-                        newVal = 1;
-                    }
-                }
-                $button.parent().find('input').val(newVal);
-            });
-            // $('#quantity').inputSpinner({
-            //     buttonsClass: 'btn-spinner',
-            //     groupClass: 'input-group-spinner',
-            //     buttonsWidth: '2.5rem',
-            //     width: '100% !important',
-            //     height: '2.5rem',
-            //     class: 'form-control',
-            // });
-        });
-    </script>
-@endpush

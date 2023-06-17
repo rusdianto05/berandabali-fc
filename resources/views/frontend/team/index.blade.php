@@ -272,7 +272,7 @@
                                     </div>
                                     <div class="name">
                                         <h1 class="mb-3">{{ $player->name }}</h1>
-                                        <a href="#">Lihat Detail</a>
+                                        <a href="{{ route('user.team.show', $player->id) }}">Lihat Detail</a>
                                     </div>
                                 </div>
                             </div>
@@ -292,7 +292,7 @@
                                     </div>
                                     <div class="name">
                                         <h1 class="mb-3">{{ $coach->name }}</h1>
-                                        <a href="detail/index.html">Lihat Detail</a>
+                                        <a href="{{ route('user.team.show', $coach->id) }}">Lihat Detail</a>
                                     </div>
                                 </div>
                             </div>
@@ -312,7 +312,7 @@
                                     </div>
                                     <div class="name">
                                         <h1 class="mb-3">{{ $staff->name }}</h1>
-                                        <a href="detail/index.html">Lihat Detail</a>
+                                        <a href="{{ route('user.team.show', $staff->id) }}">Lihat Detail</a>
                                     </div>
                                 </div>
                             </div>

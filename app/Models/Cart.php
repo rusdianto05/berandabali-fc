@@ -12,7 +12,8 @@ class Cart extends Model
     protected $fillable = [
         'user_id',
         'ticket_id',
-        'quantity'
+        'quantity',
+        'team_match_id'
     ];
 
     public function ticket()
@@ -23,5 +24,10 @@ class Cart extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function teamMatch()
+    {
+        return $this->belongsTo(TeamMatch::class);
     }
 }

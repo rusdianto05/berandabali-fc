@@ -16,8 +16,9 @@ class Teamcontroller extends Controller
         return view('frontend.team.index', compact('players', 'coaches', 'staffs'));
     }
 
-    public function show()
+    public function show($id)
     {
-        return view('frontend.team.show');
+        $team = Team::findOrFail($id);
+        return view('frontend.team.show', compact('team'));
     }
 }

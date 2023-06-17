@@ -24,4 +24,9 @@ class TeamMatch extends Model
     {
         return $this->hasMany(Ticket::class);
     }
+
+    public function carts()
+    {
+        return $this->hasMany(Cart::class);
+    }
 }

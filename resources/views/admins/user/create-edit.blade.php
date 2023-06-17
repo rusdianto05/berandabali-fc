@@ -1,4 +1,4 @@
-@extends('layouts.master', ['title' => 'Data User'])
+@extends('layouts.master', ['title' => 'User'])
 @section('content')
     <!--begin::Content-->
     <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
@@ -36,14 +36,6 @@
                     </ul>
                     <!--end::Breadcrumb-->
                 </div>
-                <!--end::Page title-->
-                <!--begin::Actions-->
-                {{-- <div class="d-flex align-items-center gap-2 gap-lg-3">
-                    <!--begin::Primary button-->
-                    <a href="{{ route('user.index') }}" class="btn btn-sm btn-primary">Kembali</a>
-                    <!--end::Primary button-->
-                </div> --}}
-                <!--end::Actions-->
             </div>
             <!--end::Container-->
         </div>
@@ -62,13 +54,7 @@
                             <div class="card-header pt-7" id="kt_chat_contacts_header">
                                 <!--begin::Card title-->
                                 <div class="card-title">
-                                    <!--begin::Svg Icon | path: icons/duotune/communication/com005.svg-->
-                                    <span class="svg-icon svg-icon-1 me-2">
-                                        {{-- add online icon admin --}}
-                                        <img src="{{ asset('assets/media/icons/online.svg') }}" alt=""
-                                            class="online">
-                                    </span>
-                                    <!--end::Svg Icon-->
+
                                     <h1 class="d-flex text-dark fw-bolder fs-3 align-items-center">
                                         {{ request()->routeIs('user.create') ? 'Tambah User' : 'Edit User' }}</h1>
                                 </div>
@@ -85,9 +71,7 @@
                                     @csrf
                                     <x-form.put-method />
                                     <!--begin::Input group-->
-                                    <div class="fv-row mb-7">
-                                        <x-form.image-upload label="Avatar" name="avatar" :value="@$user->avatar ?? null" />
-                                    </div>
+
                                     <!--begin::Input group-->
                                     <div class="fv-row mb-7">
                                         <!--begin::Label-->
@@ -115,7 +99,7 @@
                                             value="{{ @$user->email ?? old('email') }}" />
                                         <!--end::Input-->
                                     </div>
-                                    {{-- <div class="fv-row mb-7">
+                                    <div class="fv-row mb-7">
                                         <!--begin::Label-->
                                         <label class="fs-6 fw-bold form-label mt-3">
                                             <span class="required">Password</span>
@@ -140,26 +124,6 @@
                                         <input type="password" class="form-control form-control-solid"
                                             name="password_confirmation" value="{{ old('password_confirmation') }}" />
                                         <!--end::Input-->
-                                    </div> --}}
-                                    <div class="fv-row mb-7">
-                                        <!--begin::Label-->
-                                        <label class="fs-6 fw-bold form-label mt-3">
-                                            <span class="required">Jenis Kelamin</span>
-                                            <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip"
-                                                title="Jenis Kelamin User"></i>
-                                        </label>
-                                        <!--end::Label-->
-                                        <!--begin::Input-->
-                                        <select name="gender" class="form-select form-select-solid" data-control="select2"
-                                            data-placeholder="Select option" data-allow-clear="true"
-                                            data-hide-search="true">
-                                            <option>Pilih Jenis Kelamin</option>
-                                            <option value="L" {{ @$user->gender == 'L' ? 'selected' : '' }}> Laki-Laki
-                                            </option>
-                                            <option value="P" {{ @$user->gender == 'P' ? 'selected' : '' }}> Perempuan
-                                            </option>
-                                        </select>
-                                        <!--end::Input-->
                                     </div>
                                     <div class="fv-row mb-7">
                                         <!--begin::Label-->
@@ -174,35 +138,15 @@
                                             value="{{ @$user->phone ?? old('phone') }}" />
                                         <!--end::Input-->
                                     </div>
-                                    <div class="fv-row mb-7">
-                                        <!--begin::Label-->
-                                        <label class="fs-6 fw-bold form-label mt-3">
-                                            <span class="required">Berat Badan</span>
-                                            <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip"
-                                                title="Masukkan Berat dalam Kg"></i>
-                                        </label>
-                                        <!--end::Label-->
-                                        <!--begin::Input-->
-                                        <input type="number" class="form-control form-control-solid" name="weight"
-                                            value="{{ @$user->weight ?? old('weight') }}" />
-                                        <!--end::Input-->
-                                    </div>
 
                                     <div class="fv-row mb-7">
-                                        <!--begin::Label-->
-                                        <label class="fs-6 fw-bold form-label mt-3">
-                                            <span class="required">Tinggi Badan</span>
-                                            <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip"
-                                                title="Masukkan Berat dalam cm"></i>
-                                        </label>
-                                        <!--end::Label-->
-                                        <!--begin::Input-->
-                                        <input type="number" class="form-control form-control-solid" name="height"
-                                            value="{{ @$user->height ?? old('height') }}" />
-                                        <!--end::Input-->
+                                        <x-form.image-upload label="Avatar" name="avatar" :value="@$user->avatar ?? null" />
                                     </div>
-                                    <!--end::Input group-->
-                                    <!--begin::Separator-->
+
+                                    @if (request()->routeIs('user.edit'))
+                                        <input type="hidden" name="id" value="{{ @$user->id }}">
+                                    @endif
+
                                     <div class="separator mb-6"></div>
                                     <!--end::Separator-->
                                     <!--begin::Action buttons-->
@@ -233,7 +177,6 @@
                     </div>
                     <!--end::Content-->
                 </div>
-                <!--end::Contacts App- Add New Contact-->
             </div>
             <!--end::Container-->
         </div>

@@ -48,6 +48,9 @@ class UserController extends Controller
         if (!empty($avatar = $request->avatar)) {
             $data['avatar'] = 'storage/' . $avatar->store('images/avatars', ['disk' => 'public']);
         }
+        if (!empty($password = $request->password)) {
+            $data['password'] = bcrypt($password);
+        }
         $user = User::create($data);
         return redirect()->route('user.index')->with('success', 'Berhasil menambah user');
     }
@@ -73,9 +76,12 @@ class UserController extends Controller
      */
     public function update(UserRequest $request, User $user)
     {
-        $data = $request->validated();
+        $data = $request->except('password');
         if (!empty($avatar = $request->avatar)) {
             $data['avatar'] = 'storage/' . $avatar->store('images/avatars', ['disk' => 'public']);
+        }
+        if (!empty($password = $request->password)) {
+            $data['password'] = bcrypt($password);
         }
         $user->update($data);
         return redirect()->route('user.index')->with('success', 'User berhasil diupdate');
@@ -86,9 +92,7 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        if (file_exists($user->avatar)) {
-            unlink($user->avatar);
-        }
+        file_exists($user->avatar) ? unlink($user->avatar) : null;
         $user->delete();
         return redirect()->route('user.index')->with('success', 'User berhasil dihapus');
     }
