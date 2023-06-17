@@ -18,7 +18,7 @@
 <meta property="og:image" content="">
 
 <link rel="canonical" href="BerandaBali" />
-<link rel="shortcut icon" href="assets/frontend/images/logo.svg" />
+<link rel="shortcut icon" href="{{ asset('assets/frontend/images/logo.svg') }}" />
 <!--begin::Fonts-->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
 <link href="{{ asset('assets/plugins/global/plugins.bundle.css') }}" rel="stylesheet" type="text/css" />
@@ -33,7 +33,7 @@
     <div class="d-flex flex-column flex-root">
         <!--begin::Authentication - Sign-in -->
         <div class="d-flex w-100 flex-column flex-column-fluid bgi-position-y-bottom position-x-center bgi-no-repeat bgi-size-contain bgi-attachment-fixed"
-            style="background-image: url(assets/media/bg/login-admin.jpg);background-size: cover;">
+            style="background-image: url({{ asset('assets/media/bg/login-admin.jpg') }});background-size: cover;">
             <!--begin::Content-->
             <div class="d-flex flex-center flex-column flex-column-fluid p-10 pb-lg-20">
                 <!--begin::Logo-->

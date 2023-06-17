@@ -7475,5 +7475,5 @@ return array(
     'phpseclib3\\System\\SSH\\Agent\\Identity' => $vendorDir . '/phpseclib/phpseclib/phpseclib/System/SSH/Agent/Identity.php',
     'phpseclib3\\System\\SSH\\Common\\Traits\\ReadBytes' => $vendorDir . '/phpseclib/phpseclib/phpseclib/System/SSH/Common/Traits/ReadBytes.php',
     'voku\\helper\\ASCII' => $vendorDir . '/voku/portable-ascii/src/voku/helper/ASCII.php',
-    '©' => $vendorDir . '/symfony/cache/Traits/ValueWrapper.php',
+    'ï¿½' => $vendorDir . '/symfony/cache/Traits/ValueWrapper.php',
 );
