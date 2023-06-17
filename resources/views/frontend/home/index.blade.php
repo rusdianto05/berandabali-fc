@@ -176,87 +176,94 @@
 
         /* Article */
         #article {
-                padding: 8rem 0;
-            }
-            .article_container {
-                display: flex;
-                gap: 2.5rem;
-                align-items: center;
-                margin-top: 5rem;
-            }
-            .card_article {
-                width: 100%;
-                height: 16rem;
-                position: relative;
-            }
+            padding: 8rem 0;
+        }
 
-            .article-slider .slick-slide {
-                opacity: 0.7;
-                transition: opacity 0.3s;
-                padding-left: 1rem;
-                padding-right: 1rem;
-                transform: scale(0.8);
-                margin: 2rem 0;
-            }
+        .article_container {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+            margin-top: 5rem;
+        }
 
-            .article-slider .slick-slide.slick-cloned {
-                opacity: 0.7;
-                transition: opacity 0.3s;
-                transform: scale(0.8);
-            }
+        .card_article {
+            width: 100%;
+            height: 16rem;
+            position: relative;
+        }
 
-            .article-slider .slick-slide.slick-current.slick-active {
-                opacity: 1;
-                transform: scale(1.2);
-                transition: opacity 0.3s;
-            }
-            .article_image {
-                position: relative;
-                height: 100%;
-                width: 100%;
-                border-radius: 12px;
-                overflow: hidden;
-            }
-            .article_image img {
-                height: 100%;
-                object-fit: cover;
-            }
-            .article_image::before {
-                position: absolute;
-                content: "";
-                width: 100%;
-                height: 100%;
-                background: linear-gradient(
-                    81.86deg,
+        .article-slider .slick-slide {
+            opacity: 0.7;
+            transition: opacity 0.3s;
+            padding-left: 1rem;
+            padding-right: 1rem;
+            transform: scale(0.8);
+            margin: 2rem 0;
+        }
+
+        .article-slider .slick-slide.slick-cloned {
+            opacity: 0.7;
+            transition: opacity 0.3s;
+            transform: scale(0.8);
+        }
+
+        .article-slider .slick-slide.slick-current.slick-active {
+            opacity: 1;
+            transform: scale(1.2);
+            transition: opacity 0.3s;
+        }
+
+        .article_image {
+            position: relative;
+            height: 100%;
+            width: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .article_image img {
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .article_image::before {
+            position: absolute;
+            content: "";
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(81.86deg,
                     rgba(9, 4, 37, 0.78) 5.48%,
                     rgba(116, 21, 44, 0.76) 41.55%,
-                    rgba(37, 16, 21, 0.35) 88.32%
-                );
-                top: 0;
-            }
-            .article_content {
-                position: absolute;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                top: 2rem;
-                bottom: 2rem;
-                left: 2rem;
-                width: 65%;
-            }
-            .article_content h1 {
-                font-size: 1.25rem !important;
-                line-height: 26px;
-                font-weight: 800;
-            }
-            .article_content p,
-            .article_content a {
-                font-weight: 500;
-                font-size: 0.75rem;
-            }
-            .article_content a {
-                color: var(--yellow);
-            }
+                    rgba(37, 16, 21, 0.35) 88.32%);
+            top: 0;
+        }
+
+        .article_content {
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            top: 2rem;
+            bottom: 2rem;
+            left: 2rem;
+            width: 65%;
+        }
+
+        .article_content h1 {
+            font-size: 1.25rem !important;
+            line-height: 26px;
+            font-weight: 800;
+        }
+
+        .article_content p,
+        .article_content a {
+            font-weight: 500;
+            font-size: 0.75rem;
+        }
+
+        .article_content a {
+            color: var(--yellow);
+        }
 
         /* End Article */
         .btn_primary {
@@ -422,10 +429,7 @@
     <!-- End Artikel -->
 @endsection
 @push('js')
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous">
-</script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script>
         var countDownDate1 = new Date("{{ $match[0]->match_date }}").getTime();
         var x = setInterval(function() {
@@ -490,7 +494,7 @@
             });
         });
 
-        $(document).ready(function () {
+        $(document).ready(function() {
             $(".article-slider").slick({
                 centerMode: true,
                 centerPadding: "5px",
@@ -502,8 +506,7 @@
                 lazyLoad: "ondemand",
                 autoplay: true,
                 autoplaySpeed: 3000,
-                responsive: [
-                    {
+                responsive: [{
                         breakpoint: 1024,
                         settings: {
                             slidesToShow: 2,
