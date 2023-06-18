@@ -90,6 +90,8 @@
         .img_box img {
             padding: 0 1rem;
             height: 200px;
+            width: 100%;
+            object-fit: contain;
         }
 
         .box_product p {

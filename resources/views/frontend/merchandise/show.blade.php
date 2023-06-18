@@ -9,49 +9,40 @@
             background: linear-gradient(180deg, #0e0036 24.66%, #020050 61.72%, #000000 100%);
             background-repeat: no-repeat;
         }
-
         #contents {
             min-height: 100vh;
             padding: 6.5rem 0 6rem;
         }
-
         .box {
             background: #ffffff;
             border-radius: 30px;
             color: #1e1b1c;
             padding: 3rem 4rem 5rem;
         }
-
         .category,
         .desc,
         .discount {
             font-weight: 600;
         }
-
         h1,
         .price {
             font-weight: 700;
         }
-
         h1 {
             font-size: 2rem;
         }
-
         .discount {
             text-decoration: line-through;
             font-size: 0.875rem;
         }
-
         .discount,
         .desc {
             color: #55565b;
         }
-
         .price,
         .desc {
             font-size: 1.125rem;
         }
-
         .btn_buy {
             background: #e71345;
             border-radius: 8.28421px;
@@ -62,48 +53,45 @@
             font-weight: 800;
             padding: 0.5rem 3rem;
             margin-top: 2rem;
+            color: white !important;
         }
-
+        .btn_buy:hover {
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1),
+        0 4px 6px -4px rgb(0 0 0 / 0.1);
+        }
         .photo_product {
-            width: 22rem;
+            width: 22rem !important;
         }
-
         .slider-for {
             max-height: 500px;
             margin-bottom: 1rem;
         }
-
         .slider-for .images {
             display: flex;
             justify-content: center;
-            width: 100%;
+            width: 22rem !important;
             height: 22rem;
         }
-
         .slider-for .images img {
-            object-fit: cover;
+            object-fit: contain;
             width: 100%;
             height: 100%;
         }
-
         .slider-nav {
             cursor: pointer;
         }
-
         .slider-nav .images2 img {
             height: 4.5rem;
             width: 4.5rem;
             object-fit: cover;
         }
-
-        .slider-for2 .images img {
-            height: 100%;
-        }
-
         .slider-for2 .images {
             height: 30rem;
             display: flex;
             justify-content: center;
+        }
+        .slider-for2 .images img {
+            height: 100%;
         }
     </style>
 @endpush
@@ -111,13 +99,14 @@
     <!-- Contents -->
     <section id="contents">
         <div class="container">
-            <div class="box d-flex gap-5 align-items-center">
+            <div class="box d-flex gap-5">
                 <div class="photo_product">
                     <div class="slider-for slider">
                         @foreach ($merchandise->merchandiseImages as $image)
                             <button class="images border-0 bg-transparent" data-bs-toggle="modal"
                                 data-bs-target="#staticBackdrop">
                                 <img src="{{ asset($image->image) }}" alt="" />
+                            </button>
                         @endforeach
                     </div>
                     <div class="slider-nav slider">
@@ -138,7 +127,9 @@
                     <p class="desc">
                         {!! $merchandise->description !!}
                     </p>
-                    <a href="{{ $merchandise->link_marketplace }}" target="_blank" class="btn_buy">BELI SEKARANG!</a>
+                    <div class="mt-5">
+                        <a href="{{ $merchandise->link_marketplace }}" target="_blank" class="btn_buy">BELI SEKARANG!</a>
+                    </div>
                 </div>
             </div>
             <!-- Modal -->
@@ -157,7 +148,6 @@
                                         data-bs-target="#staticBackdrop">
                                         <img src="{{ asset($image->image) }}" alt="" />
                                     </button>
-                                    <img src="{{ asset($image->image) }}" alt="">
                                 @endforeach
                             </div>
                         </div>
@@ -194,7 +184,7 @@
                     asNavFor: ".slider-for",
                     dots: false,
                     arrows: true,
-                    centerMode: true,
+                    centerMode: false,
                     focusOnSelect: true,
                 });
             });
