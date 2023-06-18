@@ -251,6 +251,13 @@
                     {
                         data: 'payment_url',
                         name: 'payment_url',
+                        render: function(data, type, row) {
+                            if (row.status == 'SUCCESS') {
+                                return row.booking_id;
+                            } else {
+                                return data;
+                            }
+                        }
                     },
                     {
                         data: 'status',
