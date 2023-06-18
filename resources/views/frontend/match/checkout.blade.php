@@ -110,7 +110,6 @@
                     </p>
                 </div>
                 <div class="col-md-6 right_side">
-                    {{-- <form action="{{ route('checkout.store') }}" method="POST"> add param team_match --}}
                     <form action="{{ route('checkout.store', ['team_match_id' => request()->team_match_id]) }}"
                         method="POST">
                         @csrf

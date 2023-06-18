@@ -19,10 +19,9 @@
         }
 
         .content p {
-            text-align: justify !important;
-            font-weight: 600 !important;
-            line-height: 1.5rem !important;
-            letter-spacing: 0.02em !important;
+            text-align: justify;
+            line-height: 1.5rem;
+            letter-spacing: 0.02em;
         }
 
         .date {
@@ -33,6 +32,36 @@
             font-weight: 800;
             font-size: 2rem;
         }
+
+        /* Responsiveness */
+        @media only screen and (max-width: 1199.98px) {
+            .image_article {
+                height: 275px;
+            }
+            h1 {
+                font-size: 1.75rem;
+            }
+        }
+        @media only screen and (max-width: 991.98px) {
+            .image_article {
+                height: 250px;
+            }
+            h1 {
+                font-size: 1.5rem;
+            }
+            .content p,
+            .date {
+                font-size: .875rem;
+                line-height: 1.25rem;
+            }
+        }
+
+        @media only screen and (max-width: 767.98px) {
+            .image_article {
+                height: 200px;
+            }
+        }
+        /* End Responsiveness */
     </style>
 @endpush
 @section('content')

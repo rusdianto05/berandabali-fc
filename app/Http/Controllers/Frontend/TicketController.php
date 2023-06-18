@@ -19,7 +19,7 @@ class TicketController extends Controller
                     $actionEdit = route('user.ticket.show', $data->id);
                     $actionDelete = route('user.ticket.destroy', $data->id);
                     return
-                        view('components.action.show', ['action' => $actionEdit, 'id' => $data->id]) .
+                        view('components.action.show', ['action' => $actionEdit, 'id' => $data->id, 'status' => $data->status, 'url_payment' => $data->payment_url]) .
                         view('components.action.delete', ['action' => $actionDelete, 'id' => $data->id]);
                 })
                 ->addColumn('date', function ($data) {
