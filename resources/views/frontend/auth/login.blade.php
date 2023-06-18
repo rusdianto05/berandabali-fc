@@ -117,7 +117,7 @@
     <!-- Login -->
     <section id="login">
         <div class="container">
-            <div class="box_login p-4 p-sm-5">
+            <div class="box_login p-4 p-sm-5 mx-auto">
                 <div class="text-center">
                     <h2 class="mb-4">Login</h2>
                     <p>Selamat datang kembali, silahkan lengkapi data berikut untuk mengakses akun Anda!</p>
