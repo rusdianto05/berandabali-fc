@@ -396,7 +396,7 @@
                         </div>
                     </div>
                 </div>
-                <a href="/galery/frontend/index.html"
+                <a href="{{ url('galery') }}"
                     class="d-flex gap-3 links justify-content-center align-items-center">
                     <p class="text-white mb-0">Lihat semua galeri</p>
                     <img src="/assets/frontend/images/icons/arrow-red.svg" class="arrow" alt="" />
