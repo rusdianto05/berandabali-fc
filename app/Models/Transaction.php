@@ -11,6 +11,7 @@ class Transaction extends Model
 
     protected $fillable = [
         'user_id',
+        'booking_id',
         'team_match_id',
         'name',
         'phone',
