@@ -66,7 +66,7 @@
         }
 
         .img_logo {
-            width: 200px;
+            height:200px;
         }
 
         .score_text,
@@ -124,14 +124,14 @@
         }
 
         .image {
-            width: 80px;
+            height: 75px;
         }
 
         .box_schedule h2 {
             font-family: var(--lilita);
             color: #1e1b1c;
             letter-spacing: 0.06em;
-            font-size: 1.5rem;
+            font-size: 1.25rem;
         }
 
         .box_schedule p {
@@ -142,6 +142,7 @@
 
         .border_bottom {
             border-bottom: 2px solid #9fa0ab;
+            height: 8rem;
         }
 
         .text_red {
@@ -151,6 +152,9 @@
         a p {
             letter-spacing: 0.05em;
             font-weight: 600 !important;
+        }
+        a:hover p {
+            font-weight: 800 !important;
         }
 
         /* End Schedule */

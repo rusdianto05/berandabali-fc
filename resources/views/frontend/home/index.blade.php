@@ -152,6 +152,7 @@
             padding: 0.75rem 2rem;
             font-weight: 700;
             letter-spacing: -0.005em;
+            line-height: 1.75rem
         }
 
         /* End Match */
@@ -346,20 +347,19 @@
                         </div>
                         <div class="card_body d-flex justify-content-between align-items-center">
                             <div class="text-center">
-                                <img src="{{ asset('assets\media\logos\sidebar-logo.png') }}" width="100"
+                                <img src="{{ asset('assets\media\logos\sidebar-logo.png') }}" height="100"
                                     alt="" />
                                 <p class="mt-2">BerandaBali FC</p>
                             </div>
                             <h6 class="mb-0">VS</h6>
                             <div class="text-center">
-                                <img src="{{ $item->opponent_logo }}" width="100" alt="" />
+                                <img src="{{ $item->opponent_logo }}" height="100" alt="" />
                                 <p class="mt-2 text-center">{{ $item->opponent_name }}</p>
                             </div>
                         </div>
                         <div class="card_footer text-center">
-                            <p class="mb-0">
-                            <p class="date">{{ date('d F Y', strtotime($item->match_date)) }} |
-                                {{ date('H:i', strtotime($item->match_date)) }} WIB</p>
+                            <p class="mb-0">{{ date('d F Y', strtotime($item->match_date)) }} |
+                                {{ date('H:i', strtotime($item->match_date)) }} WIB
                             <br />{{ $item->match_location }}</p>
                         </div>
                     </div>
