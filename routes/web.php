@@ -26,7 +26,9 @@ use App\Http\Controllers\Frontend\AuthController as FrontendAuthController;
 use App\Http\Controllers\Frontend\Teamcontroller as FrontendTeamcontroller;
 use App\Http\Controllers\Frontend\GaleryController as FrontendGaleryController;
 use App\Http\Controllers\Frontend\ArticleController as FrontendArticleController;
+use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\MerchandiseController as FrontendMerchandiseController;
+use App\Http\Controllers\Frontend\TicketController as FrontendTicketController;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,15 +50,21 @@ Route::post('register', [FrontendAuthController::class, 'register'])->name('user
 Route::post('login', [FrontendAuthController::class, 'login'])->name('user.authenticate');
 Route::post('logout', [FrontendAuthController::class, 'logout'])->name('logout.user');
 Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('profile-klub', [ProfileController::class, 'index'])->name('profile');
-Route::resource('match', MatchController::class, ['only' => ['index', 'show', 'store']]);
-Route::post('match/reduce', [MatchController::class, 'reduce'])->name('match.reduce');
+Route::get('profile-klub', [ProfileController::class, 'index'])->name('user.profile.index');
+Route::resource('match', MatchController::class, ['only' => ['index', 'store', 'destroy']]);
 Route::get('article', [FrontendArticleController::class, 'index'])->name('article');
 Route::get('article/{slug}', [FrontendArticleController::class, 'show'])->name('article.show');
 Route::get('merchandise', [FrontendMerchandiseController::class, 'index'])->name('merchandise');
 Route::get('merchandise/{slug}', [FrontendMerchandiseController::class, 'show'])->name('merchandise.show');
 Route::get('galery', [FrontendGaleryController::class, 'index'])->name('galery');
-Route::resource('team', FrontendTeamcontroller::class, ['only' => ['index', 'show']]);
+Route::resource('team', FrontendTeamcontroller::class, ['only' => ['index', 'show']])->names('user.team');
+// add auth middleware user for frontend
+Route::group(['middleware' => ['user']], function () {
+    Route::get('match/{id}', [MatchController::class, 'show'])->name('match.show');
+    Route::get('checkout', [CheckoutController::class, 'index'])->name('checkout.index');
+    Route::post('checkout', [CheckoutController::class, 'store'])->name('checkout.store');
+    Route::resource('tiket', FrontendTicketController::class)->names('user.ticket');
+});
 //auth
 // add prefix admin
 Route::prefix('admin')->group(function () {

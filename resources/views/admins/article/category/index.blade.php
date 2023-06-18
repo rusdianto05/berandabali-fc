@@ -62,8 +62,8 @@
                         <table id="table-category-article" class="table table-striped border rounded gy-5 gs-7">
                             <thead>
                                 <tr class="fw-bolder fs-6 text-gray-800 px-7">
-                                    <th width="3%">No</th>
-                                    <th class="text-center">Nama Kategori</th>
+                                    <th width="20%">No</th>
+                                    <th>Nama Kategori</th>
                                     <th width="20%">Aksi</th>
                                 </tr>
                             </thead>

@@ -34,13 +34,6 @@
                     </ul>
                     <!--end::Breadcrumb-->
                 </div>
-                <!--end::Page title-->
-                <!--begin::Actions-->
-                {{-- <div class="d-flex align-items-center gap-2 gap-lg-3">
-                    <a href="{{ route('user.create') }}" class="btn btn-sm btn-primary">Tambah</a>
-                    <!--end::Primary button-->
-                </div> --}}
-                <!--end::Actions-->
             </div>
             <!--end::Container-->
         </div>
@@ -75,12 +68,6 @@
                                     <th>Nama</th>
                                     <th>Email</th>
                                     <th>No HP</th>
-                                    <th>Gender</th>
-                                    <th>Poin</th>
-                                    <th>Tinggi</th>
-                                    <th>Berat</th>
-                                    <th>Tanggal Lahir</th>
-                                    <th>Bio</th>
                                     <th>Status</th>
                                     <th class="d-flex text-center min-w-100px">Aksi</th>
                                 </tr>
@@ -133,7 +120,7 @@
                             if (data == null) {
                                 return `<span class="symbol-label fs-2x fw-bold text-primary bg-light-primary">${row.name.charAt(0)}</span>`;
                             } else {
-                                return `<img src="${data}" alt="image" class="h-50px w-50px rounded-circle" />`;
+                                return `<img src="/${data}" alt="image" class="h-50px w-50px rounded-circle" />`;
                             }
                         }
                     },
@@ -149,53 +136,6 @@
                     {
                         data: 'phone',
                         name: 'phone'
-                    },
-                    {
-                        data: 'gender',
-                        name: 'gender',
-                        render: function(data, type, row) {
-                            let badgeClass = '';
-                            let label = '';
-
-                            if (data == 'L') {
-                                badgeClass = 'badge-light-primary';
-                                label = 'Laki-laki';
-                            } else if (data == 'P') {
-                                badgeClass = 'badge-light-danger';
-                                label = 'Perempuan';
-                            } else {
-                                badgeClass = 'badge-light-warning';
-                                label = 'Tidak diketahui';
-                            }
-
-                            return `<span class="badge ${badgeClass}">${label}</span>`;
-                        },
-                    },
-                    {
-                        data: 'point',
-                        name: 'point'
-                    },
-                    {
-                        data: 'height' ? 'height' : '-',
-                        name: 'height' ? 'height' : '-',
-                        render: function(data, type, row) {
-                            return `${data} Cm`;
-                        }
-                    },
-                    {
-                        data: 'weight' ?? '-',
-                        name: 'weight' ?? '-',
-                        render: function(data, type, row) {
-                            return `${data} Kg`;
-                        }
-                    },
-                    {
-                        data: 'birth_date',
-                        name: 'birth_date',
-                    },
-                    {
-                        data: 'bio',
-                        name: 'bio',
                     },
                     {
                         data: 'active',

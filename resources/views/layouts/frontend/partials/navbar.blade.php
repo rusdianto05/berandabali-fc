@@ -11,16 +11,16 @@
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav me-auto my-4 my-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('/.*', '') ? ' active' : '' }}" aria-current="page"
+                        <a class="nav-link {{ request()->routeIs('home') ? ' active' : '' }}" aria-current="page"
                             href="/">Beranda</a>
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link {{ request()->routeIs('profile-klub.*', 'profile-klub') ? ' active' : '' }}"
+                        <a class="nav-link {{ request()->routeIs('user.profile.*') ? ' active' : '' }}"
                             href="{{ url('profile-klub') }}">Profil
                             Klub</a>
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link {{ request()->routeIs('team.*', 'team') ? ' active' : '' }}"
+                        <a class="nav-link {{ request()->routeIs('user.team.*') ? ' active' : '' }}"
                             href="{{ url('team') }}">Tim</a>
                     </li>
                     <li class="nav-item">
@@ -41,8 +41,6 @@
                     </li>
                 </ul>
                 <div class="d-flex gap-3 align-items-center justify-content-center justify-content-lg-end">
-                    {{-- if --}}
-                    {{-- @guest on guard users --}}
                     @guest('users')
                         <a href="{{ route('register.user') }}" class="btn_blue">Register</a>
                         <a href="{{ route('login.user') }}" class="btn_blue active">Login</a>
@@ -56,7 +54,7 @@
                                 <span class="ms-2 text-black">{{ Auth::guard('users')->user()->name }}</span>
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                <li><a class="dropdown-item" href="#">Profil</a></li>
+                                <li><a class="dropdown-item" href="{{ route('user.ticket.index') }}">Tiket Saya</a></li>
                                 <li><a class="dropdown-item" href="#">Pengaturan</a></li>
                                 <li>
                                     <form action="{{ route('logout.user') }}" method="POST">

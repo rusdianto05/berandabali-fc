@@ -19,16 +19,16 @@ class ArticleController extends Controller
     {
         $data = Article::with('categoryArticle')->latest()->get();
         if (request()->ajax()) {
-                return DataTables::of($data)
+            return DataTables::of($data)
                 ->addColumn('action', function ($data) {
                     $actionEdit = route('article.edit', $data->id);
                     $actionDelete = route('article.destroy', $data->id);
                     return
                         view('components.action.edit', ['action' => $actionEdit]) .
-                        view('components.action.delete', ['action' => $actionDelete, 'id' => $data->id]) ;
+                        view('components.action.delete', ['action' => $actionDelete, 'id' => $data->id]);
                 })
                 ->addColumn('image', function ($data) {
-                    return '<img src="' . asset($data->image) . '" width="100px">';
+                    return '<img src="' . asset($data->image) . '" width="750px">';
                 })
                 ->rawColumns(['action', 'image'])
                 ->make(true);
@@ -48,26 +48,26 @@ class ArticleController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-   public function store(ArticleRequest $request)
-   {
-       $data = $request->validated();
-       $data['slug'] = $this->generateUniqueSlug($request->title);
-       $data['image'] = 'storage/' . $request->file('image')->store('images/articles', 'public');
-       Article::create($data);
-       return redirect()->route('article.index')->with('success', 'Article created successfully');
-   }
-   
-   // Generate a unique slug
-   private function generateUniqueSlug($title)
-   {
-       $slug = Str::slug($title);
-       $no = 0;
-       while (Article::where('slug', $slug)->first()) {
-           $no++;
-           $slug = Str::slug($title) . '-' . $no;
-       }
-       return $slug;
-   }
+    public function store(ArticleRequest $request)
+    {
+        $data = $request->validated();
+        $data['slug'] = $this->generateUniqueSlug($request->title);
+        $data['image'] = 'storage/' . $request->file('image')->store('images/articles', 'public');
+        Article::create($data);
+        return redirect()->route('article.index')->with('success', 'Article created successfully');
+    }
+
+    // Generate a unique slug
+    private function generateUniqueSlug($title)
+    {
+        $slug = Str::slug($title);
+        $no = 0;
+        while (Article::where('slug', $slug)->first()) {
+            $no++;
+            $slug = Str::slug($title) . '-' . $no;
+        }
+        return $slug;
+    }
 
     /**
      * Display the specified resource.

@@ -23,16 +23,8 @@ class User extends Authenticatable
         'email',
         'password',
         'phone',
-        'fcm_token',
         'avatar',
-        'point',
-        'gender',
-        'weight',
-        'height',
-        'birth_date',
         'active',
-        'apple_id',
-        'bio',
     ];
 
     /**
@@ -52,11 +44,6 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
-    ];
-
-    protected $appends = [
-        'experience_point',
-        'level',
     ];
 
     /**

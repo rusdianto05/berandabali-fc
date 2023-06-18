@@ -65,7 +65,7 @@
                                     <th width="3%">No</th>
                                     <th>Nama</th>
                                     <th>Kategori</th>
-                                    <th>Thumbnail</th>
+                                    <th>Foto</th>
                                     <th>Konten</th>
                                     <th width="20%">Aksi</th>
                                 </tr>

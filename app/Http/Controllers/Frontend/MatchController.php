@@ -21,12 +21,20 @@ class MatchController extends Controller
     public function show($id)
     {
         $match = TeamMatch::findOrFail($id);
-        return view('frontend.match.show', compact('match'));
+        $total_quantity = Cart::where('user_id', Auth::guard('users')->user()->id)->whereHas('ticket', function ($query) use ($match) {
+            $query->where('team_match_id', $match->id);
+        })->sum('quantity');
+        $total_price = 0;
+        foreach (Cart::where('user_id', Auth::guard('users')->user()->id)->whereHas('ticket', function ($query) use ($match) {
+            $query->where('team_match_id', $match->id);
+        })->get() as $cart) {
+            $total_price += $cart->ticket->price * $cart->quantity;
+        }
+        return view('frontend.match.show', compact('match', 'total_quantity', 'total_price'));
     }
 
     public function store(Request $request)
     {
-        dd($request->all());
         $request->validate([
             'ticket_id' => 'required'
         ]);
@@ -38,13 +46,14 @@ class MatchController extends Controller
         $cart = Cart::create([
             'user_id' => Auth::guard('users')->user()->id,
             'ticket_id' => $ticket->id,
+            'team_match_id' => $ticket->teamMatch->id,
         ]);
         return redirect()->route('match.show', $ticket->teamMatch->id)->with('success', 'Berhasil menambahkan tiket ke keranjang');
     }
 
-    public function reduce(Request $request)
+    public function destroy($id)
     {
-        $ticket = Ticket::findOrFail($request->ticket_id);
+        $ticket = Ticket::findOrFail($id);
         $ticket->update([
             'quantity' => $ticket->quantity + 1
         ]);

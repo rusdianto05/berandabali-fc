@@ -42,7 +42,7 @@ class AuthController extends Controller
         if (Auth::guard('users')->attempt(['email' => $request->email, 'password' => $request->password])) {
             // add session auth guard('users') login
             Auth::guard('users')->login(Auth::guard('users')->user());
-            return redirect()->route('home');
+            return redirect()->route('home')->with('success', 'Berhasil login');
         }
         return redirect()->back()->with('error', 'Email atau password salah');
     }
