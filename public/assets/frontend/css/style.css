@@ -13,7 +13,12 @@
     --yellow: #fec02d;
     --soft-yellow: #ffd571;
 
-    --linear: linear-gradient(180deg, #0e0036 24.66%, #020050 61.72%, #000000 100%);
+    --linear: linear-gradient(
+        180deg,
+        #0e0036 24.66%,
+        #020050 61.72%,
+        #000000 100%
+    );
 
     /* Fonts */
     --text-plusjakarta: "Plus Jakarta Sans", sans-serif;
@@ -40,6 +45,10 @@ a {
     box-shadow: 0px 4px 4px rgba(255, 255, 255, 0.14);
     border-radius: 12px;
     font-size: 1.125rem;
+}
+.btn_primary:hover {
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1),
+        0 4px 6px -4px rgb(0 0 0 / 0.1);
 }
 
 .btn_primary:hover {

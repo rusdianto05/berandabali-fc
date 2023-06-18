@@ -78,6 +78,9 @@
             width: max-content;
             font-weight: 700 !important;
         }
+        .btn_red:hover {
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        }
 
         /* top article */
         .top-article .slick-slide {
@@ -103,12 +106,34 @@
 
         .box_top {
             width: 500px;
-            height: 250px;
+            height: 200px;
             background: #f2f2f2;
             border-radius: 15px;
             overflow: hidden;
             display: flex;
             align-items: center;
+        }
+        .box_top .img_box img,
+        .latest_box .img_latest img {
+            transform: scale(1);
+            transition: transform 0.3s;
+        }
+
+        .box_top:hover .img_box img,
+        .latest_box:hover .img_latest img {
+            transform: scale(1.2);
+        }
+
+        .img_box {
+            height: 11rem !important;
+            width: 100%;
+            overflow: hidden;
+            border-radius: 12px;
+        }
+
+        .img_box img {
+            height: 100%;
+            width: 100%;
         }
 
         .box_top h6 {
@@ -190,6 +215,20 @@
         .latest_box .content {
             font-size: 0.875rem;
         }
+        .img_latest {
+            height: 10rem;
+            width: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        .img_latest img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .content_box {
+            height: 11rem;
+        }
 
         /* end latest article */
 
@@ -238,7 +277,9 @@
                             <div class="box_top">
                                 <a href="{{ url('article', $top->slug) }}" class="row">
                                     <div class="col-md-6 col-lg-5 p-4 pe-2">
-                                        <img src="{{ asset($top->image) }}" width="100%" alt="" />
+                                        <div class="img_box">
+                                            <img src="{{ asset($top->image) }}" alt="" />
+                                        </div>
                                     </div>
                                     <div class="col-md-6 p-4 ps-2 col-lg-7">
                                         <div class="d-flex justify-content-between align-items-center">
@@ -268,13 +309,17 @@
                         <div class="col-md-4 col-xl-3 mb-4">
                             <div class="latest_box p-3">
                                 <a href="{{ url('article', $item->slug) }}">
-                                    <img src="{{ asset($item->image) }}" width="100%" alt="" />
+                                    <div class="img_latest">
+                                        <img src="{{ asset($item->image) }}" alt="" />
+                                    </div>
                                     <div class="mt-2">
-                                        <p class="date_box">{{ $top->created_at->format('d M, Y') }}</p>
-                                        <h6>{{ Str::limit($item->title, 44, '...') }}</h6>
-                                        <p class="content">
-                                            {!! Str::limit($item->content, 69, '...') !!}
-                                        </p>
+                                        <div class="content_box">
+                                            <p class="date_box">{{ $top->created_at->format('d M, Y') }}</p>
+                                            <h6>{{ Str::limit($item->title, 44, '...') }}</h6>
+                                            <p class="content">
+                                                {!! Str::limit($item->content, 80, '...') !!}
+                                            </p>
+                                        </div>
                                         <div class="text-end">
                                             <p class="link_more">See More</p>
                                         </div>
@@ -316,7 +361,7 @@
                 variableWidth: true,
                 slidesToScroll: 1,
                 autoplay: true,
-                autoplaySpeed: 1500,
+                autoplaySpeed: 3500,
                 arrows: true,
                 dots: false,
                 pauseOnHover: false,

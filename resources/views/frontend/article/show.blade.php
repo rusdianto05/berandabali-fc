@@ -18,11 +18,11 @@
             padding: 6.5rem 0 5rem;
         }
 
-        .content {
-            text-align: justify;
-            font-weight: 600;
-            line-height: 150%;
-            letter-spacing: 0.02em;
+        .content p {
+            text-align: justify !important;
+            font-weight: 600 !important;
+            line-height: 1.5rem !important;
+            letter-spacing: 0.02em !important;
         }
 
         .date {
@@ -42,9 +42,9 @@
             <img src="{{ asset($article->image) }}" class="image_article" width="100%" alt="" />
             <p class="date mt-3 mb-4">{{ $article->created_at->format('d M, Y') }}</p>
             <h1 class="text-center mb-5">{{ $article->title }}</h1>
-            <p class="content">
+            <div class="content">
                 {!! $article->content !!}
-            </p>
+            </div>
         </div>
     </section>
     <!-- End Detail Article -->
