@@ -63,6 +63,7 @@ Route::group(['middleware' => ['user']], function () {
     Route::get('match/{id}', [MatchController::class, 'show'])->name('match.show');
     Route::get('checkout', [CheckoutController::class, 'index'])->name('checkout.index');
     Route::post('checkout', [CheckoutController::class, 'store'])->name('checkout.store');
+    Route::get('payment/success', [CheckoutController::class, 'success'])->name('payment.success');
     Route::resource('tiket', FrontendTicketController::class)->names('user.ticket');
 });
 //auth

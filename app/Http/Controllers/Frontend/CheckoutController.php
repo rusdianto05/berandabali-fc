@@ -110,4 +110,9 @@ class CheckoutController extends Controller
 
         return redirect()->route('match.index', $match->id)->with('status', 'Tiket berhasil dipesan!');
     }
+
+    public function success()
+    {
+        return view('frontend.ticket.success');
+    }
 }
