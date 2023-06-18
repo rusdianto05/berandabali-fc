@@ -191,7 +191,7 @@
                     <th>Nama Pemesan</th>
                     <th>No HP</th>
                     <th>Total Harga</th>
-                    <th>Url Pembayaran</th>
+                    <th>Booking ID</th>
                     <th>Status</th>
                     <th width="20%">Aksi</th>
                 </tr>
@@ -249,14 +249,10 @@
 
                     },
                     {
-                        data: 'payment_url',
-                        name: 'payment_url',
+                        data: 'booking_id',
+                        name: 'booking_id',
                         render: function(data, type, row) {
-                            if (row.status == 'SUCCESS') {
-                                return row.booking_id;
-                            } else {
-                                return data;
-                            }
+                            return data ?? 'Belum ada pembayaran';
                         }
                     },
                     {
