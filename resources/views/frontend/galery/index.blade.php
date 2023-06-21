@@ -16,6 +16,9 @@
         #gallery {
             margin-bottom: 6rem;
         }
+        #jumbotron {
+            margin-top: 4rem;
+        }
 
         /* Jumbotron */
         .img_jumbotron {

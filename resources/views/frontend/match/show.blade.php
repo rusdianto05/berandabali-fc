@@ -11,7 +11,7 @@
 
         /* New Match */
         #new_match {
-            padding: 2.5rem 0 5rem;
+            padding: 6.5rem 0 6rem;
         }
 
         #new_match h1,

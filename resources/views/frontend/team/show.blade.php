@@ -10,6 +10,11 @@
             position: relative;
             min-height: 100vh;
         }
+
+        .img_jumbotron {
+            padding-top: 4rem;
+        }
+
         #detail::before {
             background: linear-gradient(180deg,
                     rgba(225, 0, 0, 0.16) -16.66%,
@@ -69,7 +74,7 @@
         }
 
         table {
-            margin-top: 3rem;
+            margin-top: 4rem;
         }
 
         table tr.no_border_top td {

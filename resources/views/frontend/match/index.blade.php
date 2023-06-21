@@ -11,6 +11,7 @@
             background: linear-gradient(180deg, #19184b 0%, #030226 100%);
             background-repeat: no-repeat;
             min-height: 100vh;
+            margin-top: 4rem;
             position: relative;
             display: flex;
             align-items: center;

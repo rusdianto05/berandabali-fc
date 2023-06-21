@@ -12,6 +12,7 @@
             background-image: url("/assets/frontend/images/merchandise_bg.png");
             min-height: 100vh;
             height: 100%;
+            margin-top: 4rem;
             width: 100%;
             background-size: cover;
             display: flex;

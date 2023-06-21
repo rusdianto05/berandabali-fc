@@ -9,7 +9,7 @@
         }
 
         #checkout {
-            padding: 2.5rem 0 6rem;
+            padding: 6.5rem 0 6rem;
             display: flex;
             justify-content: center;
             align-items: center;

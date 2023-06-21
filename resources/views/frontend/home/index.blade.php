@@ -14,6 +14,7 @@
         }
 
         #jumbotron {
+            margin-top: 4rem;
             min-height: 100vh;
             height: 100%;
             width: 100%;

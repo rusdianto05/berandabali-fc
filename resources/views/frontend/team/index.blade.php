@@ -14,7 +14,8 @@
         /* jumbotron */
         #jumbotron {
             background: linear-gradient(180deg, #19184b 0%, #030226 100%);
-            min-height: 95vh;
+            min-height: 100vh;
+            margin-top: 4rem;
             height: 100%;
             display: flex;
             justify-content: center;
