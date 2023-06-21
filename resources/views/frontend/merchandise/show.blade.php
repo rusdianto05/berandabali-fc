@@ -11,7 +11,7 @@
         }
         #contents {
             min-height: 100vh;
-            padding: 6.5rem 0 6rem;
+            padding: 2.5rem 0 6rem;
         }
         .box {
             background: #ffffff;

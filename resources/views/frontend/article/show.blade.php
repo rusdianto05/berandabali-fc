@@ -9,13 +9,13 @@
         }
 
         .image_article {
-            height: 300px;
+            height: 450px;
             object-fit: cover;
             border-radius: 10px;
         }
 
         #detail_article {
-            padding: 6.5rem 0 5rem;
+            padding: 2.5rem 0 5rem;
         }
 
         .content p {

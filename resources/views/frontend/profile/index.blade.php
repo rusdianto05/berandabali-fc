@@ -15,6 +15,7 @@
             background: linear-gradient(180deg, #19184b 0%, #030226 100%);
             background-repeat: no-repeat;
             min-height: 100vh;
+            height: 100%
             position: relative;
             display: flex;
             align-items: center;
