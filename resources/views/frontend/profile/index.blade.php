@@ -15,6 +15,8 @@
             background: linear-gradient(180deg, #19184b 0%, #030226 100%);
             background-repeat: no-repeat;
             min-height: 100vh;
+            height: 100%;
+            margin-top: 4rem;
             position: relative;
             display: flex;
             align-items: center;
@@ -183,7 +185,7 @@
         }
 
         .championship_container {
-            margin-top: 3rem;
+            margin-top: 4rem;
         }
 
         .box_championsip {

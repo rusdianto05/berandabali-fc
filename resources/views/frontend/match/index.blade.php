@@ -11,6 +11,7 @@
             background: linear-gradient(180deg, #19184b 0%, #030226 100%);
             background-repeat: no-repeat;
             min-height: 100vh;
+            margin-top: 4rem;
             position: relative;
             display: flex;
             align-items: center;
@@ -162,93 +163,99 @@
 @endpush
 @section('content')
     <!-- Jumbotron -->
-    <section id="jumbotron" class="container-fluid px-5">
-        <div class="img_match">
-            <img src="/assets/frontend/images/match.png" width="100%" alt="" />
-        </div>
-        <div class="img_ball">
-            <img src="/assets/frontend/images/icons/ball.svg" width="100%" alt="" />
-        </div>
-        <div class="ms-auto w-50">
-            <h1 class="title">
-                BERANDA BALI <br />
-                FOOTBALL CLUB
-            </h1>
-            <p class="subtitle mt-3 mb-5">
-                Pertandingan yang akan diikuti oleh Beranda Bali FC dan hasil pertandingan terbaru dari Beranda Bali FC
-                akan ditampilkan pada halaman ini beserta dengan jadwal pertandingan selanjutnya.
-            </p>
-            <a href="#schedule" class="btn_primary">Lihat lebih banyak</a>
+    <section id="jumbotron">
+        <div class="container">
+            <div class="img_match">
+                <img src="/assets/frontend/images/match.png" width="100%" alt="" />
+            </div>
+            <div class="img_ball">
+                <img src="/assets/frontend/images/icons/ball.svg" width="100%" alt="" />
+            </div>
+            <div class="ms-auto w-50">
+                <h1 class="title">
+                    BERANDA BALI <br />
+                    FOOTBALL CLUB
+                </h1>
+                <p class="subtitle mt-3 mb-5">
+                    Pertandingan yang akan diikuti oleh Beranda Bali FC dan hasil pertandingan terbaru dari Beranda Bali FC
+                    akan ditampilkan pada halaman ini beserta dengan jadwal pertandingan selanjutnya.
+                </p>
+                <a href="#schedule" class="btn_primary">Lihat lebih banyak</a>
+            </div>
         </div>
     </section>
     <!-- End Jumbotron -->
 
     <!-- New Match -->
-    <section id="new_match" class="container-fluid px-5">
-        <h1 class="text-center mb-5">HASIL PERTANDINGAN <span class="text_primary">TERBARU</span></h1>
-        <div class="row gap-4 pt-4 justify-content-center align-items-center">
-            <div class="col-md-3">
-                <div class="text-center">
-                    <img src="{{ asset('assets\media\logos\sidebar-logo.png') }}" class="img_logo" alt="" />
+    <section id="new_match">
+        <div class="container">
+            <h1 class="text-center mb-5">HASIL PERTANDINGAN <span class="text_primary">TERBARU</span></h1>
+            <div class="row gap-4 pt-4 justify-content-center align-items-center">
+                <div class="col-md-3">
+                    <div class="text-center">
+                        <img src="{{ asset('assets\media\logos\sidebar-logo.png') }}" class="img_logo" alt="" />
+                    </div>
+                    <h2 class="mt-4 text-center name_club">
+                        BerandaBali <br />
+                        FOOTBALL CLUB
+                    </h2>
                 </div>
-                <h2 class="mt-4 text-center name_club">
-                    BerandaBali <br />
-                    FOOTBALL CLUB
-                </h2>
-            </div>
-            <div class="col-md-3 text-center">
-                <h2 class="score_text">{{ $latest_match->team_score }} <span>:</span> {{ $latest_match->opponent_score }}
-                </h2>
-                <p class="badge_status">Selesai</p>
-                <p class="date">{{ date('d F Y', strtotime($latest_match->match_date)) }} |
-                    {{ date('H:i', strtotime($latest_match->match_date)) }}</p>
-            </div>
-            <div class="col-md-3">
-                <div class="text-center">
-                    <img src="{{ asset($latest_match->opponent_logo) }}" class="img_logo" alt="" />
+                <div class="col-md-3 text-center">
+                    <h2 class="score_text">{{ $latest_match->team_score }} <span>:</span> {{ $latest_match->opponent_score }}
+                    </h2>
+                    <p class="badge_status">Selesai</p>
+                    <p class="date">{{ date('d F Y', strtotime($latest_match->match_date)) }} |
+                        {{ date('H:i', strtotime($latest_match->match_date)) }}</p>
                 </div>
-                <h2 class="mt-4 text-center name_club">
-                    {{ $latest_match->opponent_name }} <br />
-                    FOOTBALL CLUB
-                </h2>
+                <div class="col-md-3">
+                    <div class="text-center">
+                        <img src="{{ asset($latest_match->opponent_logo) }}" class="img_logo" alt="" />
+                    </div>
+                    <h2 class="mt-4 text-center name_club">
+                        {{ $latest_match->opponent_name }} <br />
+                        FOOTBALL CLUB
+                    </h2>
+                </div>
             </div>
         </div>
     </section>
     <!-- End New Match -->
 
     <!-- Schedule -->
-    <section id="schedule" class="container-fluid px-5">
-        <h1 class="text-center">JADWAL <span class="text_primary">PERTANDINGAN</span></h1>
-        <div class="row">
-            @foreach ($next_match as $match)
-                <div class="col-md-4 col-xl-3">
-                    <div class="box_schedule">
-                        <img src="{{ asset($match->opponent_logo) }}" class="image" alt="" />
-                        <h2 class="my-3">{{ $match->opponent_name }}</h2>
-                        <div class="border_bottom pb-3 mb-3">
-                            <div class="d-flex gap-3 align-items-center mb-3">
-                                <img src="/assets/frontend/images/icons/calendar.svg" alt="" />
-                                <p class="mb-0">{{ date('d F Y', strtotime($match->match_date)) }}</p>
+    <section id="schedule">
+        <div class="container">
+            <h1 class="text-center">JADWAL <span class="text_primary">PERTANDINGAN</span></h1>
+            <div class="row">
+                @foreach ($next_match as $match)
+                    <div class="col-md-4 col-xl-3">
+                        <div class="box_schedule">
+                            <img src="{{ asset($match->opponent_logo) }}" class="image" alt="" />
+                            <h2 class="my-3">{{ $match->opponent_name }}</h2>
+                            <div class="border_bottom pb-3 mb-3">
+                                <div class="d-flex gap-3 align-items-center mb-3">
+                                    <img src="/assets/frontend/images/icons/calendar.svg" alt="" />
+                                    <p class="mb-0">{{ date('d F Y', strtotime($match->match_date)) }}</p>
+                                </div>
+                                <div class="d-flex gap-3 align-items-center mb-3">
+                                    <img src="/assets/frontend/images/icons/pin.svg" alt="" />
+                                    <p class="mb-0">{{ $match->match_location }}</p>
+                                </div>
+                                <div class="d-flex gap-3 align-items-center">
+                                    <img src="/assets/frontend/images/icons/time.svg" alt="" />
+                                    <p class="mb-0">{{ date('H:i', strtotime($match->match_date)) }} -
+                                        {{ date('H:i', strtotime($match->match_date . ' + 2 hours')) }} WIB</p>
+                                </div>
                             </div>
-                            <div class="d-flex gap-3 align-items-center mb-3">
-                                <img src="/assets/frontend/images/icons/pin.svg" alt="" />
-                                <p class="mb-0">{{ $match->match_location }}</p>
-                            </div>
-                            <div class="d-flex gap-3 align-items-center">
-                                <img src="/assets/frontend/images/icons/time.svg" alt="" />
-                                <p class="mb-0">{{ date('H:i', strtotime($match->match_date)) }} -
-                                    {{ date('H:i', strtotime($match->match_date . ' + 2 hours')) }} WIB</p>
-                            </div>
+                            <a href="{{ route('match.show', $match->id) }}">
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <p class="text_red mb-0">Beli tiket sekarang!</p>
+                                    <img src="/assets/frontend/images/icons/arrow-red.svg" alt="" />
+                                </div>
+                            </a>
                         </div>
-                        <a href="{{ route('match.show', $match->id) }}">
-                            <div class="d-flex justify-content-between align-items-center mb-2">
-                                <p class="text_red mb-0">Beli tiket sekarang!</p>
-                                <img src="/assets/frontend/images/icons/arrow-red.svg" alt="" />
-                            </div>
-                        </a>
                     </div>
-                </div>
-            @endforeach
+                @endforeach
+            </div>
         </div>
     </section>
     <!-- End Schedule -->

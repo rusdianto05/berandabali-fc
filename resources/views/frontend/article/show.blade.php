@@ -9,7 +9,7 @@
         }
 
         .image_article {
-            height: 300px;
+            height: 450px;
             object-fit: cover;
             border-radius: 10px;
         }

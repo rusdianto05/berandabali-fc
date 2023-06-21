@@ -254,7 +254,7 @@
 @endpush
 @section('content')
     <!-- Article -->
-    <div class="container-fluid px-5">
+    <div class="container">
         <div id="article">
             <!-- First Article -->
             <section class="card_article mb-4">

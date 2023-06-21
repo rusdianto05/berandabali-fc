@@ -14,7 +14,9 @@
         }
 
         #jumbotron {
-            height: 100vh;
+            margin-top: 4rem;
+            min-height: 100vh;
+            height: 100%;
             width: 100%;
             background: linear-gradient(180deg,
                     rgba(90, 25, 25, 0.15) 10%,
@@ -28,6 +30,7 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            text-align: center
         }
 
         h1.title {
@@ -270,19 +273,38 @@
         .btn_primary {
             border-radius: 95px !important;
         }
+
+        /* Responsiveness */
+        @media only screen and (max-width: 991.98px) {
+            /* Jumbotron */
+            h1.title {
+                font-size: 2.25rem;
+                line-height: 2.5rem;
+            }
+            .w-65 {
+                width: 100%;
+            }
+            p.subtitle {
+                font-size: 1rem;
+            }
+            /* End Jumbotron */
+        }
+        /* End Responsiveness */
     </style>
 @endpush
 @section('content')
     <!-- Jumbotron -->
     <section id="jumbotron">
-        <div class="container d-flex justify-content-center flex-column align-items-center">
-            <h1 class="title">BERANDA BALI FOOTBALL CLUB</h1>
-            <p class="subtitle mt-2 mb-5 w-65">
-                BerandaBali FC adalah sebuah klub sepak bola yang berbasis di
-                Provinsi Bali, Indonesia. Klub ini berdiri pada tahun 2021 dan
-                bermarkas di Stadion Kapten I Wayan Dipta, Gianyar.
-            </p>
-            <a href="{{ url('match') }}" class="btn_primary">Lihat Jadwal Pertandingan</a>
+        <div class="container">
+            <div class="d-flex justify-content-center flex-column align-items-center">
+                <h1 class="title">BERANDA BALI FOOTBALL CLUB</h1>
+                <p class="subtitle mt-2 mb-5 w-65">
+                    BerandaBali FC adalah sebuah klub sepak bola yang berbasis di
+                    Provinsi Bali, Indonesia. Klub ini berdiri pada tahun 2021 dan
+                    bermarkas di Stadion Kapten I Wayan Dipta, Gianyar.
+                </p>
+                <a href="{{ url('match') }}" class="btn_primary">Lihat Jadwal Pertandingan</a>
+            </div>
         </div>
     </section>
     <!-- End Jumbotron -->

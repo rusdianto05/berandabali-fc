@@ -74,7 +74,7 @@
         }
 
         table {
-            margin-top: 3rem;
+            margin-top: 4rem;
         }
 
         table tr.no_border_top td {
