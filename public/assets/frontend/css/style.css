@@ -151,3 +151,7 @@ footer small {
     font-weight: 300;
     letter-spacing: 0.05em;
 }
+
+.dropdown-menu {
+    --bs-dropdown-link-active-bg: white !important;
+}

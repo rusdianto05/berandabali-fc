@@ -54,7 +54,7 @@
                                 {{-- <span class="ms-2 text-black">{{ Auth::guard('users')->user()->name }}</span> --}}
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
-                                <li class="menu_dropdown mb-1"><a class="dropdown-item d-flex gap-2 align-items-center" href="{{ route('user.ticket.index') }}">
+                                <li class="menu_dropdown mb-1"><a class="dropdown-item d-flex gap-2 align-items-center" href="{{ route('profile.show') }}">
                                     <img src="{{ asset('/assets/frontend/images/icons/profile-fill.svg') }}" width="14"/>
                                     <p class="mb-0">Profil Saya</p></a></li>
                                 <li class="menu_dropdown">

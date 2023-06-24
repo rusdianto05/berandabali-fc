@@ -30,4 +30,12 @@ class TicketController extends Controller
         }
         return view('frontend.ticket.index');
     }
+    public function show()
+    {
+        return view('frontend.ticket.profile');
+    }
+    public function edit()
+    {
+        return view('frontend.ticket.edit-profile');
+    }
 }
