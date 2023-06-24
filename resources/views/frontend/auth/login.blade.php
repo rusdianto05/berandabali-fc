@@ -10,7 +10,7 @@
 
         #login {
             min-height: 100vh;
-            padding: 2.5rem 0 5rem;
+            padding: 6.5rem 0 5rem;
             display: flex;
             justify-content: center;
             align-items: center;

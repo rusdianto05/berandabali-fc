@@ -49,17 +49,21 @@
                         <div class="dropdown">
                             <a class="d-flex align-items-center text-decoration-none dropdown-toggle" href="#"
                                 id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="{{ asset(Auth::guard('users')->user()->avatar ?? '/assets/frontend/images/logo.svg') }}"
+                                <img src="{{ asset(Auth::guard('users')->user()->avatar ?? '/assets/frontend/images/icons/profile.svg') }}"
                                     width="40" alt="" />
-                                <span class="ms-2 text-black">{{ Auth::guard('users')->user()->name }}</span>
+                                {{-- <span class="ms-2 text-black">{{ Auth::guard('users')->user()->name }}</span> --}}
                             </a>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                <li><a class="dropdown-item" href="{{ route('user.ticket.index') }}">Tiket Saya</a></li>
-                                <li><a class="dropdown-item" href="#">Pengaturan</a></li>
-                                <li>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
+                                <li class="menu_dropdown mb-1"><a class="dropdown-item d-flex gap-2 align-items-center" href="{{ route('user.ticket.index') }}">
+                                    <img src="{{ asset('/assets/frontend/images/icons/profile-fill.svg') }}" width="14"/>
+                                    <p class="mb-0">Profil Saya</p></a></li>
+                                <li class="menu_dropdown">
                                     <form action="{{ route('logout.user') }}" method="POST">
                                         @csrf
-                                        <button type="submit" class="dropdown-item">Logout</button>
+                                        <button type="submit" class="dropdown-item text_primary d-flex gap-2 align-items-center">
+                                            <img src="{{ asset('/assets/frontend/images/icons/logout.svg') }}" class="img_red" width="14"/>
+                                            <p class="mb-0 text_primary">Logout</p>
+                                        </button>
                                     </form>
                                 </li>
                             </ul>

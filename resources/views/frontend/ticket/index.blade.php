@@ -3,7 +3,6 @@
     <link href="{{ asset('assets/plugins/custom/datatables/datatables.bundle.css') }}" rel="stylesheet" type="text/css" />
     <style>
         body {
-            color: white;
             background: linear-gradient(180deg, #0e0036 24.66%, #020050 61.72%, #000000 100%);
         }
 
@@ -51,12 +50,10 @@
             padding: 7rem 0;
         }
 
-        #new_match h1,
-        #new_match h1 span,
-        #schedule h1,
-        #schedule h1 span {
-            font-family: var(--lilita);
-            font-size: 2.5rem !important;
+        h1 {
+            font-size: 1.75rem !important;
+            font-weight: 800;
+            margin-bottom: 2rem;
         }
 
         .name_club {
@@ -148,56 +145,155 @@
         .text_red {
             color: #e71345 !important;
         }
-
-        a p {
-            letter-spacing: 0.05em;
-            font-weight: 600 !important;
+        table th {
+            font-size: .875rem;
         }
-
         /* End Schedule */
+
+        /* Sidebar */
+        .box_sidebar {
+            background: #FFFFFF;
+            border: 1px solid #EFEFEF;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
+            border-radius: 15px;
+            padding: 2rem;
+        }
+        .box_sidebar a,
+        .box_sidebar button {
+            display: block;
+            color: #000000;
+            font-weight: 600;
+            padding-bottom: .5rem;
+            margin-bottom: .875rem;
+            border-bottom: 2px solid #EDEDED;
+        }
+        .profile_img {
+            width: 5rem;
+            height: 5rem;
+            border-radius: 100%;
+            object-fit: cover;
+        }
+        .box_sidebar .active p {
+            color: var(--blue);
+        }
+        .box_sidebar .active img {
+            filter: invert(54%) sepia(86%) saturate(4049%) hue-rotate(215deg) brightness(99%) contrast(94%);
+        }
+        /* End Sidebar */
+
+        /* Modal */
+        .modal-body p {
+            font-size: .875rem;
+        }
+        .btn_logout {
+            background-color: #e71345 !important;
+            padding: .5rem 1.25rem;
+            border-radius: 8px;
+            color: #FFFFFF !important;
+            font-size: .875rem;
+            font-weight: 600;
+            border: none !important;
+            cursor: pointer;
+            margin-bottom: 0 !important;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        }
+        .btn_cancel {
+            background-color: white !important;
+            padding: .5rem 1.25rem;
+            border-radius: 8px;
+            color: #e71345 !important;
+            font-size: .875rem;
+            font-weight: 600;
+            border: none !important;
+            cursor: pointer;
+            box-shadow: none !important;
+            margin-bottom: 0 !important;
+        }
+        .modal-footer {
+            padding: .5rem !important;
+        }
+        .modal-header {
+            padding: .75rem 1rem !important;
+        }
+        .modal-header h1 {
+            font-size: 1.125rem !important;
+        }
+        /* End Modal */
     </style>
 @endpush
 @section('content')
-    <!-- Jumbotron -->
-    <section id="jumbotron" class="container-fluid px-5">
-        <div class="img_match">
-            <img src="/assets/frontend/images/match.png" width="100%" alt="" />
-        </div>
-        <div class="img_ball">
-            <img src="/assets/frontend/images/icons/ball.svg" width="100%" alt="" />
-        </div>
-        <div class="ms-auto w-50">
-            <h1 class="title">
-                BERANDA BALI <br />
-                FOOTBALL CLUB
-            </h1>
-            <p class="subtitle mt-3 mb-5">
-                Pertandingan yang akan diikuti oleh Beranda Bali FC dan hasil pertandingan terbaru dari Beranda Bali FC
-                akan ditampilkan pada halaman ini beserta dengan jadwal pertandingan selanjutnya.
-            </p>
-            <a href="#schedule" class="btn_primary">Lihat lebih banyak</a>
-        </div>
-    </section>
-    <!-- End Jumbotron -->
-
     <!-- New Match -->
-    <section id="new_match" class="container-fluid px-5" style="background-color: #FFFFFF">
-        {{-- add  --}}
-        <table id="table-team-match" class="table table-striped border rounded gy-5 gs-7">
-            <thead>
-                <tr class="fw-bolder fs-6 text-gray-800 px-7">
-                    <th width="3%">No</th>
-                    <th>Tanggal</th>
-                    <th>Nama Pemesan</th>
-                    <th>No HP</th>
-                    <th>Total Harga</th>
-                    <th>Booking ID</th>
-                    <th>Status</th>
-                    <th width="20%">Aksi</th>
-                </tr>
-            </thead>
-            <tbody></tbody>
-        </table>
+    <section id="new_match" style="background-color: #FFFFFF">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="box_sidebar">
+                        <div class="d-flex flex-column gap-2 justify-content-center mb-4 text-center align-items-center">
+                            <img src="{{ asset(Auth::guard('users')->user()->avatar ?? '/assets/frontend/images/icons/profile.svg') }}" class="profile_img" />
+                            <p class="text-dark fw-bold">{{ Auth::guard('users')->user()->name }}</p>
+                        </div>
+                        <a href="#">
+                            <div class="d-flex gap-3 align-items-center">
+                                <img src="{{ asset('/assets/frontend/images/icons/edit-profile.svg') }}" width="20"/>
+                                <p class="mb-0">Profile Saya</p>
+                            </div>
+                        </a>
+                        <a href="{{ route('user.ticket.index') }}" class="active">
+                            <div class="d-flex gap-3 align-items-center">
+                                <img src="{{ asset('/assets/frontend/images/icons/transaction.svg') }}" width="20"/>
+                                <p class="mb-0">Tiket Saya</p>
+                            </div>
+                        </a>
+                        <button data-bs-toggle="modal" data-bs-target="#logoutModal" class="d-flex gap-3 align-items-center w-100 px-1 border-0 bg-transparent">
+                            <img src="{{ asset('/assets/frontend/images/icons/logout.svg') }}" width="20"/>
+                            <p class="mb-0">Logout</p>
+                        </button>
+                        <!-- Modal -->
+                        <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Logout</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Apakah Anda yakin ingin logout dari akun ini? Semua sesi yang sedang aktif akan ditutup dan Anda harus masuk kembali untuk mengaksesnya.</p>
+                                </div>
+                                <div class="modal-footer">
+                                <button type="button" class="btn_cancel" data-bs-dismiss="modal">Batal</button>
+                                    <form action="{{ route('logout.user') }}" method="POST">
+                                        @csrf
+                                        <button type="submit" class="btn_logout">
+                                            Logout
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-9 ps-4">
+                    <h1>Tiket Saya</h1>
+                    {{-- add  --}}
+                    <table id="table-team-match" class="table table-striped border rounded gy-5 gs-7">
+                        <thead>
+                            <tr class="fw-bolder fs-6 text-gray-800 px-7">
+                                <th width="3%">No</th>
+                                <th>Tanggal</th>
+                                <th>Nama Pemesan</th>
+                                <th>No HP</th>
+                                <th>Total Harga</th>
+                                <th>Booking ID</th>
+                                <th>Status</th>
+                                <th width="20%">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </section>
     <!-- End New Match -->
 @endsection
