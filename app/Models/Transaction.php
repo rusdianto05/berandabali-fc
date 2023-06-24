@@ -17,7 +17,8 @@ class Transaction extends Model
         'phone',
         'total_price',
         'payment_url',
-        'status'
+        'status',
+        'is_exchange',
     ];
 
     public function user()
@@ -28,5 +29,15 @@ class Transaction extends Model
     public function teamMatch()
     {
         return $this->belongsTo(TeamMatch::class);
+    }
+
+    public function transactionDetails()
+    {
+        return $this->hasMany(TransactionDetail::class);
+    }
+
+    public function transactionItems()
+    {
+        return $this->hasMany(TransactionItem::class);
     }
 }

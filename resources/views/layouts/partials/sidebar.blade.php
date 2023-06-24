@@ -239,6 +239,40 @@
                         </div>
                     </div>
                 </div>
+
+                <div data-kt-menu-trigger="click"
+                    class="menu-item menu-accordion {{ request()->routeIs('ticket-exchange.*', 'transaction.*') ? ' show' : '' }}">
+                    <span class="menu-link">
+                        <span class="menu-icon">
+                            <i class="fa-solid fa-ticket" style="color: #ffffff;"></i>
+                        </span>
+                        <span class="menu-title">Menu Tiket</span>
+                        <span class="menu-arrow"></span>
+                    </span>
+                    <div class="menu-sub menu-sub-accordion menu-active-bg">
+                        <div class="menu-item">
+                            <a class="menu-link" href="{{ route('transaction.index') }}">
+                                <span class="menu-bullet">
+                                    <span class="bullet bullet-dot"></span>
+                                </span>
+                                <span class="menu-title">Data Pembelian Tiket</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="menu-sub menu-sub-accordion menu-active-bg">
+                        <div class="menu-item">
+                            <a class="menu-link" href="{{ route('ticket-exchange.index') }}">
+                                <span class="menu-bullet">
+                                    <span class="bullet bullet-dot"></span>
+                                </span>
+                                <span class="menu-title">Data Penukaran Tiket</span>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+
+
             </div>
             <!--end::Menu-->
         </div>
@@ -262,7 +296,6 @@
                         <path d="M15 8H20L14 2V7C14 7.6 14.4 8 15 8Z" fill="black" />
                     </svg>
                 </span>
-                <!--end::Svg Icon-->
             </button>
         </form>
     </div>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Ticket;
 use App\Models\TeamMatch;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
@@ -17,13 +18,15 @@ class TeamMatchController extends Controller
     {
         $data = TeamMatch::latest()->get();
         if (request()->ajax()) {
-                return DataTables::of($data)
+            return DataTables::of($data)
                 ->addColumn('action', function ($data) {
                     $actionEdit = route('team-match.edit', $data->id);
                     $actionDelete = route('team-match.destroy', $data->id);
+                    $actionShow = route('ticket.index', ['team_match_id' => $data->id]);
                     return
                         view('components.action.edit', ['action' => $actionEdit]) .
-                        view('components.action.delete', ['action' => $actionDelete, 'id' => $data->id]) ;
+                        view('components.action.delete', ['action' => $actionDelete, 'id' => $data->id]) .
+                        view('components.action.ticket', ['action' => $actionShow, 'id' => $data->id]);
                 })
                 ->addColumn('image', function ($data) {
                     return '<img src="' . asset($data->image) . '" width="100px">';
@@ -56,9 +59,8 @@ class TeamMatchController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
-        //
     }
 
     /**

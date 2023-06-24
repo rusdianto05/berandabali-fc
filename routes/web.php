@@ -19,16 +19,18 @@ use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Frontend\ProfileController;
 use App\Http\Controllers\Admin\ImageUploadController;
 use App\Http\Controllers\Admin\MerchandiseController;
+use App\Http\Controllers\Admin\TransactionController;
+use App\Http\Controllers\Frontend\CheckoutController;
+use App\Http\Controllers\Admin\TicketExchangeController;
 use App\Http\Controllers\Admin\CategoryArticleController;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 use App\Http\Controllers\Admin\CategoryMerchandiseController;
 use App\Http\Controllers\Frontend\AuthController as FrontendAuthController;
 use App\Http\Controllers\Frontend\Teamcontroller as FrontendTeamcontroller;
 use App\Http\Controllers\Frontend\GaleryController as FrontendGaleryController;
-use App\Http\Controllers\Frontend\ArticleController as FrontendArticleController;
-use App\Http\Controllers\Frontend\CheckoutController;
-use App\Http\Controllers\Frontend\MerchandiseController as FrontendMerchandiseController;
 use App\Http\Controllers\Frontend\TicketController as FrontendTicketController;
+use App\Http\Controllers\Frontend\ArticleController as FrontendArticleController;
+use App\Http\Controllers\Frontend\MerchandiseController as FrontendMerchandiseController;
 
 /*
 |--------------------------------------------------------------------------
@@ -91,5 +93,7 @@ Route::prefix('admin')->group(function () {
         Route::resource('coach', CoachController::class);
         Route::resource('staff', StaffController::class);
         Route::resource('ticket', TicketController::class);
+        Route::resource('ticket-exchange', TicketExchangeController::class);
+        Route::resource('transaction', TransactionController::class);
     });
 });

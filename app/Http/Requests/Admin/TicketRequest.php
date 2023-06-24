@@ -31,7 +31,6 @@ class TicketRequest extends FormRequest
                 'is_active' => ['required', 'boolean'],
             ],
             'PUT', 'PATCH' => [
-                'team_match_id' => ['required', 'exists:team_matches,id'],
                 'name' => ['required', 'string', 'max:255'],
                 'price' => ['required', 'numeric'],
                 'quantity' => ['required', 'numeric'],
