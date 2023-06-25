@@ -24,5 +24,10 @@ class Team extends Model
         'weight',
         'joined_date',
         'number',
+        'goal',
+        'assist',
+        'apperances',
+        'clean_sheet',
+        'saves',
     ];
 }

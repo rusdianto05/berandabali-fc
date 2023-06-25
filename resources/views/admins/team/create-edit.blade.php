@@ -211,6 +211,71 @@
                                         <!--end::Input-->
                                     </div>
                                     <div class="fv-row mb-7">
+                                        <!--begin::Label-->
+                                        <label class="fs-6 fw-bold form-label mt-3">
+                                            <span class="required">Total Goal</span>
+                                            <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip"
+                                                title="Masukkan Total Goal musim ini"></i>
+                                        </label>
+                                        <!--end::Label-->
+                                        <!--begin::Input-->
+                                        <input type="number" class="form-control form-control-solid" name="goal"
+                                            value="{{ @$team->goal ?? old('goal') }}" />
+                                        <!--end::Input-->
+                                    </div>
+                                    <div class="fv-row mb-7">
+                                        <!--begin::Label-->
+                                        <label class="fs-6 fw-bold form-label mt-3">
+                                            <span class="required">Total Assist</span>
+                                            <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip"
+                                                title="Masukkan Total Assist musim ini"></i>
+                                        </label>
+                                        <!--end::Label-->
+                                        <!--begin::Input-->
+                                        <input type="number" class="form-control form-control-solid" name="assist"
+                                            value="{{ @$team->assist ?? old('assist') }}" />
+                                        <!--end::Input-->
+                                    </div>
+                                    <div class="fv-row mb-7">
+                                        <!--begin::Label-->
+                                        <label class="fs-6 fw-bold form-label mt-3">
+                                            <span class="required">Total Penampilan</span>
+                                            <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip"
+                                                title="Masukkan Total Penampilan musim ini"></i>
+                                        </label>
+                                        <!--end::Label-->
+                                        <!--begin::Input-->
+                                        <input type="number" class="form-control form-control-solid" name="apperances"
+                                            value="{{ @$team->apperances ?? old('apperances') }}" />
+                                        <!--end::Input-->
+                                    </div>
+                                    <div class="fv-row mb-7" id="clean_sheet">
+                                        <!--begin::Label-->
+                                        <label class="fs-6 fw-bold form-label mt-3">
+                                            <span class="required">Total Clean Sheet</span>
+                                            <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip"
+                                                title="Masukkan Total Penampilan musim ini"></i>
+                                        </label>
+                                        <!--end::Label-->
+                                        <!--begin::Input-->
+                                        <input type="number" class="form-control form-control-solid" name="clean_sheet"
+                                            value="{{ @$team->clean_sheet ?? old('clean_sheet') }}" />
+                                        <!--end::Input-->
+                                    </div>
+                                    <div class="fv-row mb-7" id="saves">
+                                        <!--begin::Label-->
+                                        <label class="fs-6 fw-bold form-label mt-3">
+                                            <span class="required">Total Saves</span>
+                                            <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip"
+                                                title="Masukkan Total saves musim ini"></i>
+                                        </label>
+                                        <!--end::Label-->
+                                        <!--begin::Input-->
+                                        <input type="number" class="form-control form-control-solid" name="saves"
+                                            value="{{ @$team->saves ?? old('saves') }}" />
+                                        <!--end::Input-->
+                                    </div>
+                                    <div class="fv-row mb-7">
                                         <x-form.image-upload label="Foto" name="image" id="image"
                                             :value="@$team->image ?? null" />
                                     </div>
@@ -256,3 +321,18 @@
     <!--end::Content-->
     <!--end::Wrapper-->
 @endsection
+@push('js')
+    <script>
+        $(document).ready(function() {
+            $('#position').change(function() {
+                if ($(this).val() == 'Penjaga Gawang') {
+                    $('#clean_sheet').show();
+                    $('#saves').show();
+                } else {
+                    $('#clean_sheet').hide();
+                    $('#saves').hide();
+                }
+            });
+        });
+    </script>
+@endpush
