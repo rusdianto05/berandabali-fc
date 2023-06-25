@@ -86,7 +86,7 @@
             column-gap: 20px;
         }
 
-        @media (max-width: 800px) {
+        @media (max-width: 767.98px) {
             #gallery {
                 -webkit-column-count: 2;
                 -moz-column-count: 2;
@@ -97,7 +97,7 @@
             }
         }
 
-        @media (max-width: 600px) {
+        @media (max-width: 575.98px) {
             #gallery {
                 -webkit-column-count: 1;
                 -moz-column-count: 1;
@@ -148,6 +148,20 @@
         }
 
         /* End Galeri */
+
+        /* Responsiveness */
+        @media only screen and (max-width: 1199.98px) {
+            .box h1 {
+                font-size: 1.5rem;
+            }
+            .box p {
+                font-size: .875rem;
+            }
+            #gallery img, #gallery .box {
+                border-radius: 1rem;
+            }
+        }
+        /* End Responsiveness */
     </style>
 @endpush
 @section('content')
