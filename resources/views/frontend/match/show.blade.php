@@ -269,7 +269,7 @@
                             <p class="text_primary mb-0 fw-medium">Sisa
                                 {{ $item->quantity }}</p>
                         </div>
-                        @if ($item->carts->count() > 0)
+                        @if (Auth::guard('users')->user()->carts->where('ticket_id', $item->id)->count() > 0)
                             <div class="d-flex">
                                 <form action="{{ route('match.store') }}" method="POST">
                                     @csrf
@@ -278,7 +278,9 @@
                                     <button type="submit" class="btn_add"><i class="fas fa-plus"></i></button>
                                 </form>
                                 <div class="d-flex justify-content-between align-items-center mx-auto">
-                                    <h5 class="mb-0">{{ $item->carts->count() }}</h5>
+                                    <h5 class="mb-0">
+                                        {{ Auth::guard('users')->user()->carts->where('ticket_id', $item->id)->count() }}
+                                    </h5>
                                 </div>
                                 <form action="{{ route('match.destroy', $item->id) }}" method="POST">
                                     @csrf
@@ -301,18 +303,11 @@
                 <div class="amount">
                     <div class="d-flex gap-4 align-items-center mb-3">
                         <h4>Jumlah :&nbsp;</h4>
-    
-                        {{-- <button class="btn_amount">-</button>
-                            <input type="number" id="quantity" name="quantity" min="1" max="100" step="1"
-                                value="0" />
-                            <button class="btn_amount">+</button> --}}
                         <h4 class="mb-0">{{ $total_quantity }}</h4>
-    
+
                     </div>
                     <h4 class="mb-0">Total :&nbsp; Rp. {{ number_format($total_price) }}</h4>
                 </div>
-                {{-- <button class="btn_checkout">Checkout</button> --}}
-                {{-- <a href="{{ route('checkout.index') }}" class="btn_checkout">Checkout</a> --}}
                 <a href="{{ route('checkout.index', ['team_match_id' => $match->id]) }}" class="btn_checkout">Checkout</a>
             </div>
         </div>
