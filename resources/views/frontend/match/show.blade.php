@@ -269,7 +269,7 @@
                             <p class="text_primary mb-0 fw-medium">Sisa
                                 {{ $item->quantity }}</p>
                         </div>
-                        @if (Auth::guard('users')->user()->carts->where('ticket_id', $item->id)->count() > 0)
+                      	@if (Auth::guard('users')->user()->carts->where('ticket_id', $item->id)->count() > 0)
                             <div class="d-flex">
                                 <form action="{{ route('match.store') }}" method="POST">
                                     @csrf
