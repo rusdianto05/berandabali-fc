@@ -1,5 +1,6 @@
 @extends('layouts.frontend.master', ['title' => 'Galeri'])
 @push('css')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap.min.css">
     <style>
         @import url("https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap");
 
@@ -16,6 +17,7 @@
         #gallery {
             margin-bottom: 6rem;
         }
+
         #jumbotron {
             margin-top: 4rem;
         }
@@ -139,21 +141,13 @@
                     aria-label="Slide 3"></button>
             </div>
             <div class="carousel-inner">
-                <div class="carousel-item active" data-bs-interval="5000">
-                    <div class="img_jumbotron">
-                        <img src="/assets/frontend/images/jumbotron.png" alt="" />
+                @foreach ($sliders as $slider)
+                    <div class="carousel-item {{ $loop->first ? 'active' : '' }}" data-bs-interval="5000">
+                        <div class="img_jumbotron">
+                            <img src="{{ asset($slider->image) }}" alt="" />
+                        </div>
                     </div>
-                </div>
-                <div class="carousel-item" data-bs-interval="5000">
-                    <div class="img_jumbotron">
-                        <img src="/assets/frontend/images/jumbotron.png" alt="" />
-                    </div>
-                </div>
-                <div class="carousel-item" data-bs-interval="5000">
-                    <div class="img_jumbotron">
-                        <img src="/assets/frontend/images/jumbotron.png" alt="" />
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>
@@ -165,15 +159,12 @@
             <h1 class="mb-4">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</h1>
             <p>Lorem ipsum nanana</p>
         </div>
-        <img src="/assets/frontend/images/galery1.png" class="img-responsive" />
-        <img src="/assets/frontend/images/galery2.png" class="img-responsive" />
-        <img src="/assets/frontend/images/galery3.png" class="img-responsive" />
-        <img src="/assets/frontend/images/galery4.png" class="img-responsive" />
-        <img src="/assets/frontend/images/galery5.png" class="img-responsive" />
-        <img src="/assets/frontend/images/galery6.png" class="img-responsive" />
-        <img src="/assets/frontend/images/galery7.png" class="img-responsive" />
-        <img src="/assets/frontend/images/galery8.png" class="img-responsive" />
-        <img src="/assets/frontend/images/galery9.png" class="img-responsive" />
+        @foreach ($galeries as $gallery)
+            <img src="{{ asset($gallery->image) }}" class="img-responsive" />
+        @endforeach
     </div>
+    {{-- add pagination bootstrap 5 --}}
+    <div class="d-flex justify-content-center align-items-center" style="background-color: transparent;">
+        {{ $galeries->links() }}</div>
     <!-- End Galeri -->
 @endsection

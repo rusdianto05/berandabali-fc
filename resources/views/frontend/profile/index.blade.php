@@ -224,7 +224,7 @@
             color: white !important;
         }
 
-        .content {
+        .content p {
             font-size: 0.875rem;
             color: white !important;
         }
@@ -342,7 +342,14 @@
                 <div class="galery-images slider">
                     <div class="slider">
                         <div class="row justify-content-center w-100">
-                            <div class="col-md-4">
+                            @foreach ($galleries as $gallery)
+                                <div class="col-md-4">
+                                    <div class="mask_img">
+                                        <img src="{{ $gallery->image }}" alt="" />
+                                    </div>
+                                </div>
+                            @endforeach
+                            {{-- <div class="col-md-4">
                                 <div class="mask_img1">
                                     <img src="/assets/frontend/images/galery1.png" alt="" />
                                 </div>
@@ -356,47 +363,10 @@
                                 <div class="mask_img2">
                                     <img src="/assets/frontend/images/galery3.png" alt="" />
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
-                    <div class="slider">
-                        <div class="row justify-content-center w-100">
-                            <div class="col-md-4">
-                                <div class="mask_img1">
-                                    <img src="/assets/frontend/images/galery2.png" alt="" />
-                                </div>
-                            </div>
-                            <div class="col-md-4 margin_top">
-                                <div class="mask_img">
-                                    <img src="/assets/frontend/images/galery1.png" alt="" />
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="mask_img2">
-                                    <img src="/assets/frontend/images/galery3.png" alt="" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="slider">
-                        <div class="row justify-content-center w-100">
-                            <div class="col-md-4">
-                                <div class="mask_img1">
-                                    <img src="/assets/frontend/images/galery3.png" alt="" />
-                                </div>
-                            </div>
-                            <div class="col-md-4 margin_top">
-                                <div class="mask_img">
-                                    <img src="/assets/frontend/images/galery2.png" alt="" />
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="mask_img2">
-                                    <img src="/assets/frontend/images/galery1.png" alt="" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
                 </div>
                 <a href="{{ url('galery') }}" class="d-flex gap-3 links justify-content-center align-items-center">
                     <p class="text-white mb-0">Lihat semua galeri</p>
@@ -435,41 +405,24 @@
     <!-- Championship -->
     <section id="championship">
         <h1 class="text-center">KEJUARAAN YANG DIRAIH</h1>
-        <div id="carouselChampionship" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner">
-                @foreach ($championships as $item)
-                    <div class="carousel-item {{ $loop->first ? 'active' : '' }}" data-bs-interval="3000">
-                        <div class="row championship_container justify-content-between">
-                            <div class="col-md-4 px-0">
-                                <a href="{{ url('article', $item->slug) }}">
-                                    <div class="box_championsip">
-                                        <img src="{{ asset($item->image) }}" class="img_championship"
-                                            alt="{{ $item->slug }}" />
-                                        <div class="content_championship">
-                                            <p class="date">{{ $item->created_at->format('d M, Y') }}</p>
-                                            <h6>{{ $item->title }}</h6>
-                                            <p class="content">
-                                                {!! Str::limit($item->content, 100, '...') !!}
-                                            </p>
-                                            <a href="{{ url('article', $item->slug) }}" class="link_more">See More</a>
-                                        </div>
-                                    </div>
-                                </a>
+        <div class="championship_slider slider mt-5">
+            @foreach ($championships as $item)
+                <div class="slide">
+                    <a href="{{ url('article', $item->slug) }}">
+                        <div class="box_championsip">
+                            <img src="{{ asset($item->image) }}" class="img_championship" alt="{{ $item->slug }}" />
+                            <div class="content_championship">
+                                <p class="date">{{ $item->created_at->format('d M, Y') }}</p>
+                                <h6>{{ $item->title }}</h6>
+                                <div class="content">
+                                    {!! Str::limit($item->content, 100, '...') !!}
+                                </div>
+                                <a href="{{ url('article', $item->slug) }}" class="link_more">See More</a>
                             </div>
                         </div>
-                    </div>
-                @endforeach
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselChampionship"
-                data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselChampionship"
-                data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
+                    </a>
+                </div>
+            @endforeach
         </div>
     </section>
     <!-- End Championship -->
@@ -499,6 +452,18 @@
                         },
                     },
                 ],
+            });
+        });
+
+        $(document).ready(function() {
+            $(".championship_slider").slick({
+                slidesToShow: 3,
+                slidesToScroll: 1,
+                autoplay: true,
+                autoplaySpeed: 3000,
+                arrows: true,
+                dots: false,
+                pauseOnHover: false,
             });
         });
     </script>

@@ -134,14 +134,19 @@
                 <div class="links">
                     <h1 class="mb-3">{{ $team->name }}</h1>
                     <div class="d-flex gap-3 align-items-center">
-                        <a href="www.facebook.com">
-                            <img src="/assets/frontend/images/icons/facebook.svg" width="40" alt="" />
-                        </a>
-                        <a href="www.twitter.com">
-                            <img src="/assets/frontend/images/icons/twitter.svg" width="40" alt="" />
-                        </a>
-                        <a href="www.instagram.com">
-                            <img src="/assets/frontend/images/icons/instagram.svg" width="40" alt="" />
+                        {{-- show total goal --}}
+                        @if ($team->position == 'Penjaga Gawang')
+                            <span class="position_player">Clean Sheet</span>: <span
+                                class="position_player">{{ $team->clean_sheet }}
+                            </span>
+                            <span class="position_player">Saves</span>: <span
+                                class="position_player">{{ $team->saves }}</span>
+                        @else
+                            <span class="position_player">Goal </span>: <span
+                                class="position_player">{{ $team->goal }}</span>
+                            <span class="position_player">Assist</span>: <span
+                                class="position_player">{{ $team->assist }}</span>
+                        @endif
                     </div>
                     </a>
                     <div class="border_white"></div>
@@ -173,8 +178,8 @@
                                 <h1>{{ $team->weight }} Kg</h1>
                             </td>
                             <td>
-                                <p class="mb-2">No Punggung</p>
-                                <h1>{{ $team->number }}</h1>
+                                <p class="mb-2">Penampilan</p>
+                                <h1>{{ $team->apperances }} Match</h1>
                             </td>
                         </tr>
                     </table>

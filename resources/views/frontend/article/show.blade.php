@@ -70,7 +70,7 @@
         <div class="container">
             <img src="{{ asset($article->image) }}" class="image_article" width="100%" alt="" />
             <p class="date mt-3 mb-4">{{ $article->created_at->format('d M, Y') }}</p>
-            <h1 class="text-center mb-5">{{ $article->title }}</h1>
+            <h1 class="text-center mb-4 mb-md-5">{{ $article->title }}</h1>
             <div class="content">
                 {!! $article->content !!}
             </div>

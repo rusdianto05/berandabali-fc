@@ -10,7 +10,7 @@ class GaleryImage extends Model
     use HasFactory;
 
     protected $fillable = [
-        'galery_id',
+        'is_slider',
         'image',
     ];
 

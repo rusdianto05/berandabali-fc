@@ -46,26 +46,46 @@
                         <!--begin::Card title-->
                         {{-- <div class="card-title">
                         </div> --}}
-                        <div class="">
-                            <a type="a" class="btn btn-sm btn-primary" id="btn_add_permission"
-                                href="{{ route('galery.create') }}">+ Galeri</a>
-                            <!--end::Primary button-->
-                        </div>
+
                         <!--end::Card title-->
                     </div>
                     <!--end::Card header-->
                     <!--begin::Card body-->
                     <div class="card-body pt-0">
+                        <x-alert.alert-validation />
+                        <div class="mb-10">
+                            <form action="{{ route('galery.store') }}" method="POST" enctype="multipart/form-data">
+                                @csrf
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <input type="file" name="image" class="form-control" required>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <select name="is_slider" class="form-control" required>
+                                            <option value="0">Galeri</option>
+                                            <option value="1">Slider</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <button type="submit" class="btn btn-sm btn-primary">Tambah</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        {{-- <div class="">
+                            <a type="a" class="btn btn-sm btn-primary" id="btn_add_permission"
+                                href="{{ route('galery.create') }}">+ Galeri</a>
+                            <!--end::Primary button-->
+                        </div> --}}
                         <div class="table-responsive">
                             <!--begin::Table-->
                             <table id="table-galery" class="table table-striped border rounded gy-5 gs-7">
                                 <thead>
                                     <tr class="fw-bolder fs-6 text-gray-800 px-7">
                                         <th width="3%">No</th>
-                                        <th width="20%">Nama</th>
-                                        <th width="20%">Status</th>
                                         <th>Foto</th>
-                                        <th class="text-center min-w-100px">Aksi</th>
+                                        <th width="20%">Status</th>
+                                        <th width="10%">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody></tbody>
@@ -111,26 +131,26 @@
                         }
                     },
                     {
-                        data: 'name',
-                        name: 'name',
-                        responsivePriority: -1
-                    },
-                    {
-                        data: 'is_active',
-                        name: 'is_active',
-                        responsivePriority: -1,
+                        data: 'image',
+                        name: 'image',
                         render: function(data, type, row) {
-                            if (data == 1) {
-                                return '<span class="badge badge-light-success">Aktif</span>';
-                            } else {
-                                return '<span class="badge badge-light-danger">Tidak Aktif</span>';
-                            }
+                            return '<img src="{{ asset('/') }}' + data +
+                                '" class="img-fluid rounded" style="width: 100px; height: 100px;">';
                         }
                     },
                     {
-                        data: 'foto',
-                        name: 'foto',
+                        data: 'is_slider',
+                        name: 'is_slider',
+                        responsivePriority: -1,
+                        render: function(data, type, row) {
+                            if (data == 1) {
+                                return '<span class="badge badge-light-success">Slider</span>';
+                            } else {
+                                return '<span class="badge badge-light-danger">Galeri</span>';
+                            }
+                        }
                     },
+
                     {
                         data: 'action',
                         name: 'action',

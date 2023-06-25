@@ -175,9 +175,9 @@
             <!-- Navtabs -->
             <ul class="nav nav-tabs" id="myTab" role="tablist">
                 <form action="{{ route('merchandise') }}" method="GET">
-                    <input type="hidden" name="category" value="0">
+                    <input type="hidden" name="category" value="">
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link nav-product active" type="submit">
+                        <button class="nav-link nav-product {{ request()->category == '' ? 'active' : '' }}" type="submit">
                             Semua
                         </button>
                     </li>
@@ -186,9 +186,9 @@
                     <form action="{{ route('merchandise') }}" method="GET">
                         <input type="hidden" name="category" value="{{ $cat->id }}">
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link nav-product" type="submit">
-                                {{ $cat->name }}
-                            </button>
+                            <button class="nav-link nav-product {{ request()->category == $cat->id ? 'active' : '' }}"
+                                type="submit">
+                                {{ $cat->name }} </button>
                         </li>
                     </form>
                 @endforeach

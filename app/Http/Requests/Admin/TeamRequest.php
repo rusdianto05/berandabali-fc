@@ -21,16 +21,41 @@ class TeamRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            'name' => 'required|string|max:255',
-            'position' => 'required|string|max:255',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'born_place' => 'required|string|max:255',
-            'born_date' => 'required|date',
-            'height' => 'required|integer',
-            'weight' => 'required|integer',
-            'joined_date' => 'required|date',
-            'number' => 'required|integer',
-        ];
+        return match ($this->method()) {
+            'POST' => [
+                'name' => 'required|string|max:255',
+                'position' => 'required|string|max:255',
+                'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                'born_place' => 'required|string|max:255',
+                'born_date' => 'required|date',
+                'height' => 'required|integer',
+                'weight' => 'required|integer',
+                'joined_date' => 'required|date',
+                'number' => 'required|integer',
+                'goal' => 'nullable|integer',
+                'assist' => 'nullable|integer',
+                'apperances' => 'nullable|integer',
+                'clean_sheet' => 'nullable|integer',
+                'saves' => 'nullable|integer',
+
+            ],
+            'PUT', 'PATCH' => [
+                'name' => 'required|string|max:255',
+                'position' => 'required|string|max:255',
+                'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                'born_place' => 'required|string|max:255',
+                'born_date' => 'required|date',
+                'height' => 'required|integer',
+                'weight' => 'required|integer',
+                'joined_date' => 'required|date',
+                'number' => 'required|integer',
+                'goal' => 'nullable|integer',
+                'assist' => 'nullable|integer',
+                'apperances' => 'nullable|integer',
+                'clean_sheet' => 'nullable|integer',
+                'saves' => 'nullable|integer',
+            ],
+            default => [],
+        };
     }
 }
