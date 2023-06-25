@@ -7,6 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Transaction extends Model
 {
+    const STATUS_PENDING = 'PENDING';
+    const STATUS_SUCCESS = 'SUCCESS';
+    const STATUS_FAILED = 'FAILED';
+    const STATUS_EXPIRED = 'EXPIRED';
+
     use HasFactory;
 
     protected $fillable = [
@@ -17,7 +22,8 @@ class Transaction extends Model
         'phone',
         'total_price',
         'payment_url',
-        'status'
+        'status',
+        'is_exchange',
     ];
 
     public function user()
@@ -28,5 +34,15 @@ class Transaction extends Model
     public function teamMatch()
     {
         return $this->belongsTo(TeamMatch::class);
+    }
+
+    public function transactionDetails()
+    {
+        return $this->hasMany(TransactionDetail::class);
+    }
+
+    public function transactionItems()
+    {
+        return $this->hasMany(TransactionItem::class);
     }
 }

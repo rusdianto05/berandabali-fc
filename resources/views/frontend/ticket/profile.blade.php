@@ -1,0 +1,219 @@
+@extends('layouts.frontend.master', ['title' => 'Tiket Saya'])
+@push('css')
+    <link href="{{ asset('assets/plugins/custom/datatables/datatables.bundle.css') }}" rel="stylesheet" type="text/css" />
+    <style>
+        body {
+            background: linear-gradient(180deg, #0e0036 24.66%, #020050 61.72%, #000000 100%);
+        }
+
+        .title {
+            font-family: var(--lilita) !important;
+            font-size: 3rem;
+            line-height: 125%;
+        }
+
+        /* End Jumbotron */
+
+        /* New Match */
+        #new_match {
+            padding: 7rem 0;
+        }
+
+        h1 {
+            font-size: 1.75rem !important;
+            font-weight: 800;
+            margin-bottom: 2rem;
+        }
+
+        .img_logo {
+            width: 200px;
+        }
+        /* End New Match */
+
+        /* Sidebar */
+        .box_sidebar {
+            background: #FFFFFF;
+            border: 1px solid #EFEFEF;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
+            border-radius: 15px;
+            padding: 2rem;
+        }
+        .box_sidebar a,
+        .box_sidebar button {
+            display: block;
+            color: #000000;
+            font-weight: 600;
+            padding-bottom: .5rem;
+            margin-bottom: .875rem;
+            border-bottom: 2px solid #EDEDED;
+        }
+        .profile_img {
+            width: 5rem;
+            height: 5rem;
+            border-radius: 100%;
+            object-fit: cover;
+        }
+        .box_sidebar .active p {
+            color: var(--blue);
+        }
+        .box_sidebar .active img {
+            filter: invert(54%) sepia(86%) saturate(4049%) hue-rotate(215deg) brightness(99%) contrast(94%);
+        }
+        /* End Sidebar */
+
+        /* Modal */
+        .modal-body p {
+            font-size: .875rem;
+        }
+        .btn_logout {
+            background-color: #e71345 !important;
+            padding: .5rem 1.25rem;
+            border-radius: 8px;
+            color: #FFFFFF !important;
+            font-size: .875rem;
+            font-weight: 600;
+            border: none !important;
+            cursor: pointer;
+            margin-bottom: 0 !important;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        }
+        .btn_cancel {
+            background-color: white !important;
+            padding: .5rem 1.25rem;
+            border-radius: 8px;
+            color: #e71345 !important;
+            font-size: .875rem;
+            font-weight: 600;
+            border: none !important;
+            cursor: pointer;
+            box-shadow: none !important;
+            margin-bottom: 0 !important;
+        }
+        .modal-footer {
+            padding: .5rem !important;
+        }
+        .modal-header {
+            padding: .75rem 1rem !important;
+        }
+        .modal-header h1 {
+            font-size: 1.125rem !important;
+        }
+        /* End Modal */
+        /* Profile */
+        .btn_profile {
+            background-color: #020050;
+            color: white !important;
+            border: none;
+            padding: .5rem 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            font-size: .875rem;
+            font-weight: 500;
+        }
+        .btn_profile:hover {
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        }
+        .profile_form label {
+            font-size: .875rem;
+            font-weight: 500;
+            color: rgba(19, 20, 21, 0.5);
+            letter-spacing: 0.00875rem;
+        }
+        .profile_form .form-control {
+            border-radius: 8px !important;
+            border: 1px solid #E9E9E9 !important;
+            background: #FAFCFE !important;
+            box-shadow: none !important;
+            font-size: 0.875rem !important;
+            padding: .8rem 1.25rem !important;
+        }
+        .profile_img2 {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 100%;
+        }
+        /* End Profile */
+    </style>
+@endpush
+@section('content')
+    <!-- New Match -->
+    <section id="new_match" style="background-color: #FFFFFF">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="box_sidebar">
+                        <div class="d-flex flex-column gap-2 justify-content-center mb-4 text-center align-items-center">
+                            <img src="{{ asset(Auth::guard('users')->user()->avatar ?? '/assets/frontend/images/icons/profile.svg') }}" class="profile_img" />
+                            <p class="text-dark fw-bold">{{ Auth::guard('users')->user()->name }}</p>
+                        </div>
+                        <a href="{{ route('profile.show') }}" class="active">
+                            <div class="d-flex gap-3 align-items-center">
+                                <img src="{{ asset('/assets/frontend/images/icons/edit-profile.svg') }}" width="20"/>
+                                <p class="mb-0">Profil Saya</p>
+                            </div>
+                        </a>
+                        <a href="{{ route('user.ticket.index') }}">
+                            <div class="d-flex gap-3 align-items-center">
+                                <img src="{{ asset('/assets/frontend/images/icons/transaction.svg') }}" width="20"/>
+                                <p class="mb-0">Tiket Saya</p>
+                            </div>
+                        </a>
+                        <button data-bs-toggle="modal" data-bs-target="#logoutModal" class="d-flex gap-3 align-items-center w-100 px-1 border-0 bg-transparent">
+                            <img src="{{ asset('/assets/frontend/images/icons/logout.svg') }}" class="img_red" width="20"/>
+                            <p class="mb-0 text_primary">Logout</p>
+                        </button>
+                        <!-- Modal -->
+                        <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Logout</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Apakah Anda yakin ingin logout dari akun ini? Semua sesi yang sedang aktif akan ditutup dan Anda harus masuk kembali untuk mengaksesnya.</p>
+                                </div>
+                                <div class="modal-footer">
+                                <button type="button" class="btn_cancel" data-bs-dismiss="modal">Batal</button>
+                                    <form action="{{ route('logout.user') }}" method="POST">
+                                        @csrf
+                                        <button type="submit" class="btn_logout">
+                                            Logout
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-9 ps-5">
+                    <h1>Profil Saya</h1>
+                    <div class="d-flex gap-5">
+                        <form action="#" class="profile_form w-100">
+                            <div class="mb-3">
+                                <label for="fullname" class="form-label">Nama Lengkap</label>
+                                <input type="text" class="form-control" id="fullname" value="{{ Auth::guard('users')->user()->name }}" disabled>
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="email" value="{{ Auth::guard('users')->user()->email }}" disabled>
+                            </div>
+                            <div class="mb-3">
+                                <label for="phone" class="form-label">Nomor Telepon</label>
+                                <input type="phone" class="form-control" id="phone" value="{{ Auth::guard('users')->user()->phone }}" disabled>
+                            </div>
+                            <a href="{{ route('profile.edit') }}" class="btn_profile mt-4" type="submit">Ubah Profil</a>
+                        </form>
+                        <img src="{{ asset(Auth::guard('users')->user()->avatar ?? '/assets/frontend/images/icons/profile.svg') }}" class="profile_img2 mb-4" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End New Match -->
+@endsection
+@push('js')
+    <script src="{{ url('https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js') }}"></script>
+@endpush

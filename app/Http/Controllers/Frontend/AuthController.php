@@ -33,7 +33,7 @@ class AuthController extends Controller
             'password' => Hash::make($request->password)
         ]);
         Auth::guard('users')->loginUsingId($user->id);
-        return redirect()->route('home');
+        return redirect()->route('home')->with('success', 'Berhasil Mendaftar Akun');
     }
 
     public function login(LoginRequest $request)
@@ -51,6 +51,6 @@ class AuthController extends Controller
     {
         // logout users use guard('users')
         Auth::guard('users')->logout();
-        return redirect()->route('home');
+        return redirect()->route('home')->with('success', 'Berhasil logout');
     }
 }

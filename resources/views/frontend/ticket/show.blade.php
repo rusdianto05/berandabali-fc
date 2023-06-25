@@ -1,4 +1,4 @@
-@extends('layouts.frontend.master', ['title' => 'Tiket Saya'])
+@extends('layouts.frontend.master', ['title' => 'Detail Ticket'])
 @push('css')
     <link href="{{ asset('assets/plugins/custom/datatables/datatables.bundle.css') }}" rel="stylesheet" type="text/css" />
     <style>
@@ -293,18 +293,17 @@
                     </div>
                 </div>
                 <div class="col-lg-9 ps-5">
-                    <h1>Tiket Saya</h1>
+                    <h1>Detail Tiket TIX-{{ $transaction_item->transaction_id }}</h1>
                     <table id="table-team-match" class="table table-striped border rounded gy-5 gs-7">
                         <thead>
                             <tr class="fw-bolder fs-6 text-gray-800 px-7">
                                 <th width="3%">No</th>
-                                <th>Tanggal</th>
-                                <th>Nama Pemesan</th>
-                                <th>No HP</th>
-                                <th>Total Harga</th>
-                                <th>Booking ID</th>
-                                <th>Status</th>
-                                <th width="10%">Aksi</th>
+                                <th>Nama</th>
+                                <th>Harga</th>
+                                <th>Pertandingan</th>
+                                <th>Identitas</th>
+                                <th>No Hp</th>
+                                {{-- <th width="10%">Aksi</th> --}}
                             </tr>
                         </thead>
                         <tbody></tbody>
@@ -325,8 +324,7 @@
                 processing: true,
                 serverSide: true,
                 responsive: true,
-                // disable pagination in above demo for performance
-                ajax: "{{ route('user.ticket.index') }}",
+                ajax: "{{ route('user.ticket.show', $transaction_item->transaction_id) }}",
                 language: {
                     "paginate": {
                         "next": "<i class='fa fa-angle-right'>",
@@ -344,46 +342,26 @@
                         }
                     },
                     {
-                        data: 'date',
-                        name: 'date'
+                        data: 'ticket',
+                        name: 'ticket',
                     },
                     {
-                        data: 'name',
-                        name: 'name'
+                        data: 'price',
+                        name: 'price',
+                    },
+                    {
+                        data: 'match',
+                        name: 'match',
+                    },
+                    {
+                        data: 'identity',
+                        name: 'identity',
                     },
                     {
                         data: 'phone',
                         name: 'phone',
-                        render: function(data, type, row) {
-                            return '+62' + data ?? 'Belum diisi';
-                        }
                     },
-                    {
-                        data: 'total_price',
-                        name: 'total_price',
-                        render: function(data, type, row) {
-                            // return 'Rp. ' + add rupiah format
-                            return 'Rp. ' + data.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-                        }
 
-                    },
-                    {
-                        data: 'booking_id',
-                        name: 'booking_id',
-                        render: function(data, type, row) {
-                            return data ?? 'Belum ada pembayaran';
-                        }
-                    },
-                    {
-                        data: 'status',
-                        name: 'status',
-                    },
-                    {
-                        data: 'action',
-                        name: 'action',
-                        orderable: false,
-                        searchable: false
-                    },
                 ]
             });
         })

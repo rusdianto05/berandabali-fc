@@ -16,7 +16,7 @@ class TicketController extends Controller
      */
     public function index()
     {
-        $data = Ticket::with('teamMatch')->latest()->get();
+        $data = Ticket::with('teamMatch')->where('team_match_id', request()->team_match_id)->latest()->get();
         if (request()->ajax()) {
             return DataTables::of($data)
                 ->addColumn('action', function ($data) {
@@ -54,8 +54,8 @@ class TicketController extends Controller
     {
         $data = $request->validated();
         $data['image'] = 'storage/' . $request->file('image')->store('images/tickets', 'public');
-        Ticket::create($data);
-        return redirect()->route('ticket.index')->with('success', 'Ticket Berhasil Ditambahkan');
+        $ticket = Ticket::create($data);
+        return redirect()->route('ticket.index', ['team_match_id' => $ticket->team_match_id])->with('success', 'Ticket Berhasil Ditambahkan');
     }
 
     /**
@@ -86,7 +86,7 @@ class TicketController extends Controller
             $data['image'] = 'storage/' . $request->file('image')->store('images/tickets', 'public');
         }
         $ticket->update($data);
-        return redirect()->route('ticket.index')->with('success', 'Ticket Berhasil Diubah');
+        return redirect()->route('ticket.index', ['team_match_id' => $ticket->team_match_id])->with('success', 'Ticket Berhasil Diubah');
     }
 
     /**
@@ -96,6 +96,6 @@ class TicketController extends Controller
     {
         file_exists($ticket->image) ? unlink($ticket->image) : null;
         $ticket->delete();
-        return redirect()->route('ticket.index')->with('success', 'Ticket Berhasil Dihapus');
+        return redirect()->route('ticket.index', ['team_match_id' => $ticket->team_match_id])->with('success', 'Ticket Berhasil Dihapus');
     }
 }
