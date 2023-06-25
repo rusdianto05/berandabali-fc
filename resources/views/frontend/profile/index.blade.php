@@ -97,7 +97,7 @@
             overflow: hidden !important;
         }
 
-        .mask_img {
+        .mask_img2 {
             -webkit-mask-image: url("/assets/frontend/images/bg.png");
             mask-image: url("/assets/frontend/images/bg.png");
             -webkit-mask-repeat: no-repeat;
@@ -105,6 +105,7 @@
             height: 25rem;
             width: 100%;
             overflow: hidden !important;
+            margin: 2rem 0;
         }
 
         .mask_img1 img,
@@ -115,7 +116,7 @@
             object-fit: cover;
         }
 
-        .mask_img2 {
+        .mask_img3 {
             -webkit-mask-image: url("/assets/frontend/images/bg2.png");
             mask-image: url("/assets/frontend/images/bg2.png");
             -webkit-mask-repeat: no-repeat;
@@ -340,34 +341,22 @@
                     </p>
                 </div>
                 <div class="galery-images slider">
-                    <div class="slider">
-                        <div class="row justify-content-center w-100">
-                            @foreach ($galleries as $gallery)
-                                <div class="col-md-4">
-                                    <div class="mask_img">
-                                        <img src="{{ $gallery->image }}" alt="" />
-                                    </div>
-                                </div>
-                            @endforeach
-                            {{-- <div class="col-md-4">
-                                <div class="mask_img1">
-                                    <img src="/assets/frontend/images/galery1.png" alt="" />
-                                </div>
-                            </div>
-                            <div class="col-md-4 margin_top">
-                                <div class="mask_img">
-                                    <img src="/assets/frontend/images/galery2.png" alt="" />
+                    @foreach ($galleries as $index => $gallery)
+                        @if ($index % 3 == 0)
+                            <div class="slider">
+                                <div class="row justify-content-center w-100">
+                                    @for ($i = $index; $i < $index + 3 && $i < count($galleries); $i++)
+                                        <div class="col-md-4">
+                                            <div class="mask_img{{ $i % 3 + 1 }}">
+                                                <img src="{{ $galleries[$i]->image }}" alt="" />
+                                            </div>
+                                        </div>
+                                    @endfor
                                 </div>
                             </div>
-                            <div class="col-md-4">
-                                <div class="mask_img2">
-                                    <img src="/assets/frontend/images/galery3.png" alt="" />
-                                </div>
-                            </div> --}}
-                        </div>
-                    </div>
-
-                </div>
+                        @endif
+                    @endforeach
+                </div>                
                 <a href="{{ url('galery') }}" class="d-flex gap-3 links justify-content-center align-items-center">
                     <p class="text-white mb-0">Lihat semua galeri</p>
                     <img src="/assets/frontend/images/icons/arrow-red.svg" class="arrow" alt="" />
@@ -439,19 +428,6 @@
                 autoplaySpeed: 3000,
                 fade: true,
                 cssEase: "linear",
-                responsive: [{
-                        breakpoint: 768,
-                        settings: {
-                            slidesToShow: 4,
-                        },
-                    },
-                    {
-                        breakpoint: 425,
-                        settings: {
-                            slidesToShow: 3,
-                        },
-                    },
-                ],
             });
         });
 
