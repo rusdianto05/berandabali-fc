@@ -67,8 +67,9 @@ Route::group(['middleware' => ['user']], function () {
     Route::post('checkout', [CheckoutController::class, 'store'])->name('checkout.store');
     Route::get('payment/success', [CheckoutController::class, 'success'])->name('payment.success');
     Route::resource('tiket', FrontendTicketController::class)->names('user.ticket');
-    Route::get('my-profile', [FrontendTicketController::class, 'show'])->name('profile.show');
+    Route::get('my-profile', [FrontendTicketController::class, 'userShow'])->name('profile.show');
     Route::get('edit-profile', [FrontendTicketController::class, 'edit'])->name('profile.edit');
+    Route::put('edit-profile/{id}', [FrontendTicketController::class, 'update'])->name('profile.update');
 });
 //auth
 // add prefix admin

@@ -398,8 +398,7 @@
                         </div>
                     </div>
                 </div>
-                <a href="{{ url('galery') }}"
-                    class="d-flex gap-3 links justify-content-center align-items-center">
+                <a href="{{ url('galery') }}" class="d-flex gap-3 links justify-content-center align-items-center">
                     <p class="text-white mb-0">Lihat semua galeri</p>
                     <img src="/assets/frontend/images/icons/arrow-red.svg" class="arrow" alt="" />
                 </a>
@@ -438,9 +437,9 @@
         <h1 class="text-center">KEJUARAAN YANG DIRAIH</h1>
         <div id="carouselChampionship" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
-                <div class="carousel-item active" data-bs-interval="3000">
-                    <div class="row championship_container justify-content-between">
-                        @foreach ($championships as $championship)
+                @foreach ($championships as $item)
+                    <div class="carousel-item {{ $loop->first ? 'active' : '' }}" data-bs-interval="3000">
+                        <div class="row championship_container justify-content-between">
                             <div class="col-md-4 px-0">
                                 <a href="{{ url('article', $item->slug) }}">
                                     <div class="box_championsip">
@@ -457,113 +456,9 @@
                                     </div>
                                 </a>
                             </div>
-                        @endforeach
-                    </div>
-                </div>
-                {{-- <div class="carousel-item" data-bs-interval="3000">
-                    <div class="row championship_container justify-content-between">
-                        <div class="col-md-4 px-0">
-                            <a href="../article/detail/index.html">
-                                <div class="box_championsip">
-                                    <img src="../assets/images/champion1.png" class="img_championship" alt="" />
-                                    <div class="content_championship">
-                                        <p class="date">27 Dec, 2022</p>
-                                        <h6>Juara 1 </h6>
-                                        <p class="content">
-                                            Lorem ipsum dolor sit amet consectetur. Lobortis aliquam. Lorem ipsum
-                                            dolor sit amet consectetur. Lobortis aliquam Lobortis aliquam....
-                                        </p>
-                                        <a href="../article/detail/index.html" class="link_more">See More</a>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-md-4 px-0">
-                            <a href="../article/detail/index.html">
-                                <div class="box_championsip">
-                                    <img src="../assets/images/champion2.png" class="img_championship" alt="" />
-                                    <div class="content_championship">
-                                        <p class="date">27 Dec, 2022</p>
-                                        <h6>Juara 2</h6>
-                                        <p class="content">
-                                            Lorem ipsum dolor sit amet consectetur. Lobortis aliquam. Lorem ipsum
-                                            dolor sit amet consectetur. Lobortis aliquam Lobortis aliquam....
-                                        </p>
-                                        <a href="../article/detail/index.html" class="link_more">See More</a>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-md-4 px-0">
-                            <a href="../article/detail/index.html">
-                                <div class="box_championsip">
-                                    <img src="../assets/images/champion3.png" class="img_championship" alt="" />
-                                    <div class="content_championship">
-                                        <p class="date">27 Dec, 2022</p>
-                                        <h6>Juara 3</h6>
-                                        <p class="content">
-                                            Lorem ipsum dolor sit amet consectetur. Lobortis aliquam. Lorem ipsum
-                                            dolor sit amet consectetur. Lobortis aliquam Lobortis aliquam....
-                                        </p>
-                                        <a href="../article/detail/index.html" class="link_more">See More</a>
-                                    </div>
-                                </div>
-                            </a>
                         </div>
                     </div>
-                </div> --}}
-                {{-- <div class="carousel-item">
-                    <div class="row championship_container justify-content-between">
-                        <div class="col-md-4 px-0">
-                            <a href="../article/detail/index.html">
-                                <div class="box_championsip">
-                                    <img src="../assets/images/champion1.png" class="img_championship" alt="" />
-                                    <div class="content_championship">
-                                        <p class="date">27 Dec, 2022</p>
-                                        <h6>Juara 4</h6>
-                                        <p class="content">
-                                            Lorem ipsum dolor sit amet consectetur. Lobortis aliquam. Lorem ipsum
-                                            dolor sit amet consectetur. Lobortis aliquam Lobortis aliquam....
-                                        </p>
-                                        <a href="../article/detail/index.html" class="link_more">See More</a>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-md-4 px-0">
-                            <a href="../article/detail/index.html">
-                                <div class="box_championsip">
-                                    <img src="../assets/images/champion2.png" class="img_championship" alt="" />
-                                    <div class="content_championship">
-                                        <p class="date">27 Dec, 2022</p>
-                                        <h6>Juara 5</h6>
-                                        <p class="content">
-                                            Lorem ipsum dolor sit amet consectetur. Lobortis aliquam. Lorem ipsum
-                                            dolor sit amet consectetur. Lobortis aliquam Lobortis aliquam....
-                                        </p>
-                                        <a href="../article/detail/index.html" class="link_more">See More</a>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-md-4 px-0">
-                            <a href="../article/detail/index.html">
-                                <div class="box_championsip">
-                                    <img src="../assets/images/champion3.png" class="img_championship" alt="" />
-                                    <div class="content_championship">
-                                        <p class="date">27 Dec, 2022</p>
-                                        <h6>Juara 6</h6>
-                                        <p class="content">
-                                            Lorem ipsum dolor sit amet consectetur. Lobortis aliquam. Lorem ipsum
-                                            dolor sit amet consectetur. Lobortis aliquam Lobortis aliquam....
-                                        </p>
-                                        <a href="../article/detail/index.html" class="link_more">See More</a>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div> --}}
+                @endforeach
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselChampionship"
                 data-bs-slide="prev">

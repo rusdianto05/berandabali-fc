@@ -145,9 +145,11 @@
         .text_red {
             color: #e71345 !important;
         }
+
         table th {
             font-size: .875rem;
         }
+
         /* End Schedule */
 
         /* Sidebar */
@@ -158,6 +160,7 @@
             border-radius: 15px;
             padding: 2rem;
         }
+
         .box_sidebar a,
         .box_sidebar button {
             display: block;
@@ -167,24 +170,29 @@
             margin-bottom: .875rem;
             border-bottom: 2px solid #EDEDED;
         }
+
         .profile_img {
             width: 5rem;
             height: 5rem;
             border-radius: 100%;
             object-fit: cover;
         }
+
         .box_sidebar .active p {
             color: var(--blue);
         }
+
         .box_sidebar .active img {
             filter: invert(54%) sepia(86%) saturate(4049%) hue-rotate(215deg) brightness(99%) contrast(94%);
         }
+
         /* End Sidebar */
 
         /* Modal */
         .modal-body p {
             font-size: .875rem;
         }
+
         .btn_logout {
             background-color: #e71345 !important;
             padding: .5rem 1.25rem;
@@ -197,6 +205,7 @@
             margin-bottom: 0 !important;
             box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
         }
+
         .btn_cancel {
             background-color: white !important;
             padding: .5rem 1.25rem;
@@ -209,15 +218,19 @@
             box-shadow: none !important;
             margin-bottom: 0 !important;
         }
+
         .modal-footer {
             padding: .5rem !important;
         }
+
         .modal-header {
             padding: .75rem 1rem !important;
         }
+
         .modal-header h1 {
             font-size: 1.125rem !important;
         }
+
         /* End Modal */
     </style>
 @endpush
@@ -229,53 +242,58 @@
                 <div class="col-lg-3">
                     <div class="box_sidebar">
                         <div class="d-flex flex-column gap-2 justify-content-center mb-4 text-center align-items-center">
-                            <img src="{{ asset(Auth::guard('users')->user()->avatar ?? '/assets/frontend/images/icons/profile.svg') }}" class="profile_img" />
+                            <img src="{{ asset(Auth::guard('users')->user()->avatar ?? '/assets/frontend/images/icons/profile.svg') }}"
+                                class="profile_img" />
                             <p class="text-dark fw-bold">{{ Auth::guard('users')->user()->name }}</p>
                         </div>
                         <a href="{{ route('profile.show') }}">
                             <div class="d-flex gap-3 align-items-center">
-                                <img src="{{ asset('/assets/frontend/images/icons/edit-profile.svg') }}" width="20"/>
+                                <img src="{{ asset('/assets/frontend/images/icons/edit-profile.svg') }}" width="20" />
                                 <p class="mb-0">Profil Saya</p>
                             </div>
                         </a>
                         <a href="{{ route('user.ticket.index') }}" class="active">
                             <div class="d-flex gap-3 align-items-center">
-                                <img src="{{ asset('/assets/frontend/images/icons/transaction.svg') }}" width="20"/>
+                                <img src="{{ asset('/assets/frontend/images/icons/transaction.svg') }}" width="20" />
                                 <p class="mb-0">Tiket Saya</p>
                             </div>
                         </a>
-                        <button data-bs-toggle="modal" data-bs-target="#logoutModal" class="d-flex gap-3 align-items-center w-100 px-1 border-0 bg-transparent">
-                            <img src="{{ asset('/assets/frontend/images/icons/logout.svg') }}" class="img_red" width="20"/>
+                        <button data-bs-toggle="modal" data-bs-target="#logoutModal"
+                            class="d-flex gap-3 align-items-center w-100 px-1 border-0 bg-transparent">
+                            <img src="{{ asset('/assets/frontend/images/icons/logout.svg') }}" class="img_red"
+                                width="20" />
                             <p class="mb-0 text_primary">Logout</p>
                         </button>
                         <!-- Modal -->
-                        <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel"
+                            aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Logout</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Logout</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Apakah Anda yakin ingin logout dari akun ini? Semua sesi yang sedang aktif akan
+                                            ditutup dan Anda harus masuk kembali untuk mengaksesnya.</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn_cancel" data-bs-dismiss="modal">Batal</button>
+                                        <form action="{{ route('logout.user') }}" method="POST">
+                                            @csrf
+                                            <button type="submit" class="btn_logout">
+                                                Logout
+                                            </button>
+                                        </form>
+                                    </div>
                                 </div>
-                                <div class="modal-body">
-                                    <p>Apakah Anda yakin ingin logout dari akun ini? Semua sesi yang sedang aktif akan ditutup dan Anda harus masuk kembali untuk mengaksesnya.</p>
-                                </div>
-                                <div class="modal-footer">
-                                <button type="button" class="btn_cancel" data-bs-dismiss="modal">Batal</button>
-                                    <form action="{{ route('logout.user') }}" method="POST">
-                                        @csrf
-                                        <button type="submit" class="btn_logout">
-                                            Logout
-                                        </button>
-                                    </form>
-                                </div>
-                            </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-9 ps-5">
                     <h1>Tiket Saya</h1>
-                    {{-- add  --}}
                     <table id="table-team-match" class="table table-striped border rounded gy-5 gs-7">
                         <thead>
                             <tr class="fw-bolder fs-6 text-gray-800 px-7">
@@ -286,7 +304,7 @@
                                 <th>Total Harga</th>
                                 <th>Booking ID</th>
                                 <th>Status</th>
-                                <th width="20%">Aksi</th>
+                                <th width="10%">Aksi</th>
                             </tr>
                         </thead>
                         <tbody></tbody>
@@ -307,6 +325,7 @@
                 processing: true,
                 serverSide: true,
                 responsive: true,
+                // disable pagination in above demo for performance
                 ajax: "{{ route('user.ticket.index') }}",
                 language: {
                     "paginate": {
@@ -334,13 +353,17 @@
                     },
                     {
                         data: 'phone',
-                        name: 'phone'
+                        name: 'phone',
+                        render: function(data, type, row) {
+                            return '+62' + data ?? 'Belum diisi';
+                        }
                     },
                     {
                         data: 'total_price',
                         name: 'total_price',
                         render: function(data, type, row) {
-                            return 'Rp. ' + data;
+                            // return 'Rp. ' + add rupiah format
+                            return 'Rp. ' + data.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
                         }
 
                     },

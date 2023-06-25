@@ -1,4 +1,4 @@
-@extends('layouts.frontend.master', ['title' => 'Tiket Saya'])
+@extends('layouts.frontend.master', ['title' => 'Detail Ticket'])
 @push('css')
     <link href="{{ asset('assets/plugins/custom/datatables/datatables.bundle.css') }}" rel="stylesheet" type="text/css" />
     <style>
@@ -6,10 +6,41 @@
             background: linear-gradient(180deg, #0e0036 24.66%, #020050 61.72%, #000000 100%);
         }
 
+        /* Jumbotron */
+        #jumbotron {
+            background: linear-gradient(180deg, #19184b 0%, #030226 100%);
+            background-repeat: no-repeat;
+            min-height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
         .title {
             font-family: var(--lilita) !important;
             font-size: 3rem;
             line-height: 125%;
+        }
+
+        .subtitle {
+            font-size: 1.125rem;
+            font-weight: 600;
+            letter-spacing: 0.005em;
+            line-height: 153%;
+        }
+
+        .img_match {
+            position: absolute;
+            width: 60%;
+            left: 0;
+            bottom: -7.1375%;
+        }
+
+        .img_ball {
+            position: absolute;
+            left: -15rem;
+            top: -5rem;
+            width: 500px;
         }
 
         /* End Jumbotron */
@@ -25,11 +56,101 @@
             margin-bottom: 2rem;
         }
 
+        .name_club {
+            font-weight: 800 !important;
+            font-size: 1.25rem;
+            line-height: 150%;
+            letter-spacing: 0.1em;
+        }
+
         .img_logo {
             width: 200px;
         }
 
+        .score_text,
+        .score_text span {
+            font-weight: 800 !important;
+            font-size: 5rem;
+        }
+
+        .score_text span {
+            padding: 0 1rem;
+            color: #9fa0ab;
+        }
+
+        .badge_status {
+            background: rgba(61, 164, 145, 0.5);
+            border: 1.65846px solid #5cbaba;
+            border-radius: 23.2184px;
+            width: max-content;
+            margin: 1.5rem auto;
+            padding: 0.25rem 1rem;
+            font-weight: 700;
+            font-size: 1.125rem;
+            color: #75e4e4;
+        }
+
+        .date {
+            font-weight: 700;
+            color: #9fa0ab;
+        }
+
+        .btn_primary {
+            position: absolute;
+        }
+
         /* End New Match */
+
+        /* Schedule */
+        #schedule {
+            padding: 3rem 0 6rem;
+        }
+
+        #schedule h1 {
+            margin-bottom: 3.5rem;
+        }
+
+        .box_schedule {
+            background-color: #ffffff;
+            background-image: url("/assets/frontend/images/schedule_bg.svg");
+            padding: 1rem;
+            background-size: cover;
+            background-repeat: no-repeat;
+            border-radius: 25px;
+            width: 100%;
+            margin-bottom: 2.25rem;
+        }
+
+        .image {
+            width: 80px;
+        }
+
+        .box_schedule h2 {
+            font-family: var(--lilita);
+            color: #1e1b1c;
+            letter-spacing: 0.06em;
+            font-size: 1.5rem;
+        }
+
+        .box_schedule p {
+            font-weight: 500;
+            color: #55565b;
+            font-size: 0.875rem;
+        }
+
+        .border_bottom {
+            border-bottom: 2px solid #9fa0ab;
+        }
+
+        .text_red {
+            color: #e71345 !important;
+        }
+
+        table th {
+            font-size: .875rem;
+        }
+
+        /* End Schedule */
 
         /* Sidebar */
         .box_sidebar {
@@ -111,72 +232,6 @@
         }
 
         /* End Modal */
-        /* Profile */
-        .btn_profile {
-            background-color: #020050;
-            color: white;
-            border: none;
-            padding: .5rem 2rem;
-            border-radius: 20px;
-            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-            font-size: .875rem;
-            font-weight: 500;
-        }
-
-        .btn_profile:hover {
-            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-        }
-
-        .profile_form label {
-            font-size: .875rem;
-            font-weight: 500;
-            color: rgba(19, 20, 21, 0.5);
-            letter-spacing: 0.00875rem;
-        }
-
-        .profile_form .form-control {
-            border-radius: 8px !important;
-            border: 1px solid #E9E9E9 !important;
-            background: #FAFCFE !important;
-            box-shadow: none !important;
-            font-size: 0.875rem !important;
-            padding: .8rem 1.25rem !important;
-        }
-
-        .profile_form {
-            width: calc(100% - 200px);
-        }
-
-        .profile_img2 {
-            width: 200px;
-            height: 200px;
-            position: relative;
-            cursor: pointer;
-        }
-
-        .form-control:focus {
-            border: 1px solid #020050 !important;
-        }
-
-        .profile_img2 img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 100%;
-            overflow: hidden;
-        }
-
-        .img_edit {
-            position: absolute;
-            right: 0;
-            width: 3rem !important;
-            height: 3rem !important;
-            padding: .5rem;
-            background: #020050;
-            bottom: 0;
-        }
-
-        /* End Profile */
     </style>
 @endpush
 @section('content')
@@ -197,7 +252,7 @@
                                 <p class="mb-0">Profil Saya</p>
                             </div>
                         </a>
-                        <a href="{{ route('user.ticket.index') }}">
+                        <a href="{{ route('user.ticket.index') }}" class="active">
                             <div class="d-flex gap-3 align-items-center">
                                 <img src="{{ asset('/assets/frontend/images/icons/transaction.svg') }}" width="20" />
                                 <p class="mb-0">Tiket Saya</p>
@@ -238,50 +293,21 @@
                     </div>
                 </div>
                 <div class="col-lg-9 ps-5">
-                    <h1>Profil Saya</h1>
-                    <div class="d-flex gap-5">
-                        <form action="{{ route('profile.update', Auth::guard('users')->user()->id) }}" class="profile_form"
-                            method="POST" enctype="multipart/form-data">
-                            @method('PUT')
-                            @csrf
-                            <x-alert.alert-validation />
-                            <div class="mb-3">
-                                <label for="fullname" class="form-label">Nama Lengkap</label>
-                                <input type="text" class="form-control" id="fullname" name="name"
-                                    value="{{ Auth::guard('users')->user()->name }}">
-                            </div>
-                            <div class="mb-3">
-                                <label for="email" class="form-label">Email</label>
-                                <input type="email" class="form-control" id="email" name="email"
-                                    value="{{ Auth::guard('users')->user()->email }}">
-                            </div>
-                            <div class="mb-3">
-                                <label for="phone" class="form-label">Nomor Telepon</label>
-                                <input type="phone" class="form-control" id="phone" name="phone"
-                                    value="{{ Auth::guard('users')->user()->phone }}">
-                            </div>
-                            <div class="mb-3">
-                                <label for="password" class="form-label">Password</label>
-                                <input type="password" class="form-control" id="password" name="password">
-                            </div>
-                            <div class="mb-3">
-                                <label for="password_confirmation" class="form-label">Konfirmasi Password</label>
-                                <input type="password" class="form-control" id="password_confirmation"
-                                    name="password_confirmation">
-                            </div>
-                            <button class="btn_profile mt-4" type="submit">Simpan Perubahan</button>
-                            <input type="file" id="photo_profile" class="d-none" name="avatar">
-                        </form>
-                        <div>
-                            <label for="photo_profile" class="profile_img2">
-                                <img
-                                    src="{{ asset(Auth::guard('users')->user()->avatar ?? '/assets/frontend/images/icons/profile.svg') }}" />
-                                <img src="{{ asset('/assets/frontend/images/icons/edit.svg') }}" class="img_edit"
-                                    alt="">
-                            </label>
-                        </div>
-
-                    </div>
+                    <h1>Detail Tiket TIX-{{ $transaction_item->transaction_id }}</h1>
+                    <table id="table-team-match" class="table table-striped border rounded gy-5 gs-7">
+                        <thead>
+                            <tr class="fw-bolder fs-6 text-gray-800 px-7">
+                                <th width="3%">No</th>
+                                <th>Nama</th>
+                                <th>Harga</th>
+                                <th>Pertandingan</th>
+                                <th>Identitas</th>
+                                <th>No Hp</th>
+                                {{-- <th width="10%">Aksi</th> --}}
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
                 </div>
             </div>
         </div>
@@ -289,5 +315,55 @@
     <!-- End New Match -->
 @endsection
 @push('js')
+    <script src="{{ url('https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ url('https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js') }}"></script>
+    <script>
+        $(document).ready(() => {
+            var table = $('#table-team-match').DataTable({
+                ordering: false,
+                processing: true,
+                serverSide: true,
+                responsive: true,
+                ajax: "{{ route('user.ticket.show', $transaction_item->transaction_id) }}",
+                language: {
+                    "paginate": {
+                        "next": "<i class='fa fa-angle-right'>",
+                        "previous": "<i class='fa fa-angle-left'>"
+                    },
+                    "loadingRecords": "Loading...",
+                    "processing": "Processing...",
+                },
+                columns: [{
+                        "data": null,
+                        "sortable": false,
+                        "searchable": false,
+                        render: function(data, type, row, meta) {
+                            return meta.row + meta.settings._iDisplayStart + 1;
+                        }
+                    },
+                    {
+                        data: 'ticket',
+                        name: 'ticket',
+                    },
+                    {
+                        data: 'price',
+                        name: 'price',
+                    },
+                    {
+                        data: 'match',
+                        name: 'match',
+                    },
+                    {
+                        data: 'identity',
+                        name: 'identity',
+                    },
+                    {
+                        data: 'phone',
+                        name: 'phone',
+                    },
+
+                ]
+            });
+        })
+    </script>
 @endpush

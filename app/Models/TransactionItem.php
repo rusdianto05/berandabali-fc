@@ -15,4 +15,19 @@ class TransactionItem extends Model
         'team_match_id',
         'quantity'
     ];
+
+    public function transaction()
+    {
+        return $this->belongsTo(Transaction::class, 'transaction_id', 'id');
+    }
+
+    public function ticket()
+    {
+        return $this->belongsTo(Ticket::class);
+    }
+
+    public function teamMatch()
+    {
+        return $this->belongsTo(TeamMatch::class);
+    }
 }

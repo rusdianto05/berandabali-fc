@@ -7,6 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Transaction extends Model
 {
+    const STATUS_PENDING = 'PENDING';
+    const STATUS_SUCCESS = 'SUCCESS';
+    const STATUS_FAILED = 'FAILED';
+    const STATUS_EXPIRED = 'EXPIRED';
+
     use HasFactory;
 
     protected $fillable = [
