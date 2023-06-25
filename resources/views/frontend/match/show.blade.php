@@ -278,7 +278,9 @@
                                     <button type="submit" class="btn_add"><i class="fas fa-plus"></i></button>
                                 </form>
                                 <div class="d-flex justify-content-between align-items-center mx-auto">
-                                    <h5 class="mb-0">  {{ Auth::guard('users')->user()->carts->where('ticket_id', $item->id)->count() }}</h5>
+                                    <h5 class="mb-0">
+                                        {{ Auth::guard('users')->user()->carts->where('ticket_id', $item->id)->count() }}
+                                    </h5>
                                 </div>
                                 <form action="{{ route('match.destroy', $item->id) }}" method="POST">
                                     @csrf

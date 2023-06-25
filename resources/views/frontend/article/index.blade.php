@@ -29,6 +29,11 @@
             overflow: hidden;
         }
 
+        .article_image img {
+            height: 100%;
+            object-fit: cover;
+        }
+
         .article_image::before {
             position: absolute;
             content: "";
@@ -46,9 +51,10 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            top: 1rem;
-            bottom: 2rem;
-            left: 5rem;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            padding: 5rem;
             width: 55%;
         }
 
@@ -105,13 +111,15 @@
         }
 
         .box_top {
-            width: 500px;
-            height: 200px;
+            height: 200px !important;
             background: #f2f2f2;
             border-radius: 15px;
             overflow: hidden;
             display: flex;
             align-items: center;
+        }
+        .content_top {
+            height: 7rem;
         }
         .box_top .img_box img,
         .latest_box .img_latest img {
@@ -125,7 +133,7 @@
         }
 
         .img_box {
-            height: 11rem !important;
+            height: 100% !important;
             width: 100%;
             overflow: hidden;
             border-radius: 12px;
@@ -134,6 +142,7 @@
         .img_box img {
             height: 100%;
             width: 100%;
+            object-fit: cover;
         }
 
         .box_top h6 {
@@ -153,7 +162,7 @@
 
         .box_top img {
             width: 100%;
-            height: 100%;
+            height: 11rem;
             object-fit: cover;
             border-radius: 12.8541px;
         }
@@ -198,7 +207,7 @@
             color: #3d3d3d;
             font-weight: 800;
             font-size: 1.125rem;
-            line-height: 150%;
+            line-height: 1.75rem;
         }
 
         .latest_box .date_box {
@@ -227,7 +236,7 @@
             object-fit: cover;
         }
         .content_box {
-            height: 11rem;
+            height: 10rem;
         }
 
         /* end latest article */
@@ -248,8 +257,98 @@
             color: #5e72e4 !important;
             font-weight: 700 !important;
         }
-
         /* end pagination */
+
+        /* Responsive */
+        @media only screen and (min-width: 1400px) {
+            .content_box {
+            height: 8.5rem;
+        }
+        }
+        @media only screen and (max-width: 1199.98px) {
+            /* first article */
+            .article_content {
+                padding: 3rem;  
+                width: 100%;
+            }
+            .card_article {
+                max-height: 21rem;
+            }
+            .article_content h1 {
+                font-size: 1.75rem !important;
+            }
+            .img_logo {
+                width: 60px;
+            }
+            .article_content p,
+            .article_content a {
+                font-size: 0.875rem;
+            }
+            /* end first article */
+
+            /* top article */
+            #top_article {
+                padding: 2rem 0;
+            }
+            #top_article span,
+            #top_article h1,
+            #latest_article h1,
+            #latest_article span {
+                font-size: 1.75rem !important;
+                text-align: center;
+            }
+            .box_top h6 {
+                font-size: .875rem;
+            }
+            .box_top p {
+                font-size: 0.625rem;
+            }
+            /* end top article */
+
+            /* latest article */
+            .latest_box img {
+                height: 100%;
+                object-fit: cover;
+            }
+            .latest_box h6 {
+                font-size: 0.875rem;
+            }
+            .latest_box p {
+                font-size: .75rem;
+            }
+            .latest_box .date_box {
+                font-size: .7rem;
+            }
+            .latest_box .content,
+            .latest_box .link_more {
+                font-size: 0.75rem;
+            }
+            .content_box {
+                height: 7rem;
+            }
+            /* end latest article */
+        }
+
+        @media only screen and (max-width: 575.98px) {
+            .content_box {
+                height: max-content;
+            }
+            .slick-next {
+                right: 0 !important;
+            }
+            .slick-prev {
+                left: 0 !important;
+            }
+            .box_top .link_more {
+                font-size: .75rem;
+            }       
+        }
+        @media only screen and (max-width: 399.98px) {
+            .content_top {
+                height: 7rem;
+            }
+        }
+        /* End Responsive */
     </style>
 @endpush
 @section('content')
@@ -276,20 +375,22 @@
                         <div class="slide">
                             <div class="box_top">
                                 <a href="{{ url('article', $top->slug) }}" class="row">
-                                    <div class="col-md-6 col-lg-5 p-4 pe-2">
+                                    <div class="col-5 col-lg-4 col-xl-5 p-4 pe-2">
                                         <div class="img_box">
                                             <img src="{{ asset($top->image) }}" alt="" />
                                         </div>
                                     </div>
-                                    <div class="col-md-6 p-4 ps-2 col-lg-7">
+                                    <div class="col-7 col-lg-8 p-4 ps-2 col-xl-7">
                                         <div class="d-flex justify-content-between align-items-center">
                                             <p class="badge_yellow">{{ $top->categoryArticle->name }}</p>
                                             <p class="date_box">{{ $top->created_at->format('d M, Y') }}</p>
                                         </div>
-                                        <h6>{{ Str::limit($top->title, 50, '...') }}</h6>
-                                        <p>
-                                            {!! Str::limit($top->content, 90, '...') !!}
-                                        </p>
+                                        <div class="content_top">
+                                            <h6>{{ Str::limit($top->title, 50, '...') }}</h6>
+                                            <p>
+                                                {!! Str::limit($top->content, 90, '...') !!}
+                                            </p>
+                                        </div>
                                         <div class="text-end">
                                             <p class="link_more">See More</p>
                                         </div>
@@ -306,7 +407,7 @@
                 <h1 class="mb-5">LATEST <span class="text_primary">ARTICLE</span></h1>
                 <div class="row">
                     @foreach ($article as $item)
-                        <div class="col-md-4 col-xl-3 mb-4">
+                        <div class="col-sm-6 col-lg-4 col-xl-3 mb-4">
                             <div class="latest_box p-3">
                                 <a href="{{ url('article', $item->slug) }}">
                                     <div class="img_latest">
@@ -314,14 +415,14 @@
                                     </div>
                                     <div class="mt-2">
                                         <div class="content_box">
-                                            <p class="date_box">{{ $top->created_at->format('d M, Y') }}</p>
+                                            <p class="date_box mb-1">{{ $top->created_at->format('d M, Y') }}</p>
                                             <h6>{{ Str::limit($item->title, 44, '...') }}</h6>
                                             <p class="content">
                                                 {!! Str::limit($item->content, 80, '...') !!}
                                             </p>
                                         </div>
                                         <div class="text-end">
-                                            <p class="link_more">See More</p>
+                                            <p class="link_more mb-0">See More</p>
                                         </div>
                                     </div>
                                 </a>
@@ -358,23 +459,34 @@
     <script>
         $(document).ready(function() {
             $(".top-article").slick({
-                variableWidth: true,
+                slidesToShow: 2.5,
                 slidesToScroll: 1,
+                centerMode: false,
                 autoplay: true,
-                autoplaySpeed: 3500,
+                autoplaySpeed: 3000,
                 arrows: true,
                 dots: false,
                 pauseOnHover: false,
-                responsive: [{
-                        breakpoint: 768,
+                responsive: [
+                    {
+                        breakpoint: 992,
                         settings: {
-                            slidesToShow: 4,
+                            slidesToShow: 2,
+                            slidesToScroll: 1,
                         },
                     },
                     {
-                        breakpoint: 425,
+                        breakpoint: 768,
                         settings: {
-                            slidesToShow: 3,
+                            slidesToShow: 1.25,
+                            slidesToScroll: 1,
+                        },
+                    },
+                    {
+                        breakpoint: 576,
+                        settings: {
+                            slidesToShow: 1,
+                            slidesToScroll: 1,
                         },
                     },
                 ],

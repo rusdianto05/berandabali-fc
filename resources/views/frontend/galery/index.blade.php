@@ -86,7 +86,7 @@
             column-gap: 20px;
         }
 
-        @media (max-width: 800px) {
+        @media (max-width: 767.98px) {
             #gallery {
                 -webkit-column-count: 2;
                 -moz-column-count: 2;
@@ -97,7 +97,7 @@
             }
         }
 
-        @media (max-width: 600px) {
+        @media (max-width: 575.98px) {
             #gallery {
                 -webkit-column-count: 1;
                 -moz-column-count: 1;
@@ -124,8 +124,44 @@
         .modal-body {
             padding: 0px;
         }
+        .paginations nav {
+            background: transparent !important;
+        }
+        .page-link {
+            background-color: #010120 !important;
+            border: 1px solid #dfe3e8 !important;
+            border-radius: 4px !important;
+            color: #ffffff !important;
+            font-weight: 700 !important;
+        }
+        .paginations .pagination {
+            gap: .5rem !important;
+        }
+
+        .page-item.active .page-link {
+            color: #010120 !important;
+            background-color: white !important;
+            border: 1px solid #5e72e4 !important;
+            border-radius: 4px !important;
+            color: #5e72e4 !important;
+            font-weight: 700 !important;
+        }
 
         /* End Galeri */
+
+        /* Responsiveness */
+        @media only screen and (max-width: 1199.98px) {
+            .box h1 {
+                font-size: 1.5rem;
+            }
+            .box p {
+                font-size: .875rem;
+            }
+            #gallery img, #gallery .box {
+                border-radius: 1rem;
+            }
+        }
+        /* End Responsiveness */
     </style>
 @endpush
 @section('content')
@@ -164,7 +200,8 @@
         @endforeach
     </div>
     {{-- add pagination bootstrap 5 --}}
-    <div class="d-flex justify-content-center align-items-center" style="background-color: transparent;">
-        {{ $galeries->links() }}</div>
+    <div class="d-flex justify-content-center align-items-center paginations mb-5">
+        {{ $galeries->links() }}
+    </div>
     <!-- End Galeri -->
 @endsection
