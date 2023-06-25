@@ -262,8 +262,8 @@
         /* Responsive */
         @media only screen and (min-width: 1400px) {
             .content_box {
-            height: 8.5rem;
-        }
+                height: 8.5rem;
+            }
         }
         @media only screen and (max-width: 1199.98px) {
             /* first article */

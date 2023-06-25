@@ -132,7 +132,7 @@
         }
 
         .card_body {
-            padding: 2rem;
+            padding: 2rem 1rem;
             text-align: center;
             font-weight: 700;
         }
@@ -155,7 +155,10 @@
             padding: 0.75rem 2rem;
             font-weight: 700;
             letter-spacing: -0.005em;
-            line-height: 1.75rem
+            line-height: 1.5rem
+        }
+        .img_tim {
+            height: 80px;
         }
 
         /* End Match */
@@ -194,27 +197,6 @@
             width: 100%;
             height: 16rem;
             position: relative;
-        }
-
-        .article-slider .slick-slide {
-            opacity: 0.7;
-            transition: opacity 0.3s;
-            padding-left: 1rem;
-            padding-right: 1rem;
-            transform: scale(0.8);
-            margin: 2rem 0;
-        }
-
-        .article-slider .slick-slide.slick-cloned {
-            opacity: 0.7;
-            transition: opacity 0.3s;
-            transform: scale(0.8);
-        }
-
-        .article-slider .slick-slide.slick-current.slick-active {
-            opacity: 1;
-            transform: scale(1.2);
-            transition: opacity 0.3s;
         }
 
         .article_image {
@@ -275,19 +257,98 @@
         }
 
         /* Responsiveness */
+        @media only screen and (min-width: 992px) {
+            .article-slider .slick-slide {
+                opacity: 0.7;
+                transition: opacity 0.3s;
+                padding-left: 1rem;
+                padding-right: 1rem;
+                transform: scale(0.8);
+                margin: 2rem 0;
+            }
+            .article-slider .slick-slide.slick-cloned {
+                opacity: 0.7;
+                transition: opacity 0.3s;
+                transform: scale(0.8);
+            }
+
+            .article-slider .slick-slide.slick-current.slick-active {
+                opacity: 1;
+                transform: scale(1.2);
+                transition: opacity 0.3s;
+            }
+        }
+        @media only screen and (max-width: 1199.98px) {
+            h1.title {
+                font-size: 3rem;
+            }
+            .article_content h1 {
+                font-size: 1.125rem !important;
+            }
+            p.subtitle,
+            .btn_primary,
+            p.subtitle1 {
+                font-size: 1rem;
+            }
+            .card_header,
+            .card_body,
+            .card_footer {
+                font-size: .875rem;
+            }
+            #match h1, #article h1,
+            #profile h1, #profile span {
+                font-size: 2.25rem;
+            }
+            .card_body h6 {
+                font-size: 1.875rem;
+            }
+        }
         @media only screen and (max-width: 991.98px) {
             /* Jumbotron */
             h1.title {
-                font-size: 2.25rem;
-                line-height: 2.5rem;
+                font-size: 2.5rem;
+                line-height: 2.75rem;
             }
             .w-65 {
                 width: 100%;
             }
-            p.subtitle {
-                font-size: 1rem;
+            .ball1 {
+                width: 400px;
             }
             /* End Jumbotron */
+
+            /* match */
+            .ball3 {
+                width: 600px;
+                bottom: 2rem;
+            }
+            /* end match */
+            /* about */
+            #profile {
+                padding-top: 6rem;
+            }
+            /* end about */
+
+            /* article */
+            .article-slider .slick-slide {
+                margin: 0 .5rem !important;
+            }
+            /* end article */
+        }
+
+        @media only screen and (max-width: 575.98px) {
+            .img_slider {
+                width: 100%;
+            }
+            .slick-slide {
+                margin: 0 .5rem !important;
+            }
+            .slick-next {
+                right: 0 !important;
+            }
+            .slick-prev {
+                left: 0 !important;
+            }
         }
         /* End Responsiveness */
     </style>
@@ -349,53 +410,55 @@
     <!-- End Sponsored -->
 
     <!-- Match -->
-    <section id="match" class="container-fluid px-5">
-        <img src="{{ asset('/assets/frontend/images/icons/ball.svg') }}" width="500" class="ball1" alt="" />
-        <img src="{{ asset('/assets/frontend/images/icons/ball.svg') }}" width="300" class="ball2" alt="" />
-        <img src="{{ asset('/assets/frontend/images/icons/ball.svg') }}" width="700" class="ball3" alt="" />
-        <div class="text-center mb_title">
-            <h1 class="title_lilita">Pertandingan <span>Terdekat</span></h1>
-            <p class="subtitle1">
-                Dapatkan tiket pertandingan terdekat melalui website official beranda bali footballclub
-            </p>
-        </div>
-        <div class="row justify-content-center gap-4">
-            <?php $i = 1; ?>
-            @foreach ($match as $item)
-                <div class="col-md-5">
-                    <div class="card_match">
-                        <div class="card_header">
-                            <div class="mb-0" id="countdown{{ $i }}"></div>
-                        </div>
-                        <div class="card_body d-flex justify-content-between align-items-center">
-                            <div class="text-center">
-                                <img src="{{ asset('assets\media\logos\sidebar-logo.png') }}" height="100"
-                                    alt="" />
-                                <p class="mt-2">BerandaBali FC</p>
+    <section id="match">
+        <div class="container">
+            <img src="{{ asset('/assets/frontend/images/icons/ball.svg') }}" width="500" class="ball1" alt="" />
+            <img src="{{ asset('/assets/frontend/images/icons/ball.svg') }}" width="300" class="ball2" alt="" />
+            <img src="{{ asset('/assets/frontend/images/icons/ball.svg') }}" width="700" class="ball3" alt="" />
+            <div class="text-center mb_title">
+                <h1 class="title_lilita">Pertandingan <span>Terdekat</span></h1>
+                <p class="subtitle1">
+                    Dapatkan tiket pertandingan terdekat melalui website official beranda bali footballclub
+                </p>
+            </div>
+            <div class="row justify-content-center gap-md-0 gap-4 gap-lg-4">
+                <?php $i = 1; ?>
+                @foreach ($match as $item)
+                    <div class="col-lg-5 col-md-6">
+                        <div class="card_match">
+                            <div class="card_header">
+                                <div class="mb-0" id="countdown{{ $i }}"></div>
                             </div>
-                            <h6 class="mb-0">VS</h6>
-                            <div class="text-center">
-                                <img src="{{ $item->opponent_logo }}" height="100" alt="" />
-                                <p class="mt-2 text-center">{{ $item->opponent_name }}</p>
+                            <div class="card_body d-flex justify-content-between align-items-center">
+                                <div class="text-center">
+                                    <img src="{{ asset('assets\media\logos\sidebar-logo.png') }}" class="img_tim"
+                                        alt="" />
+                                    <p class="mt-2">BerandaBali FC</p>
+                                </div>
+                                <h6 class="mb-0">VS</h6>
+                                <div class="text-center">
+                                    <img src="{{ $item->opponent_logo }}" class="img_tim" alt="" />
+                                    <p class="mt-2 text-center">{{ $item->opponent_name }}</p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="card_footer text-center">
-                            <p class="mb-0">{{ date('d F Y', strtotime($item->match_date)) }} |
-                                {{ date('H:i', strtotime($item->match_date)) }} WIB
-                            <br />{{ $item->match_location }}</p>
+                            <div class="card_footer text-center">
+                                <p class="mb-0">{{ date('d F Y', strtotime($item->match_date)) }} |
+                                    {{ date('H:i', strtotime($item->match_date)) }} WIB
+                                <br />{{ $item->match_location }}</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <?php $i++; ?>
-            @endforeach
+                    <?php $i++; ?>
+                @endforeach
+            </div>
         </div>
     </section>
     <!-- End Match -->
 
     <!-- Profile Club -->
     <section id="profile" class="container">
-        <div class="row">
-            <div class="col-md-6">
+        <div class="row align-items-center">
+            <div class="col-md-6 order-last order-md-first mt-4 mt-md-0">
                 <h1 class="mb-4">
                     BERANDA BALI <br />
                     FOOTBALL
@@ -500,16 +563,33 @@
                 arrows: true,
                 dots: false,
                 pauseOnHover: false,
-                responsive: [{
-                        breakpoint: 768,
+                responsive: [
+                    {
+                        breakpoint: 1200,
                         settings: {
-                            slidesToShow: 4,
+                            slidesToShow: 5,
+                            slidesToScroll: 1,
                         },
                     },
                     {
-                        breakpoint: 425,
+                        breakpoint: 992,
+                        settings: {
+                            slidesToShow: 4,
+                            slidesToScroll: 1,
+                        },
+                    },
+                    {
+                        breakpoint: 768,
                         settings: {
                             slidesToShow: 3,
+                            slidesToScroll: 1,
+                        },
+                    },
+                    {
+                        breakpoint: 576,
+                        settings: {
+                            slidesToShow: 3,
+                            slidesToScroll: 1,
                         },
                     },
                 ],
@@ -529,16 +609,24 @@
                 autoplay: true,
                 autoplaySpeed: 3000,
                 responsive: [{
-                        breakpoint: 1024,
+                        breakpoint: 991,
                         settings: {
                             slidesToShow: 2,
-                            centerMode: true,
+                            centerMode: false,
                         },
                     },
                     {
                         breakpoint: 767,
                         settings: {
                             slidesToShow: 1,
+                            centerMode: false,
+                        },
+                    },
+                    {
+                        breakpoint: 576,
+                        settings: {
+                            slidesToShow: 1,
+                            centerMode: false,
                         },
                     },
                 ],
