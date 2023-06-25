@@ -124,6 +124,28 @@
         .modal-body {
             padding: 0px;
         }
+        .paginations nav {
+            background: transparent !important;
+        }
+        .page-link {
+            background-color: #010120 !important;
+            border: 1px solid #dfe3e8 !important;
+            border-radius: 4px !important;
+            color: #ffffff !important;
+            font-weight: 700 !important;
+        }
+        .paginations .pagination {
+            gap: .5rem !important;
+        }
+
+        .page-item.active .page-link {
+            color: #010120 !important;
+            background-color: white !important;
+            border: 1px solid #5e72e4 !important;
+            border-radius: 4px !important;
+            color: #5e72e4 !important;
+            font-weight: 700 !important;
+        }
 
         /* End Galeri */
     </style>
@@ -164,7 +186,8 @@
         @endforeach
     </div>
     {{-- add pagination bootstrap 5 --}}
-    <div class="d-flex justify-content-center align-items-center" style="background-color: transparent;">
-        {{ $galeries->links() }}</div>
+    <div class="d-flex justify-content-center align-items-center paginations mb-5">
+        {{ $galeries->links() }}
+    </div>
     <!-- End Galeri -->
 @endsection
