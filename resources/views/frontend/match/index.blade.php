@@ -15,11 +15,12 @@
             position: relative;
             display: flex;
             align-items: center;
+            overflow: hidden;
         }
 
         .title {
             font-family: var(--lilita) !important;
-            font-size: 3rem;
+            font-size: 4rem;
             line-height: 125%;
         }
 
@@ -61,13 +62,13 @@
 
         .name_club {
             font-weight: 800 !important;
-            font-size: 1.25rem;
+            font-size: 1.125rem;
             line-height: 150%;
             letter-spacing: 0.1em;
         }
 
         .img_logo {
-            height:200px;
+            height: 170px;
         }
 
         .score_text,
@@ -97,11 +98,6 @@
             font-weight: 700;
             color: #9fa0ab;
         }
-
-        .btn_primary {
-            position: absolute;
-        }
-
         /* End New Match */
 
         /* Schedule */
@@ -159,19 +155,83 @@
         }
 
         /* End Schedule */
+
+        /* Responsiveness */
+        @media only screen and (max-width: 1199.98px) {
+            .title {
+                font-size: 3rem;
+            }
+            .subtitle,
+            .btn_primary {
+                font-size: 1rem;
+            }
+        }
+
+        @media only screen and (max-width: 991.98px) {
+            .title {
+                font-size: 2.5rem;
+            }
+            .img_ball {
+                width: 450px;
+            }
+            #new_match h1, #new_match h1 span, #schedule h1, #schedule h1 span {
+                font-size: 2.25rem !important;
+            }
+            .img_logo {
+                height: 150px;
+            }
+            .score_text, .score_text span {
+                font-size: 4rem;
+            }
+
+            .date {
+                font-size: .875rem;
+            }
+            .badge_status {
+                font-size: 1rem;
+            }
+            .image {
+                height: 50px;
+            }
+            #new_match {
+                padding: 6rem 0;
+            }
+            #schedule {
+                padding: 0 0 6rem;
+            }
+            .box_schedule p {
+                font-size: .75rem;
+            }
+            .box_schedule h2 {
+                font-size: 1.125rem;
+            }
+        }
+
+        @media only screen and (min-width: 768px) {
+            .ms-md-auto {
+                margin-left: auto !important;
+            }
+            .w-md-50 {
+                width: 50% !important;
+            }
+            .btn_primary {
+                position: absolute;
+            }
+        }
+        /* End Responsiveness */
     </style>
 @endpush
 @section('content')
     <!-- Jumbotron -->
     <section id="jumbotron">
         <div class="container">
-            <div class="img_match">
+            <div class="img_match d-none d-md-block">
                 <img src="/assets/frontend/images/match.png" width="100%" alt="" />
             </div>
             <div class="img_ball">
                 <img src="/assets/frontend/images/icons/ball.svg" width="100%" alt="" />
             </div>
-            <div class="ms-auto w-50">
+            <div class="ms-md-auto w-md-50 text-center text-md-start">
                 <h1 class="title">
                     BERANDA BALI <br />
                     FOOTBALL CLUB
@@ -190,8 +250,8 @@
     <section id="new_match">
         <div class="container">
             <h1 class="text-center mb-5">HASIL PERTANDINGAN <span class="text_primary">TERBARU</span></h1>
-            <div class="row gap-4 pt-4 justify-content-center align-items-center">
-                <div class="col-md-3">
+            <div class="row gap-xl-4 pt-4 justify-content-center align-items-center">
+                <div class="col-md-4 col-xl-3">
                     <div class="text-center">
                         <img src="{{ asset('assets\media\logos\sidebar-logo.png') }}" class="img_logo" alt="" />
                     </div>
@@ -200,14 +260,14 @@
                         FOOTBALL CLUB
                     </h2>
                 </div>
-                <div class="col-md-3 text-center">
+                <div class="col-md-4 col-xl-3 text-center">
                     <h2 class="score_text">{{ $latest_match->team_score }} <span>:</span> {{ $latest_match->opponent_score }}
                     </h2>
                     <p class="badge_status">Selesai</p>
                     <p class="date">{{ date('d F Y', strtotime($latest_match->match_date)) }} |
                         {{ date('H:i', strtotime($latest_match->match_date)) }}</p>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-4 col-xl-3">
                     <div class="text-center">
                         <img src="{{ asset($latest_match->opponent_logo) }}" class="img_logo" alt="" />
                     </div>
@@ -227,7 +287,7 @@
             <h1 class="text-center">JADWAL <span class="text_primary">PERTANDINGAN</span></h1>
             <div class="row">
                 @foreach ($next_match as $match)
-                    <div class="col-md-4 col-xl-3">
+                    <div class="col-sm-6 col-md-4 col-xl-3">
                         <div class="box_schedule">
                             <img src="{{ asset($match->opponent_logo) }}" class="image" alt="" />
                             <h2 class="my-3">{{ $match->opponent_name }}</h2>
