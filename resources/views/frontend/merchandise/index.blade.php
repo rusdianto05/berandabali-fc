@@ -18,16 +18,20 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            position: relative;
             overflow: hidden;
+            position: relative;
+        }
+        #jumbotron_content {
+            position: relative;
         }
 
         .img_jumbotron {
             width: 100%;
-            max-width: 500px;
+            max-width: 450px;
             position: absolute;
-            right: 2rem;
-            bottom: 5%;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
         }
 
         #jumbotron h1 {
@@ -66,7 +70,7 @@
 
         /* Product */
         #product {
-            padding: 6rem;
+            padding: 6rem 0;
         }
 
         h1.title {
@@ -141,6 +145,53 @@
         }
 
         /* End Product */
+
+        /* Responsiveness */
+        @media only screen and (max-width: 1199.98px) {
+            #jumbotron h1 {
+                font-size: 3rem;
+            }
+            #jumbotron p,
+            .btn_primary {
+                font-size: 1rem;
+            }
+            .img_jumbotron {
+                width: 400px;
+            }
+            .box_product p {
+                font-size: .875rem;
+            }
+        }
+        @media only screen and (max-width: 991.98px) {
+            #jumbotron h1 {
+                font-size: 2.5rem;
+            }
+            .ball2 {
+                width: 300px;
+                right: -10rem;
+                top: -3rem;
+            }
+            .ball1 {
+                width: 380px;
+                top: 4rem;
+            }
+            .nav-link.nav-product {
+                padding: 0.5rem .75rem !important
+            }
+            #product {
+                padding: 4rem 0;
+            }
+            h1.title {
+                font-size: 1.125rem;
+            }
+            .box_product {
+                margin-bottom: 1.5rem;
+            }
+            .img_jumbotron {
+                width: 300px;
+            }
+        }
+        /* End Responsiveness */
     </style>
 @endpush
 @section('content')
@@ -148,9 +199,9 @@
     <section id="jumbotron">
         <img src="/assets/frontend/images/icons/ball.svg" class="ball1" alt="" />
         <img src="/assets/frontend/images/icons/ball.svg" class="ball2" alt="" />
-        <div class="container">
+        <div class="container" id="jumbotron_content">
             <div class="row align-items-center justify-content-between">
-                <div class="col-md-6 z_top">
+                <div class="col-md-6 z_top text-center text-md-start">
                     <h1>
                         OFFICIAL <br />
                         MERCHANDISE
@@ -161,7 +212,7 @@
                     </p>
                     <a href="#product" class="btn_primary">Beli Sekarang</a>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-6 d-none d-md-block">
                     <img src="/assets/frontend/images/merchandise_jumbotron.png" class="img_jumbotron" alt="" />
                 </div>
             </div>
@@ -201,7 +252,7 @@
                             <h1 class="title">{{ $merchandise->name }}</h1>
                             <div class="row">
                                 @foreach ($merchandise->merchandises as $item)
-                                    <div class="col-md-4 col-lg-3">
+                                    <div class="col-sm-6 col-md-4 col-lg-3">
                                         <div class="box_product text-center">
                                             <div class="img_box">
                                                 <img src="{{ $item->merchandiseImages->first()->image }}" class="mb-4"
