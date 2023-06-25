@@ -342,7 +342,14 @@
                 <div class="galery-images slider">
                     <div class="slider">
                         <div class="row justify-content-center w-100">
-                            <div class="col-md-4">
+                            @foreach ($galleries as $gallery)
+                                <div class="col-md-4">
+                                    <div class="mask_img">
+                                        <img src="{{ $gallery->image }}" alt="" />
+                                    </div>
+                                </div>
+                            @endforeach
+                            {{-- <div class="col-md-4">
                                 <div class="mask_img1">
                                     <img src="/assets/frontend/images/galery1.png" alt="" />
                                 </div>
@@ -356,47 +363,10 @@
                                 <div class="mask_img2">
                                     <img src="/assets/frontend/images/galery3.png" alt="" />
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
-                    <div class="slider">
-                        <div class="row justify-content-center w-100">
-                            <div class="col-md-4">
-                                <div class="mask_img1">
-                                    <img src="/assets/frontend/images/galery2.png" alt="" />
-                                </div>
-                            </div>
-                            <div class="col-md-4 margin_top">
-                                <div class="mask_img">
-                                    <img src="/assets/frontend/images/galery1.png" alt="" />
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="mask_img2">
-                                    <img src="/assets/frontend/images/galery3.png" alt="" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="slider">
-                        <div class="row justify-content-center w-100">
-                            <div class="col-md-4">
-                                <div class="mask_img1">
-                                    <img src="/assets/frontend/images/galery3.png" alt="" />
-                                </div>
-                            </div>
-                            <div class="col-md-4 margin_top">
-                                <div class="mask_img">
-                                    <img src="/assets/frontend/images/galery2.png" alt="" />
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="mask_img2">
-                                    <img src="/assets/frontend/images/galery1.png" alt="" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
                 </div>
                 <a href="{{ url('galery') }}" class="d-flex gap-3 links justify-content-center align-items-center">
                     <p class="text-white mb-0">Lihat semua galeri</p>
@@ -437,22 +407,21 @@
         <h1 class="text-center">KEJUARAAN YANG DIRAIH</h1>
         <div class="championship_slider slider mt-5">
             @foreach ($championships as $item)
-            <div class="slide">
-                <a href="{{ url('article', $item->slug) }}">
-                    <div class="box_championsip">
-                        <img src="{{ asset($item->image) }}" class="img_championship"
-                            alt="{{ $item->slug }}" />
-                        <div class="content_championship">
-                            <p class="date">{{ $item->created_at->format('d M, Y') }}</p>
-                            <h6>{{ $item->title }}</h6>
-                            <div class="content">
-                                {!! Str::limit($item->content, 100, '...') !!}
+                <div class="slide">
+                    <a href="{{ url('article', $item->slug) }}">
+                        <div class="box_championsip">
+                            <img src="{{ asset($item->image) }}" class="img_championship" alt="{{ $item->slug }}" />
+                            <div class="content_championship">
+                                <p class="date">{{ $item->created_at->format('d M, Y') }}</p>
+                                <h6>{{ $item->title }}</h6>
+                                <div class="content">
+                                    {!! Str::limit($item->content, 100, '...') !!}
+                                </div>
+                                <a href="{{ url('article', $item->slug) }}" class="link_more">See More</a>
                             </div>
-                            <a href="{{ url('article', $item->slug) }}" class="link_more">See More</a>
                         </div>
-                    </div>
-                </a>
-            </div>
+                    </a>
+                </div>
             @endforeach
         </div>
     </section>
@@ -486,7 +455,7 @@
             });
         });
 
-        $(document).ready(function () {
+        $(document).ready(function() {
             $(".championship_slider").slick({
                 slidesToShow: 3,
                 slidesToScroll: 1,

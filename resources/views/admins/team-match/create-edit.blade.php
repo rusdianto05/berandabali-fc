@@ -133,9 +133,6 @@
                                         <select name="status" class="form-select form-select-solid" id="status">
                                             <option value="UPCOMING"
                                                 {{ @$teamMatch->status == 'UPCOMING' ? 'selected' : '' }}>Mendatang</option>
-                                            <option value="ONGOING"
-                                                {{ @$teamMatch->status == 'ONGOING' ? 'selected' : '' }}>Sedang
-                                                Berlangsung</option>
                                             <option value="FINISHED"
                                                 {{ @$teamMatch->status == 'FINISHED' ? 'selected' : '' }}>Selesai</option>
                                         </select>

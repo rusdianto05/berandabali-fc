@@ -16,26 +16,15 @@ class GaleryController extends Controller
      */
     public function index()
     {
-        $data = Galery::with('images')->latest()->get();
+        $data = GaleryImage::latest()->get();
         if (request()->ajax()) {
             return DataTables::of($data)
                 ->addColumn('action', function ($data) {
-                    $actionEdit = route('galery.edit', $data->id);
                     $actionDelete = route('galery.destroy', $data->id);
-                    $actionShow = route('galery.show', $data->id);
                     return
-                        view('components.action.edit', ['action' => $actionEdit]) .
-                        view('components.action.delete', ['action' => $actionDelete, 'id' => $data->id]) .
-                        view('components.action.show', ['action' => $data->id, 'id' => $data->id, 'label' => 'Lihat Foto']);
+                        view('components.action.delete', ['action' => $actionDelete, 'id' => $data->id]);
                 })
-                ->addColumn('foto', function ($data) {
-                    $images = '';
-                    foreach ($data->images as $key => $value) {
-                        $images .= '<img src="' . asset($value->image) . '" class="mx-2" width="100px">';
-                    }
-                    return $images;
-                })
-                ->rawColumns(['action', 'foto'])
+                ->rawColumns(['action'])
                 ->make(true);
         }
         return view('admins.galery.index');
@@ -54,23 +43,12 @@ class GaleryController extends Controller
      */
     public function store(GaleryRequest $request)
     {
-        $galery = Galery::create($request->validated());
-        $this->storeImages($galery, $request->file('images'));
-
-        return redirect()->route('galery.index')->with('success', 'Galery created successfully');
+        $data = $request->validated();
+        $data['image'] = 'storage/' . $request->file('image')->store('images/galery', 'public');
+        $galery = GaleryImage::create($data);
+        return redirect()->route('galery.index')->with('success', 'Foto Berhasil Ditambahkan');
     }
 
-    private function storeImages($galery, $images)
-    {
-        foreach ($images as $key => $value) {
-            // if file_exist delete file
-            $imagePath =  'storage/' . $value->store('images/galery', 'public');
-            GaleryImage::create([
-                'galery_id' => $galery->id,
-                'image' => $imagePath,
-            ]);
-        }
-    }
     /**
      * Display the specified resource.
      */
@@ -81,35 +59,13 @@ class GaleryController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Galery $galery)
-    {
-        return view('admins.galery.create-edit', compact('galery'));
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(GaleryRequest $request, Galery $galery)
-    {
-        $galery->update($request->validated());
-        $galery->images()->delete();
-        foreach ($request->file('images') as $key => $value) {
-            $images = 'storage/' . $value->store('images/galery', 'public');
-            GaleryImage::create([
-                'galery_id' => $galery->id,
-                'image' => $images,
-            ]);
-        }
-        return redirect()->route('galery.index')->with('success', 'Galery updated successfully');
-    }
-
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Galery $galery)
+    public function destroy(GaleryImage $galery)
     {
-        file_exists($galery->images->image) ? unlink($galery->images->image) : '';
+        file_exists($galery->image) ? unlink($galery->image) : '';
         $galery->delete();
-        return redirect()->route('galery.index')->with('success', 'Galery deleted successfully');
+        return redirect()->route('galery.index')->with('success', 'Foto Berhasil Dihapus');
     }
 }

@@ -22,8 +22,8 @@ class GaleryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|max:255',
-            'images' => 'required|array',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'is_slider' => 'required|boolean',
         ];
     }
 }

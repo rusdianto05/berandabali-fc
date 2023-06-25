@@ -61,9 +61,6 @@
                                 <div class="card-title">
                                     <!--begin::Svg Icon | path: icons/duotune/communication/com005.svg-->
                                     <span class="svg-icon svg-icon-1 me-2">
-                                        {{-- add online icon admin --}}
-                                        {{-- <img src="{{ asset('assets/media/icons/online.svg') }}" alt=""
-                                            class="online"> --}}
                                     </span>
                                     <!--end::Svg Icon-->
                                     <h1 class="d-flex text-dark fw-bolder fs-3 align-items-center">
