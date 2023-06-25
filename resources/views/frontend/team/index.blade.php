@@ -214,8 +214,6 @@
             border: 3px solid white !important;
             font-weight: 800 !important;
         }
-
-        /* end player */
     </style>
 @endpush
 @section('content')
@@ -237,85 +235,46 @@
     <section id="player">
         <div class="container">
             <ul class="nav nav-tabs mb-0 d-flex justify-content-center border-bottom-0" id="myTab" role="tablist">
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link nav-product active" id="player-tab" data-bs-toggle="tab"
-                        data-bs-target="#tab-player" type="button" role="tab" aria-controls="tab-player"
-                        aria-selected="true">
-                        Pemain
-                    </button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link nav-product" id="coach-tab" data-bs-toggle="tab"
-                        data-bs-target="#coach-tab-pane" type="button" role="tab" aria-controls="coach-tab-pane"
-                        aria-selected="false">
-                        Pelatih
-                    </button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link nav-product" id="staff-tab" data-bs-toggle="tab"
-                        data-bs-target="#staff-tab-pane" type="button" role="tab" aria-controls="staff-tab-pane"
-                        aria-selected="false">
-                        Staff
-                    </button>
-                </li>
+                @foreach ($types as $type)
+                    <form action="{{ route('user.team.index') }}" method="GET">
+                        <input type="hidden" name="type" value="{{ $type->type }}" onclick="this.form.submit()">
+                        <li class="nav-item" role="presentation">
+                            <button
+                                class="nav-link nav-product {{ request()->type == $type->type ? 'active' : '' }} 
+                                {{ request()->type == null && $type->type == 'Pemain' ? 'active' : '' }}"
+                                id="player-tab" data-bs-toggle="tab" data-bs-target="#tab-player" type="submit"
+                                role="tab" aria-controls="tab-player" aria-selected="true">
+                                {{ $type->type }}
+                            </button>
+                        </li>
+                    </form>
+                @endforeach
             </ul>
+            </form>
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade show active" id="tab-player" role="tabpanel" aria-labelledby="player-tab"
                     tabindex="0">
                     <div class="team-slider slider">
-                        @foreach ($players as $player)
+                        @foreach ($datas as $item)
                             <div class="slide">
                                 <div class="box_player">
                                     <div class="image_player">
-                                        <img src="{{ $player->image }}" alt="" />
+                                        <img src="{{ $item->image }}" alt="" />
                                     </div>
-                                    <div class="nomor">
-                                        <h1>{{ $player->number }}</h1>
-                                    </div>
-                                    <div class="name">
-                                        <h1 class="mb-3">{{ $player->name }}</h1>
-                                        <a href="{{ route('user.team.show', $player->id) }}">Lihat Detail</a>
-                                    </div>
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
-                </div>
-                <div class="tab-pane fade" id="coach-tab-pane" role="tabpanel" aria-labelledby="coach-tab" tabindex="0">
-                    <div class="team-slider slider">
-                        @foreach ($coaches as $coach)
-                            <div class="slide">
-                                <div class="box_player">
-                                    <div class="image_player">
-                                        <img src="{{ asset($coach->image) }}" alt="" />
-                                    </div>
-                                    <div class="nomor">
-                                        <h1>{{ $coach->position }}</h1>
-                                    </div>
-                                    <div class="name">
-                                        <h1 class="mb-3">{{ $coach->name }}</h1>
-                                        <a href="{{ route('user.team.show', $coach->id) }}">Lihat Detail</a>
-                                    </div>
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
-                </div>
-                <div class="tab-pane fade" id="staff-tab-pane" role="tabpanel" aria-labelledby="staff-tab" tabindex="0">
-                    <div class="team-slider slider">
-                        @foreach ($staffs as $staff)
-                            <div class="slide">
-                                <div class="box_player">
-                                    <div class="image_player">
-                                        <img src="{{ $staff->image }}" alt="" />
-                                    </div>
-                                    <div class="nomor">
-                                        <h1>{{ $staff->position }}</h1>
-                                    </div>
-                                    <div class="name">
-                                        <h1 class="mb-3">{{ $staff->name }}</h1>
-                                        <a href="{{ route('user.team.show', $staff->id) }}">Lihat Detail</a>
-                                    </div>
+                                    @if ($item->type == 'Pemain')
+                                        <div class="nomor">
+                                            <h1>{{ $item->number }}</h1>
+                                        </div>
+                                        <div class="name">
+                                            <h1 class="mb-3">{{ $item->name }}</h1>
+                                            <a href="{{ route('user.team.show', $item->id) }}">Lihat Detail</a>
+                                        </div>
+                                    @else
+                                        <div class="name">
+                                            <h1 class="mb-3">{{ $item->name }}</h1>
+                                            <a href="#">{{ $item->position }}</a>
+                                        </div>
+                                    @endif
                                 </div>
                             </div>
                         @endforeach
