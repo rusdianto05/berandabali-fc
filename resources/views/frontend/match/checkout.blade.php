@@ -69,7 +69,7 @@
 
         .box_shadow {
             box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-            display: flex;
+            display: flex !important;
             flex-direction: column;
             align-items: center;
             justify-content: center;
@@ -95,70 +95,104 @@
             box-shadow: none !important;
             filter: invert(0%) sepia(3%) saturate(0%) hue-rotate(235deg) brightness(99%) contrast(105%);
         }
+
+        /* Responsiveness */
+        @media only screen and (max-width: 1199.98px) {
+            .right_side {
+                padding: 3rem;
+            }
+            h2 {
+                font-size: 1.125rem !important;
+            }
+            label, input.form-control {
+                font-size: .875rem;
+            }
+            .accordion-button {
+                font-size: .875rem;
+            }
+            p {
+                font-size: .875rem;
+            }
+        }
+
+        @media only screen and (max-width: 991.98px) {
+            .box_shadow img {
+                width: 100%;
+            }
+        }
+
+        @media only screen and (max-width: 767.98px) {
+            .box_shadow {
+                display: none !important;
+            }
+        }
+        /* End Responsiveness */
     </style>
 @endpush
 @section('content')
     <!-- Register -->
-    <section id="checkout" class="container">
-        <div class="box_checkout">
-            <div class="row">
-                <div class="col-md-6 p-5 text-center box_shadow">
-                    <img src="{{ asset('/assets/frontend/images/checkout_vector.svg') }}" alt="" />
-                    <p class="mt-5">
-                        Silahkan periksa kelengkapan <br />
-                        tiket Anda sebelum melakukan pembayaran!
-                    </p>
-                </div>
-                <div class="col-md-6 right_side">
-                    <form action="{{ route('checkout.store', ['team_match_id' => request()->team_match_id]) }}"
-                        method="POST">
-                        @csrf
-                        <div class="mb-4">
-                            <h2 class="mb-3">Identitas Pemesan</h2>
-                            <div class="mb-3">
-                                <label for="name" class="mb-1">Nama</label>
-                                <input type="text" id="name" class="form-control" name="name"
-                                    value="{{ @$user->name ?? old('name') }}" />
+    <section id="checkout">
+        <div class="container">
+            <div class="box_checkout">
+                <div class="row">
+                    <div class="col-md-6 p-5 text-center box_shadow">
+                        <img src="{{ asset('/assets/frontend/images/checkout_vector.svg') }}" alt="" />
+                        <p class="mt-5">
+                            Silahkan periksa kelengkapan <br />
+                            tiket Anda sebelum melakukan pembayaran!
+                        </p>
+                    </div>
+                    <div class="col-md-6 right_side">
+                        <form action="{{ route('checkout.store', ['team_match_id' => request()->team_match_id]) }}"
+                            method="POST">
+                            @csrf
+                            <div class="mb-4">
+                                <h2 class="mb-3">Identitas Pemesan</h2>
+                                <div class="mb-3">
+                                    <label for="name" class="mb-1">Nama</label>
+                                    <input type="text" id="name" class="form-control" name="name"
+                                        value="{{ @$user->name ?? old('name') }}" />
+                                </div>
+                                <div class="mb-3">
+                                    <label for="phone" class="mb-1">Nomor Telepon</label>
+                                    <input type="phone" id="phone" class="form-control" name="phone"
+                                        value="{{ @$user->phone ?? old('phone') }}" />
+                                </div>
                             </div>
-                            <div class="mb-3">
-                                <label for="phone" class="mb-1">Nomor Telepon</label>
-                                <input type="phone" id="phone" class="form-control" name="phone"
-                                    value="{{ @$user->phone ?? old('phone') }}" />
-                            </div>
-                        </div>
-                        <div class="mb-4">
-                            <h2 class="mb-3">Detail Pesanan</h2>
-                            <div class="accordion" id="accordionTicket">
-                                @foreach ($tickets as $tiket)
-                                    <div class="accordion-item">
-                                        <h2 class="accordion-header" id="headingOne">
-                                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                                data-bs-target="#collapseOne" aria-expanded="true"
-                                                aria-controls="collapseOne">
-                                                Tiket {{ $tiket->ticket->name }}
-                                            </button>
-                                        </h2>
-                                        <div id="collapseOne" class="accordion-collapse collapse show"
-                                            aria-labelledby="headingOne" data-bs-parent="#accordionTicket">
-                                            <div class="accordion-body">
-                                                <div class="mb-3">
-                                                    <label for="name1" class="mb-1">Nama</label>
-                                                    <input type="text" id="name1" class="form-control" name="names[]"
-                                                        value="{{ @$user->name ?? old('name') }}" />
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label for="phone1" class="mb-1">Nomor Telepon</label>
-                                                    <input type="phone" id="phone1" class="form-control"
-                                                        name="phones[]" value="{{ @$user->phone ?? old('phone') }}" />
+                            <div class="mb-4">
+                                <h2 class="mb-3">Detail Pesanan</h2>
+                                <div class="accordion" id="accordionTicket">
+                                    @foreach ($tickets as $tiket)
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header" id="headingOne">
+                                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                                    data-bs-target="#collapseOne" aria-expanded="true"
+                                                    aria-controls="collapseOne">
+                                                    Tiket {{ $tiket->ticket->name }}
+                                                </button>
+                                            </h2>
+                                            <div id="collapseOne" class="accordion-collapse collapse show"
+                                                aria-labelledby="headingOne" data-bs-parent="#accordionTicket">
+                                                <div class="accordion-body">
+                                                    <div class="mb-3">
+                                                        <label for="name1" class="mb-1">Nama</label>
+                                                        <input type="text" id="name1" class="form-control" name="names[]"
+                                                            value="{{ @$user->name ?? old('name') }}" />
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="phone1" class="mb-1">Nomor Telepon</label>
+                                                        <input type="phone" id="phone1" class="form-control"
+                                                            name="phones[]" value="{{ @$user->phone ?? old('phone') }}" />
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                @endforeach
+                                    @endforeach
+                                </div>
                             </div>
-                        </div>
-                        <button type="submit" class="btn_submit mt-5">Bayar</button>
-                    </form>
+                            <button type="submit" class="btn_submit mt-5">Bayar</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
