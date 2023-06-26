@@ -67,7 +67,6 @@
             background: #ffffff;
             border-radius: 8px;
             padding: 1.25rem 1rem;
-            width: 30%;
         }
 
         .img_ticket {
@@ -147,7 +146,7 @@
             font-size: 1.5rem;
         }
 
-        .amount h4 {
+        .amount table tr td {
             font-weight: 800;
             font-size: 1.5rem;
         }
@@ -192,8 +191,60 @@
             margin: 0;
             /* Menghilangkan margin tambahan */
         }
-
         /* End Select ticket */
+
+        /* Responsiveness */
+        @media only screen and (max-width: 1199.98px) {
+            .title {
+                font-size: 2.5rem;
+            }
+            .img_ball {
+                width: 450px;
+            }
+            #new_match h1, #new_match h1 span, #schedule h1, #schedule h1 span {
+                font-size: 2.25rem !important;
+            }
+            .img_logo {
+                height: 150px;
+            }
+            #new_match {
+                padding: 6rem 0 4rem;
+            }
+            .score_text, .score_text span {
+                font-size: 4rem;
+            }
+            .date,
+            .text_sm,
+            .text_content p {
+                font-size: .875rem;
+            }
+            .badge_status,
+            .box_ticket h5,
+            .name_club {
+                font-size: 1rem;
+            }
+            .box_ticket h6 {
+                font-size: 1.125rem;
+            }
+            .contents p {
+                font-size: .75rem;
+            }
+            .contents img {
+                width: 1rem;
+            }
+            .img_ticket{
+                height: 150px;
+            }
+            .amount table tr td,
+            .btn_checkout {
+                font-size: 1.25rem;
+            }
+            .btn_checkout {
+                padding: .75rem 2rem;
+                border-radius: .75rem;
+            }
+        }
+        /* End Responsiveness */
     </style>
 @endpush
 @section('content')
@@ -201,8 +252,8 @@
     <section id="new_match">
         <div class="container">
             <h1 class="text-center mb-5">DETAIL <span class="text_primary">PERTANDINGAN</span></h1>
-            <div class="row gap-4 pt-3 justify-content-center align-items-center">
-                <div class="col-md-3">
+            <div class="row gap-xl-4 pt-3 justify-content-center align-items-center">
+                <div class="col-md-4 col-xl-3 mb-4 mb-md-0">
                     <div class="text-center">
                         <img src="{{ asset('assets\media\logos\sidebar-logo.png') }}" class="img_logo" alt="" />
                     </div>
@@ -211,22 +262,22 @@
                         FOOTBALL CLUB
                     </h2>
                 </div>
-                <div class="col-md-3 text-center">
+                <div class="col-md-4 col-xl-3 mb-4 mb-md-0 text-center">
                     <h2 class="score_text">{{ $match->team_score }} <span>:</span> {{ $match->opponent_score }}
                     </h2>
                     <p class="date">{{ date('d F Y', strtotime($match->match_date)) }} |
                         {{ date('H:i', strtotime($match->match_date)) }}</p>
-                    <div class="d-flex gap-3 justify-content-center align-items-center mb-3">
+                    <div class="d-flex gap-2 gap-lg-3 justify-content-center align-items-center mb-3 text_content">
                         <img src="/assets/frontend/images/icons/pin.svg" alt="" />
                         <p class="mb-0">{{ $match->match_location }}</p>
                     </div>
-                    <div class="d-flex gap-3 justify-content-center align-items-center">
+                    <div class="d-flex gap-2 gap-lg-3 justify-content-center align-items-center text_content">
                         <img src="/assets/frontend/images/icons/time.svg" alt="" />
                         <p class="mb-0">{{ date('H:i', strtotime($match->match_date)) }} -
                             {{ date('H:i', strtotime($match->match_date . ' + 2 hours')) }} WIB
                     </div>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-4 col-xl-3">
                     <div class="text-center">
                         <img src="{{ asset($match->opponent_logo) }}" class="img_logo" alt="" />
                     </div>
@@ -243,18 +294,19 @@
     <!-- Select tikcet -->
     <section id="ticket">
         <div class="container">
-            <h1>PILIH TIKET</h1>
-            <div class="d-flex gap-5 flex-wrap mb-5 justify-content-between">
+            <h1 class="text-center text-md-start">PILIH TIKET</h1>
+            <div class="row">
                 @foreach ($match->tickets as $item)
+                <div class="col-sm-6 col-lg-4 mb-4">
                     <div class="box_ticket">
                         <img src="{{ asset($item->image) }}" class="img_ticket" alt="" />
                         <h6 class="my-3">{{ $item->name }}</h6>
                         <div class="mb-3 contents">
-                            <div class="d-flex gap-3 align-items-center mb-3">
+                            <div class="d-flex gap-3 align-items-center mb-2 mb-md-3">
                                 <img src="/assets/frontend/images/icons/calendar.svg" alt="" />
                                 <p class="mb-0">{{ date('d F Y', strtotime($item->teamMatch->match_date)) }}</p>
                             </div>
-                            <div class="d-flex gap-3 align-items-center mb-3">
+                            <div class="d-flex gap-3 align-items-center mb-2 mb-md-3">
                                 <img src="/assets/frontend/images/icons/pin.svg" alt="" />
                                 <p class="mb-0">{{ $item->teamMatch->match_location }}</p>
                             </div>
@@ -266,10 +318,10 @@
                         </div>
                         <div class="d-flex justify-content-between align-items-center mb-3">
                             <h5 class="mb-0">Rp {{ number_format($item->price) }}</h5>
-                            <p class="text_primary mb-0 fw-medium">Sisa
+                            <p class="text_primary mb-0 text_sm fw-medium">Sisa
                                 {{ $item->quantity }}</p>
                         </div>
-                      	@if (Auth::guard('users')->user()->carts->where('ticket_id', $item->id)->count() > 0)
+                        @if (Auth::guard('users')->user()->carts->where('ticket_id', $item->id)->count() > 0)
                             <div class="d-flex">
                                 <form action="{{ route('match.store') }}" method="POST">
                                     @csrf
@@ -297,18 +349,23 @@
                             </form>
                         @endif
                     </div>
+                </div>
                 @endforeach
             </div>
-            <div class="d-flex align-items-center justify-content-between">
-                <div class="amount">
-                    <div class="d-flex gap-4 align-items-center mb-3">
-                        <h4>Jumlah :&nbsp;</h4>
-                        <h4 class="mb-0">{{ $total_quantity }}</h4>
-
-                    </div>
-                    <h4 class="mb-0">Total :&nbsp; Rp. {{ number_format($total_price) }}</h4>
+            <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-md-between mt-4">
+                <div class="amount mb-4 mb-md-0">
+                    <table width="100%">
+                        <tr>
+                            <td>Jumlah</td>
+                            <td>: {{ $total_quantity }}</td>
+                        </tr>
+                        <tr>
+                            <td>Total</td>
+                            <td>:  Rp. {{ number_format($total_price) }}</td>
+                        </tr>
+                    </table>
                 </div>
-                <a href="{{ route('checkout.index', ['team_match_id' => $match->id]) }}" class="btn_checkout">Checkout</a>
+                <a href="{{ route('checkout.index', ['team_match_id' => $match->id]) }}" class="btn_checkout text-center">Checkout</a>
             </div>
         </div>
     </section>

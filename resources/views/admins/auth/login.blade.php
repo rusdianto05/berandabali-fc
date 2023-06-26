@@ -45,7 +45,7 @@
                 <div class="w-lg-500px bg-body rounded shadow-sm p-10 p-lg-15 mx-auto">
                     <!--begin::Form-->
                     <x-alert.alert-validation />
-                    <form class="form w-100" novalidate="novalidate" id="kt_sign_in_form"
+                    <form class="w-100" novalidate="novalidate" id="kt_sign_in_form"
                         data-kt-redirect-url="../../demo1/dist/index.html" action="{{ route('authenticate') }}"
                         method="POST">
                         @csrf
@@ -58,7 +58,7 @@
                         </div>
                         <!--begin::Heading-->
                         <!--begin::Input group-->
-                        <div class="fv-row mb-10">
+                        <div class="fv-row mb-5">
                             <!--begin::Label-->
                             <label class="form-label fs-6 fw-bolder text-dark">Username</label>
                             <!--end::Label-->
