@@ -4,17 +4,21 @@
         body {
             background: linear-gradient(180deg, #0e0036 24.66%, #020050 61.72%, #000000 100%);
             background-repeat: no-repeat;
+            height: 100% !important;
         }
-
+        
         #detail {
+            min-height: 40rem;
             position: relative;
-            min-height: 100vh;
         }
 
         .img_jumbotron {
             padding-top: 4rem;
         }
-
+        .img_jumbotron img {
+            height: 100% !important;
+            object-fit: cover;
+        }
         #detail::before {
             background: linear-gradient(180deg,
                     rgba(225, 0, 0, 0.16) -16.66%,
@@ -32,7 +36,6 @@
             position: absolute;
             top: 6rem;
             left: 0;
-            padding: 0 2rem;
             color: white;
             width: 100%;
         }
@@ -121,6 +124,45 @@
             line-height: 153%;
             letter-spacing: 0.005em;
         }
+
+        /* Responsiveness */
+        @media only screen and (max-width: 1199.98px) {
+            .position_player,
+            table td h1 {
+                font-size: 1rem !important;
+            }
+            .contents h1 {
+                font-size: 2rem;
+            }
+            .links {
+                padding-bottom: 1.25rem;
+            }
+            table td p {
+                font-size: .875rem;
+            }
+            table td {
+                padding: 1rem;
+            }
+            .no_player {
+                font-size: 6rem !important;
+            }
+            table {
+                width: 70% !important;
+            }
+            #detail {
+                min-height: 35rem;
+            }
+        }
+
+        @media only screen and (max-width: 767.98px) {
+            table {
+                width: 100% !important;
+            }
+            #detail {
+                min-height: 45rem;
+            }
+        }
+        /* End Responsiveness */
     </style>
 @endpush
 @section('content')
@@ -152,38 +194,38 @@
                     <div class="border_white"></div>
                     <div class="circle_white"></div>
                 </div>
-                <div class="d-flex justify-content-between align-items-center">
-                    <table>
+                <div class="d-flex flex-column flex-md-row justify-content-md-between align-md-items-center">
+                    <table width="60%">
                         <tr class="no_border_top">
-                            <td>
+                            <td width="30%">
                                 <p class="mb-2">Tempat lahir</p>
                                 <h1>{{ $team->born_place }}</h1>
                             </td>
-                            <td>
+                            <td width="30%">
                                 <p class="mb-2">Tinggi</p>
                                 <h1>{{ $team->height }} Cm</h1>
                             </td>
-                            <td>
+                            <td width="40%">
                                 <p class="mb-2">Tanggal Bergabung</p>
                                 <h1>{{ date('d M Y', strtotime($team->joined_date)) }}</h1>
                             </td>
                         </tr>
                         <tr class="no_border_bottom">
-                            <td>
+                            <td width="30%">
                                 <p class="mb-2">Tanggal Lahir</p>
                                 <h1>{{ date('d M Y', strtotime($team->born_date)) }}</h1>
                             </td>
-                            <td>
+                            <td width="30%">
                                 <p class="mb-2">Berat</p>
                                 <h1>{{ $team->weight }} Kg</h1>
                             </td>
-                            <td>
+                            <td width="40%">
                                 <p class="mb-2">Penampilan</p>
                                 <h1>{{ $team->apperances }} Match</h1>
                             </td>
                         </tr>
                     </table>
-                    <div class="text-center">
+                    <div class="text-center mt-4 mt-md-0">
                         <h1 class="no_player mb-0">{{ $team->number }}</h1>
                         <p class="mb-0 position_player">{{ $team->position }}</p>
                     </div>
