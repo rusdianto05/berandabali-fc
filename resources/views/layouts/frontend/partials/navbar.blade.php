@@ -50,7 +50,7 @@
                             <a class="d-flex align-items-center text-decoration-none dropdown-toggle" href="#"
                                 id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                                 <img src="{{ asset(Auth::guard('users')->user()->avatar ?? '/assets/frontend/images/icons/profile.svg') }}"
-                                    class="rounded-circle" width="40" alt="" />
+                                    class="rounded-circle" style="object-fit: cover" width="40" height="40" alt="" />
                                 {{-- <span class="ms-2 text-black">{{ Auth::guard('users')->user()->name }}</span> --}}
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
