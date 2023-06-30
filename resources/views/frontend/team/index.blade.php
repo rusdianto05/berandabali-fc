@@ -9,35 +9,48 @@
         body {
             background: linear-gradient(180deg, #0e0036 24.66%, #020050 61.72%, #000000 100%);
             background-repeat: no-repeat;
+            overflow-x: hidden;
         }
 
         /* jumbotron */
         #jumbotron {
+            position: relative;
+        }
+        .logo-tim {
+            position: absolute;
+            bottom: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .jumbotron {
             background: linear-gradient(180deg, #19184b 0%, #030226 100%);
-            min-height: 100vh;
             margin-top: 4rem;
-            height: 100%;
+            height: 40rem;
             display: flex;
             justify-content: center;
             padding: 6.5rem 0;
             position: relative;
             text-align: center;
+            overflow: hidden;
         }
 
         .img_jumbotron {
             position: absolute;
-            bottom: -10.12%;
-            right: 0;
-            left: 0;
+            bottom: -3rem;
+            left: 50%;
+            transform: translateX(-50%);
             width: 70%;
-            margin: auto;
+            margin: 0 auto;
         }
+
 
         .img_jumbotron img {
             width: 100%;
+            z-index: 999;
         }
 
-        #jumbotron h1 {
+        .jumbotron h1 {
             font-family: var(--lilita);
             font-size: 9rem;
             color: rgba(255, 255, 255, 0);
@@ -49,7 +62,7 @@
 
         /* player */
         #player {
-            padding: 8rem 0 4rem;
+            padding: 8rem 0 6rem;
             position: relative;
             overflow: hidden;
         }
@@ -60,7 +73,7 @@
             padding-left: 1rem;
             padding-right: 1rem;
             transform: scale(0.6);
-            margin: 4rem 0;
+            margin: 4rem 0 10rem;
         }
 
         .team-slider .slick-slide.slick-cloned {
@@ -107,8 +120,9 @@
         .image_player::before {
             content: "";
             position: absolute;
-            bottom: -7rem;
-            left: 0;
+            bottom: -12rem;
+            left: 50%;
+            transform: translateX(-50%);
             width: 100%;
             height: 100%;
             background-image: url("/assets/frontend/images/bg_player.svg");
@@ -148,7 +162,7 @@
 
         .name {
             position: absolute;
-            bottom: -8rem;
+            bottom: -12rem;
             left: 50%;
             transform: translate(-50%, -50%);
             text-align: center;
@@ -214,20 +228,77 @@
             border: 3px solid white !important;
             font-weight: 800 !important;
         }
+        @media only screen and (max-width: 1199.98px) {
+            .img_jumbotron  {
+                bottom: -10%;
+            }
+        }
+
+        @media only screen and (max-width: 1199.98px) {
+            .jumbotron h1 {
+                font-size: 4rem;
+                -webkit-text-stroke: 2px #ffffff;
+            }
+            .img_jumbotron  {
+                bottom: -9%;
+                width: 100%;
+            }
+            .ball2  {
+                width: 400px;
+                top: -20%;
+                z-index: -1;
+            }
+            .nav-link.nav-product {
+                font-size: .875rem;
+                padding: .5rem 1.25rem !important;
+            }
+            .image_player img {
+                height: 30rem;
+            }
+            .name h1,
+            .nomor h1 {
+                font-size: 2.25rem;
+            }
+            .name a {
+                font-size: 1rem;
+            }
+            .slick-next {
+                right: 0 !important;
+            }
+            .slick-prev {
+                left: 0 !important;
+            }
+        }
+
+        @media only screen and (max-width: 575.98px) {
+            .jumbotron {
+                height: 35rem;
+            }
+            .img_jumbotron  {
+                bottom: -5%;
+                width: 100% !important;
+            }
+            .logo-tim {
+                width: 80px;
+            }
+        }
     </style>
 @endpush
 @section('content')
     <!-- Jumbotron -->
     <section id="jumbotron">
-        <div class="container">
-            <h1>
-                BERANDA BALI <br />
-                FOOTBALL CLUB
-            </h1>
-            <div class="img_jumbotron">
-                <img src="/assets/frontend/images/jumbotron_tim.png" alt="" />
+        <div class="jumbotron">
+            <div class="container">
+                <h1>
+                    BERANDA BALI <br />
+                    FOOTBALL CLUB
+                </h1>
+                <div class="img_jumbotron">
+                    <img src="/assets/frontend/images/jumbotron_tim.png" alt="" />
+                </div>
             </div>
         </div>
+        <img src="/assets/frontend/images/logo-tim.svg" class="logo-tim" width="100" alt="">
     </section>
     <!-- End Jumbotron -->
 
@@ -254,7 +325,7 @@
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade show active" id="tab-player" role="tabpanel" aria-labelledby="player-tab"
                     tabindex="0">
-                    <div class="team-slider slider">
+                    <div class="team-slider slider justify-content-center">
                         @foreach ($datas as $item)
                             <div class="slide">
                                 <div class="box_player">

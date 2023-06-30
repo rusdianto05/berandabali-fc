@@ -348,46 +348,46 @@
                         </div>
                     </div>
                 </div>
-                {{-- <div class="carousel-item" data-bs-interval="5000">
+                <div class="carousel-item" data-bs-interval="5000">
                     <div class="jumbotron">
                         <div class="container">
-                            <div class="w-50">
-                                <h1 class="title">
+                            <div class="w-50 text-center text-lg-start">
+                                <h1 class="title text">
                                     BERANDA BALI <br />
                                     FOOTBALL CLUB
                                 </h1>
                                 <p class="subtitle mt-3 mb-5">
-                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-                                    Ipsum has been the industry's standard dummy text ever since the 1500s
+                                    BerandaBali FC adalah sebuah klub sepak bola yang bermarkas di Bali, Indonesia. Klub ini
+                                    berdiri pada tahun 2021. BerandaBali FC berkompetisi di Liga 2 Indonesia.
                                 </p>
                                 <a href="#about" class="btn_primary">Lihat lebih banyak</a>
                             </div>
-                            <img src="/assets/frontend/images/logo-transparent.png" class="logo_transparent d-none d-md-block"
+                            <img src="/assets/frontend/images/logo-transparent.png" class="logo_transparent d-none d-lg-block"
                                 alt="" />
-                            <img src="/assets/frontend/images/player1.png" class="img_player d-none d-md-block" alt="" />
+                            <img src="/assets/frontend/images/player1.png" class="img_player d-none d-lg-block" alt="" />
                         </div>
                     </div>
                 </div>
                 <div class="carousel-item" data-bs-interval="5000">
                     <div class="jumbotron">
                         <div class="container">
-                            <div class="w-50">
-                                <h1 class="title">
+                            <div class="w-50 text-center text-lg-start">
+                                <h1 class="title text">
                                     BERANDA BALI <br />
                                     FOOTBALL CLUB
                                 </h1>
                                 <p class="subtitle mt-3 mb-5">
-                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-                                    Ipsum has been the industry's standard dummy text ever since the 1500s
+                                    BerandaBali FC adalah sebuah klub sepak bola yang bermarkas di Bali, Indonesia. Klub ini
+                                    berdiri pada tahun 2021. BerandaBali FC berkompetisi di Liga 2 Indonesia.
                                 </p>
                                 <a href="#about" class="btn_primary">Lihat lebih banyak</a>
                             </div>
-                            <img src="/assets/frontend/images/logo-transparent.png" class="logo_transparent d-none d-md-block"
+                            <img src="/assets/frontend/images/logo-transparent.png" class="logo_transparent d-none d-lg-block"
                                 alt="" />
-                            <img src="/assets/frontend/images/player1.png" class="img_player d-none d-md-block" alt="" />
+                            <img src="/assets/frontend/images/player1.png" class="img_player d-none d-lg-block" alt="" />
                         </div>
                     </div>
-                </div> --}}
+                </div>
             </div>
         </div>
     </section>
