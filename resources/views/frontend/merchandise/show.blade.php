@@ -13,6 +13,18 @@
             min-height: 100vh;
             padding: 6.5rem 0 6rem;
         }
+        .button {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            padding: 1rem;
+            z-index: 99;
+            box-shadow: 0 0 5px #7f89a1!important;
+        }
+        .button a {
+            width: 100%;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        }
         .box {
             background: #ffffff;
             border-radius: 30px;
@@ -20,7 +32,7 @@
             padding: 3rem 4rem 5rem;
         }
         .category,
-        .desc,
+        .desc p,
         .discount {
             font-weight: 600;
         }
@@ -36,12 +48,14 @@
             font-size: 0.875rem;
         }
         .discount,
-        .desc {
+        .desc p {
             color: #55565b;
         }
-        .price,
-        .desc {
+        .price {
             font-size: 1.125rem;
+        }
+        .desc p {
+            font-size: .875rem;
         }
         .btn_buy {
             background: #e71345;
@@ -59,9 +73,6 @@
             box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1),
         0 4px 6px -4px rgb(0 0 0 / 0.1);
         }
-        .photo_product {
-            width: 22rem !important;
-        }
         .slider-for {
             max-height: 500px;
             margin-bottom: 1rem;
@@ -70,7 +81,7 @@
             display: flex;
             justify-content: center;
             width: 22rem !important;
-            height: 22rem;
+            height: 22rem !important;
         }
         .slider-for .images img {
             object-fit: contain;
@@ -79,6 +90,7 @@
         }
         .slider-nav {
             cursor: pointer;
+            /* margin-top: -8rem; */
         }
         .slider-nav .images2 img {
             height: 4.5rem;
@@ -93,13 +105,45 @@
         .slider-for2 .images img {
             height: 100%;
         }
+
+        /* Responsiveness */
+        @media only screen and (max-width: 991.98px) {
+            .box {
+                padding: 3rem 1rem;
+            }
+            h1 {
+                font-size: 1.5rem;
+            }
+            a.btn_buy {
+                font-size: .875rem;
+            }
+            .slider-for .images {
+                width: 18rem !important;
+                height: 18rem !important;
+            }
+        }
+
+        @media only screen and (max-width: 767.98px) {
+            .slick-slider .slick-list {
+                height: 20rem !important;
+
+            }
+            a.btn_buy {
+                width: 100% !important;
+            }
+
+            .contents {
+                margin-top: -12rem !important;
+            }
+        }
+        /* End Responsiveness */
     </style>
 @endpush
 @section('content')
     <!-- Contents -->
     <section id="contents">
         <div class="container">
-            <div class="box d-flex gap-5">
+            <div class="box d-flex flex-column flex-md-row gap-lg-5 gap-md-4">
                 <div class="photo_product">
                     <div class="slider-for slider">
                         @foreach ($merchandise->merchandiseImages as $image)
@@ -119,15 +163,15 @@
                 </div>
                 <div class="contents">
                     <p class="category mb-2">{{ $merchandise->categoryMerchandise->name }}</p>
-                    <h1 class="mb-4">{{ $merchandise->name }}</h1>
+                    <h1 class="mb-2 mb-md-3 mb-lg-4">{{ $merchandise->name }}</h1>
                     {{-- <p class="discount mb-0">Rp 75.000</p> --}}
 
                     {{-- show in rupiah format --}}
                     <p class="price">Rp. {{ number_format($merchandise->price, 0, ',', '.') }}</p>
-                    <p class="desc">
+                    <div class="desc">
                         {!! $merchandise->description !!}
-                    </p>
-                    <div class="mt-5">
+                    </div>
+                    <div class="mt-5 d-none d-md-block">
                         <a href="{{ $merchandise->link_marketplace }}" target="_blank" class="btn_buy">BELI SEKARANG!</a>
                     </div>
                 </div>
@@ -154,6 +198,9 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="bg-white button d-md-none">
+            <a href="{{ $merchandise->link_marketplace }}" target="_blank" class="btn_buy d-block mt-0 text-center">BELI SEKARANG!</a>
         </div>
     </section>
     <!-- End Contents -->
