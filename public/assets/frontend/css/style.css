@@ -155,3 +155,9 @@ footer small {
 .dropdown-menu {
     --bs-dropdown-link-active-bg: white !important;
 }
+
+@media only screen and (max-width: 1199.98px) {
+    .btn_primary {
+        font-size: 1rem;
+    }
+}

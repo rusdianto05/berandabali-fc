@@ -247,6 +247,71 @@
             width: 5% !important;
         }
 
+        @media only screen and (max-width: 1199.98px) {
+            #about h1, #about h1 span,
+            .box_beranda h1, .box_beranda h1 span, #championship h1 {
+                font-size: 2.25rem;
+            }
+            .title {
+                font-size: 2.5rem;
+            }
+            .subtitle,
+            .subs,
+            .box_beranda p {
+                font-size: 1rem;
+            }
+        }
+
+        @media only screen and (max-width: 991.98px){
+            .w-50 {
+                width: 100% !important;
+            }
+        }
+        @media only screen and (max-width: 767.98px) {
+            .slick-next {
+                right: 0 !important;
+            }
+            .slick-prev {
+                left: 0 !important;
+            }
+            .w-75 {
+                width: 100% !important;
+            }
+            .box_beranda {
+                padding: 2rem;
+            }
+            .box_championsip h6,
+            .links p {
+                font-size: 1rem;
+            }
+            .content p,
+            a.link_more {
+                font-size: .75rem;
+            }
+            .date {
+                font-size: .7rem;
+            }
+            .mask_img1, .mask_img3 {
+                display: none !important;
+            }
+            .mask_img2  {
+                -webkit-mask-image: none !important;
+                height: 20rem;
+            }
+            .links {
+                margin-top: -1rem !important;
+            }
+            #about {
+                margin-bottom: 8rem
+            }
+        }
+
+        @media only screen and (max-width: 575.98px) {
+            .mask_img2  {
+                -webkit-mask-image: none !important;
+                height: 15rem;
+            }
+        }
         /* End Championship */
     </style>
 @endpush
@@ -266,8 +331,8 @@
                 <div class="carousel-item active" data-bs-interval="5000">
                     <div class="jumbotron">
                         <div class="container">
-                            <div class="w-50">
-                                <h1 class="title">
+                            <div class="w-50 text-center text-lg-start">
+                                <h1 class="title text">
                                     BERANDA BALI <br />
                                     FOOTBALL CLUB
                                 </h1>
@@ -277,9 +342,29 @@
                                 </p>
                                 <a href="#about" class="btn_primary">Lihat lebih banyak</a>
                             </div>
-                            <img src="/assets/frontend/images/logo-transparent.png" class="logo_transparent"
+                            <img src="/assets/frontend/images/logo-transparent.png" class="logo_transparent d-none d-lg-block"
                                 alt="" />
-                            <img src="/assets/frontend/images/player1.png" class="img_player" alt="" />
+                            <img src="/assets/frontend/images/player1.png" class="img_player d-none d-lg-block" alt="" />
+                        </div>
+                    </div>
+                </div>
+                {{-- <div class="carousel-item" data-bs-interval="5000">
+                    <div class="jumbotron">
+                        <div class="container">
+                            <div class="w-50">
+                                <h1 class="title">
+                                    BERANDA BALI <br />
+                                    FOOTBALL CLUB
+                                </h1>
+                                <p class="subtitle mt-3 mb-5">
+                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+                                    Ipsum has been the industry's standard dummy text ever since the 1500s
+                                </p>
+                                <a href="#about" class="btn_primary">Lihat lebih banyak</a>
+                            </div>
+                            <img src="/assets/frontend/images/logo-transparent.png" class="logo_transparent d-none d-md-block"
+                                alt="" />
+                            <img src="/assets/frontend/images/player1.png" class="img_player d-none d-md-block" alt="" />
                         </div>
                     </div>
                 </div>
@@ -297,32 +382,12 @@
                                 </p>
                                 <a href="#about" class="btn_primary">Lihat lebih banyak</a>
                             </div>
-                            <img src="/assets/frontend/images/logo-transparent.png" class="logo_transparent"
+                            <img src="/assets/frontend/images/logo-transparent.png" class="logo_transparent d-none d-md-block"
                                 alt="" />
-                            <img src="/assets/frontend/images/player1.png" class="img_player" alt="" />
+                            <img src="/assets/frontend/images/player1.png" class="img_player d-none d-md-block" alt="" />
                         </div>
                     </div>
-                </div>
-                <div class="carousel-item" data-bs-interval="5000">
-                    <div class="jumbotron">
-                        <div class="container">
-                            <div class="w-50">
-                                <h1 class="title">
-                                    BERANDA BALI <br />
-                                    FOOTBALL CLUB
-                                </h1>
-                                <p class="subtitle mt-3 mb-5">
-                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-                                    Ipsum has been the industry's standard dummy text ever since the 1500s
-                                </p>
-                                <a href="#about" class="btn_primary">Lihat lebih banyak</a>
-                            </div>
-                            <img src="/assets/frontend/images/logo-transparent.png" class="logo_transparent"
-                                alt="" />
-                            <img src="/assets/frontend/images/player1.png" class="img_player" alt="" />
-                        </div>
-                    </div>
-                </div>
+                </div> --}}
             </div>
         </div>
     </section>
@@ -369,8 +434,8 @@
     <!-- Beranda Bali -->
     <section id="beranda" class="container">
         <div class="box_beranda">
-            <div class="row">
-                <div class="col-md-6 pe-md-5">
+            <div class="row align-items-center">
+                <div class="col-md-6 pe-md-5 mt-4 mt-md-0 order-last order-md-first">
                     <h1>
                         BERANDA BALI <br />
                         FOOTBALL <span class="text_primary">CLUB</span>
@@ -393,7 +458,9 @@
 
     <!-- Championship -->
     <section id="championship">
-        <h1 class="text-center">KEJUARAAN YANG DIRAIH</h1>
+        <div class="container">
+            <h1 class="text-center">KEJUARAAN YANG DIRAIH</h1>
+        </div>
         <div class="championship_slider slider mt-5">
             @foreach ($championships as $item)
                 <div class="slide">
@@ -440,6 +507,36 @@
                 arrows: true,
                 dots: false,
                 pauseOnHover: false,
+                responsive: [
+                    {
+                        breakpoint: 1200,
+                        settings: {
+                            slidesToShow: 3,
+                            slidesToScroll: 1,
+                        },
+                    },
+                    {
+                        breakpoint: 992,
+                        settings: {
+                            slidesToShow: 2,
+                            slidesToScroll: 1,
+                        },
+                    },
+                    {
+                        breakpoint: 768,
+                        settings: {
+                            slidesToShow: 2,
+                            slidesToScroll: 1,
+                        },
+                    },
+                    {
+                        breakpoint: 576,
+                        settings: {
+                            slidesToShow: 1,
+                            slidesToScroll: 1,
+                        },
+                    },
+                ],
             });
         });
     </script>
