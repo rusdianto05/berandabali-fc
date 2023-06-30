@@ -134,6 +134,44 @@
             border-radius: 100%;
         }
         /* End Profile */
+        .button {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            padding: 1rem;
+            z-index: 99;
+            box-shadow: 0 0 5px #7f89a1!important;
+        }
+        .button p {
+            font-size: .75rem;
+        }
+        .button a {
+            color: black !important;
+        }
+        .button .active p {
+            color: var(--blue);
+        }
+        .button .active img {
+            filter: invert(54%) sepia(86%) saturate(4049%) hue-rotate(215deg) brightness(99%) contrast(94%);
+        }
+
+        /* Responsiveness */
+        @media only screen and (max-width: 1199.98px) {
+            #new_match {
+                padding: 6rem 0;
+            }
+            h1 {
+                font-size: 1.5rem !important;
+            }
+            .profile_img2 {
+                width: 170px;
+                height: 170px;
+            }
+            .box_sidebar  p {
+                font-size: .875rem;
+            }
+        }
+        /* End Responsiveness */
     </style>
 @endpush
 @section('content')
@@ -141,7 +179,7 @@
     <section id="new_match" style="background-color: #FFFFFF">
         <div class="container">
             <div class="row">
-                <div class="col-lg-3">
+                <div class="col-md-5 col-lg-3 d-none d-md-block">
                     <div class="box_sidebar">
                         <div class="d-flex flex-column gap-2 justify-content-center mb-4 text-center align-items-center">
                             <img src="{{ asset(Auth::guard('users')->user()->avatar ?? '/assets/frontend/images/icons/profile.svg') }}" class="profile_img" />
@@ -188,10 +226,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-9 ps-5">
+                <div class="col-lg-9 ps-lg-5 col-md-7">
                     <h1>Profil Saya</h1>
-                    <div class="d-flex gap-5">
-                        <form action="#" class="profile_form w-100">
+                    <div class="d-flex flex-column flex-lg-row gap-3 gap-md-4 gap-lg-5">
+                        <form action="#" class="profile_form w-100 order-last order-lg-first">
                             <div class="mb-3">
                                 <label for="fullname" class="form-label">Nama Lengkap</label>
                                 <input type="text" class="form-control" id="fullname" value="{{ Auth::guard('users')->user()->name }}" disabled>
@@ -206,8 +244,34 @@
                             </div>
                             <a href="{{ route('profile.edit') }}" class="btn_profile mt-4" type="submit">Ubah Profil</a>
                         </form>
-                        <img src="{{ asset(Auth::guard('users')->user()->avatar ?? '/assets/frontend/images/icons/profile.svg') }}" class="profile_img2 mb-4" />
+                        <img src="{{ asset(Auth::guard('users')->user()->avatar ?? '/assets/frontend/images/icons/profile.svg') }}" class="profile_img2 mb-4 mx-auto " />
                     </div>
+                </div>
+            </div>
+        </div>
+        <div class="bg-white button d-md-none">
+            <div class="row">
+                <div class="col-4">
+                    <a href="{{ route('profile.show') }}" class="active">
+                        <div class="text-center">
+                            <img src="{{ asset('/assets/frontend/images/icons/edit-profile.svg') }}" width="16"/>
+                            <p class="mb-0">Profil Saya</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-4">
+                    <a href="{{ route('user.ticket.index') }}">
+                        <div class="text-center">
+                            <img src="{{ asset('/assets/frontend/images/icons/transaction.svg') }}" width="16"/>
+                            <p class="mb-0">Tiket Saya</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-4">
+                    <button data-bs-toggle="modal" data-bs-target="#logoutModal" class="text-center w-100 px-1 border-0 bg-transparent">
+                        <img src="{{ asset('/assets/frontend/images/icons/logout.svg') }}" class="img_red" width="16"/>
+                        <p class="mb-0 text_primary">Logout</p>
+                    </button>
                 </div>
             </div>
         </div>
